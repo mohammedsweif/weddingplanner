@@ -65,21 +65,6 @@ namespace Final_project
            services.AddCors();
             services.AddScoped<VendorWorksRepsitory>();
 
-            /*Mohamed Abd Elsaatr Edit...*/
-            /************************************************************/
-            /*   
-                 services.AddAuthentication(options =>
-                 {
-                     options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                     options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                     options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                 }).AddCookie(options =>
-                 {
-                     options.Cookie.HttpOnly = true;
-                     options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
-                     options.LogoutPath = "/Account/logout";
-                     options.SlidingExpiration = true;
-                 });*/
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
