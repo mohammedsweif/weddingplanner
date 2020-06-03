@@ -65,7 +65,7 @@ namespace Final_project
            services.AddCors();
             services.AddScoped<VendorWorksRepsitory>();
 
-
+            /*Mohamed Abd Elsaatr Edit...*/
             /************************************************************/
             /*   
                  services.AddAuthentication(options =>
