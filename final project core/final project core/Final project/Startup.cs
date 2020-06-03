@@ -65,7 +65,6 @@ namespace Final_project
            services.AddCors();
             services.AddScoped<VendorWorksRepsitory>();
 
-
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
