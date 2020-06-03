@@ -1,0 +1,109 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!--To Work with icons-->
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3 col-md-6">
+		  <div class="dataTables_length" id="bootstrap-data-table_length">
+			  <label>Filter By Category 
+				  <select #refCategory="ngModel" [(ngModel)]="this.catnum">
+					<!-- // <option value="0">ALL</option>  -->
+					  <option *ngFor="let item of cats" value={{item.cat_Id}}>{{item.cat_Name}}</option>  
+				  </select>
+			  </label>
+			</div>
+		</div>
+			  <div class="col-lg-6 col-md-6"></div>
+			  <div class="col-lg-3 col-md-6">
+			   <!-- <span class="star">
+				   <ngb-rating [rate]="venrate" [readonly]="true" max="5"></ngb-rating></span> 
+				 -->
+			</div>
+		  </div>
+		
+		  </div>
+	
+	<h2 class="text-center">Clients Reviews</h2>
+  <br>
+	<div class="card">
+
+		<ng-container *ngFor="let item of r.reviews |paginate: this.config">         
+
+      <div class="card-body" *ngIf="(item.catagory_id==catnum || catnum==0)">
+	        <div class="row">
+        	    <div class="col-md-2">
+        	        <img src="https://scontent-hbe1-1.xx.fbcdn.net/v/t1.0-9/p960x960/61702175_10156651902758305_8264457993169403904_o.jpg?_nc_cat=105&_nc_sid=dd7718&_nc_ohc=d0n86FCAwFUAX-401OY&_nc_ht=scontent-hbe1-1.xx&_nc_tp=6&oh=209612766c28c90d925565bbbb5cc889&oe=5ED55370" class="img img-rounded img-fluid"/>
+        	        <p class="text-secondary text-center">{{item.postDate  | timeago }}</p>
+        	    </div>
+        	    <div class="col-md-10">
+        	        <p>
+                        <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>{{item.username}}</strong></a>
+						<!-- **Nevine :Loop 3la 7asab elrate y span a star -->
+						
+                        
+        	       </p>
+        	       <div class="clearfix"></div>
+					<p>{{item.comment}}</p>
+        	        <p>
+        	            <a class="float-right btn btn-outline-primary ml-2" data-toggle="modal" data-target="#exampleModal"  (click)="qqq(item.id)"> <i class="fa fa-reply"></i> Reply</a>
+        	            <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+        	       </p>
+        	    </div>
+            </div>
+			
+			
+			 <ng-container *ngFor="let p of r.replays"> 
+	        	 <div class="card card-inner" *ngIf="(item.id==p.review_Id)">
+            	    <div class="card-body">
+            	        <div class="row">
+                    	    <div class="col-md-2">
+                    	        <img src="https://scontent-hbe1-1.xx.fbcdn.net/v/t1.0-9/p960x960/67795201_2502799856449370_7301526797852606464_o.jpg?_nc_cat=105&_nc_sid=85a577&_nc_ohc=pWz2lHOIL04AX8JWFBB&_nc_ht=scontent-hbe1-1.xx&_nc_tp=6&oh=50a5e76ee23e76da84c177ebcbe6b16f&oe=5ED6847A" class="img img-rounded img-fluid"/>
+                    	        <p class="text-secondary text-center">{{p.postDate |timeago}}</p>
+                    	    </div>
+                    	    <div class="col-md-10">
+                               <!-- **Nevine:  add ruter link to User profile sawa2 vendor aw user adi -->
+                    	        <p><a href="#"><strong>{{item.vendorname}}</strong></a></p>
+								<p> {{p.comment}}</p>
+								<!-- <input type="text" ng-value="item."  [(ngModel)]="newreplay.Review_Id"> -->
+                    	        <p>
+                    	            <a class="float-right btn btn-outline-primary ml-2" data-toggle="modal" data-target="#exampleModal"  (click)="qqq(item.id)">  <i class="fa fa-reply"></i> Reply</a>
+                    	            <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+                    	       </p>
+                    	    </div>
+            	        </div>
+					</div> 
+					
+				</div>
+			 </ng-container>
+					
+		</div>
+		</ng-container>
+		<pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+
+	</div>
+
+	
+<!-- ////model replay/// -->
+<div class="modal" tabindex="-1" id="exampleModal" role="dialog">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title">add replay</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<input type="text" class="form-control"  placeholder="Replay...."  name="fieldName" ngDefaultControl  [(ngModel)]="newreplay.Comment">
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-primary"data-dismiss="modal" (click)="add()">Send</button>
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+		</div>
+	  </div>
+	</div>
+  </div>

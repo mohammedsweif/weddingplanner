@@ -1,0 +1,35 @@
+<div class="courses-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <div class="border border-success text-center">
+                    <h6 >Reserved Dates</h6>
+                    <p class="text-danger" *ngFor="let Date of DateBusy"><del>{{Date.busyDate | date}}</del></p>
+                </div>
+            </div>
+            <div class="col-10">
+                <p class="border border-danger" *ngIf="show">This Date is resrved Please Select another Date</p>
+                <div class="DateContainer">
+                    <input type="date" [(ngModel)]="Bookings.RealDate" required/>
+                    <button class="btn" (click)="MakeBook()">Book Now</button>
+                </div>
+    
+                <div class="course">
+                    <div class="course-preview">
+                        <h2>Event :{{package.event}}</h2>
+                    </div>
+                    <div class="course-info">
+                        
+                        <h2>Vendor :{{package.vendorName}}</h2>
+                        <h2>Category :{{package.categoryName}}</h2>
+                        
+                        <h2>Address :{{package.address}}</h2>
+                        <h2>Cost :{{package.cost}}</h2>
+                        <h6>Details:{{package.description}}</h6>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

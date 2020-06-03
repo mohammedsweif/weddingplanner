@@ -1,0 +1,61 @@
+<div class="container">
+    <h4 class="text-center m-5">Designer and Condition</h4>
+    <form>
+        <div class="form-row">
+          
+          
+          <div class="form-group col-md-8">
+            <label for="inputState">Cost</label>
+            <input class="form-control" type="text" [(ngModel)]="used.piece_Cost" name="piece_Cost">
+           
+          </div>
+          <div class="form-group col-md-4">
+
+          </div>
+        </div>
+        <!-- <div class="form-row">
+          
+            <div class="form-group col-md-8">
+                
+                    <label for="inputCity">available_date</label>
+                    <input type="date" class="form-control" id="inputCity" [(ngModel)]="used.available_date" name="available_date">
+                  
+            </div>
+            <div class="form-group col-md-4">
+                 <label for="inputCity">Currency</label>
+                <input type="text" class="form-control" id="inputCity" [(ngModel)]="used.contry" name="contry"> 
+            </div>
+          </div> -->
+          <div class="row">
+            <div class="form-group col-md-8">
+                <label for="inputCity">Description</label>
+                <input type="text" class="form-control" id="inputCity" [(ngModel)]="used.piece_description" name="piece_description">
+            </div>
+            <!-- <legend class="col-form-label col-sm-2 pt-0">Has the Dress Been Cleaned?</legend>
+           
+            <div class="col-sm-10 col-lg-6">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                <label class="form-check-label" for="gridRadios1">
+                  Yes
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                <label class="form-check-label" for="gridRadios2">
+                  N0
+                </label>
+              </div>
+              
+             
+            </div> -->
+            
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlFile1">Upload dress image</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1" [(ngModel)]="used.Image" name="image">
+          </div>
+        <button type="submit text-center" class="btn btn-primary" (click)="save()" > Upload</button>
+      </form>
+</div>
+

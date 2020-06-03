@@ -1,0 +1,32 @@
+
+<div class="courses-container">
+  <div class="row ">
+	<div class="course mx-auto" *ngFor="let package of Packages;">
+		<div class="course-preview">
+			   <h5>{{package.categoryName}}</h5>
+         <h3>{{package.event}}</h3>
+        
+		</div>
+		<div class="course-info">
+			
+      <h2 class="text-center">{{package.vendorName}}</h2>
+		                   	
+                        <h2>Category :{{package.categoryName}}</h2>
+                        <h2>Event :{{package.event}}</h2>
+                        <h2>Address :{{package.address}}</h2>
+                        <h2>Cost :{{package.cost}}</h2>
+                        <h6>Details:{{package.description}}</h6>
+      
+      <a class="btn btn-success" [routerLink]="['/BookPackage',package.packageId]">Book Now</a>
+		</div>
+	</div>
+</div>
+</div>
+<!-- SOCIAL PANEL HTML -->
+
+
+
+
+
+
+

@@ -1,0 +1,157 @@
+<h2 class="title">My Works </h2> 
+<div class="row">
+    <!-- <div class="col-md-12"></div> -->
+    <div class="col-md-3">
+      <button  type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal11" data-whatever="@mdo">
+        New Work
+      </button>
+      <!-- //model add -->
+<div class="modal fade" id="exampleModal11" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true" data-backdrop="false">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="exampleModalLabel1">New Work</h5>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<form>
+  <div class="form-group">
+    <label for="recipient-name" class="col-form-label">Categorie:</label>
+    <div class="dataTables_length" id="bootstrap-data-table_length">
+      <label>
+        <select (change)="changeAdd($event.target.value)" [(ngModel)]="addWork.category_id"  name="Category" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
+          <option *ngFor="let cat of categories" value="{{cat.cat_Id}}">{{cat.cat_Name}}</option>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="message-text" class="col-form-label">Title:</label>
+    <textarea [(ngModel)]="addWork.title" class="form-control" id="title-text" name="title"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="message-text" class="col-form-label">Description:</label>
+    <textarea [(ngModel)]="addWork.description" class="form-control" id="description-text" name="description"></textarea>
+  </div>
+</form>
+
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button id="buttonadd" (click)="Add()" [disabled]=" !addWork.category_id  || !addWork.description || !addWork.title"  type="button" class="btn btn-primary"  data-dismiss="modal">Add </button> 
+      </div>
+      </div>
+      </div>
+      </div> 
+      <!-- end model -->
+    </div>
+<div class="col-md-6"></div>
+    <div class="col-lg-3">
+      <!-- <span class="star"><ngb-rating [rate]="venrate" [readonly]="true" max="5"></ngb-rating></span> -->
+      </div>
+</div>
+
+         <div class="row"><div class="col-lg-3">
+          <!-- <div class="dataTables_length" id="bootstrap-data-table_length"> -->
+            <label>Filter By catagory </label>
+              <select (change)="changeCateg($event.target.value)"  class="form-control form-control-sm">
+              <option value="0">All</option>
+              <option *ngFor="let cat of categories" value="{{cat.cat_Id}}">{{cat.cat_Name}}</option>
+            </select>
+          
+        
+           
+          
+    </div>
+</div>
+
+
+
+
+
+<div  *ngFor="let work of Works |paginate: this.config"   class="card mb-3" style="max-width: 540px;">
+    <div class="row no-gutters" *ngIf="this.catnum == 0 || work.category_id == this.catnum">
+      <div class="col-md-4">
+        <img src="https://scontent-hbe1-1.xx.fbcdn.net/v/t1.0-9/s960x960/92824048_2625988957671544_4954206052510859264_o.jpg?_nc_cat=106&_nc_sid=9e2e56&_nc_ohc=QtFkSMZemYkAX-Vza_3&_nc_ht=scontent-hbe1-1.xx&_nc_tp=7&oh=bbc741b17ee2789e16fb525f6b4339e4&oe=5ED50389" class="card-img" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h3 class="card-title">{{work.title}} </h3>
+          <p class="card-text">{{work.description}}  </p>
+          <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+          <p class="card-text"><small class="text-muted">Last updated {{ work.last_updated| timeago}}</small></p>
+          <div class="row">
+            <div class="col col-lg-6">
+
+              <button (click)="edit(work.id)" type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                Edit Work 
+              </button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+     <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Work</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Categorie:</label>
+          
+          <div class="dataTables_length" id="bootstrap-data-table_length">
+            <label>
+            <select  (change)="changeEdit($event.target.value)" [(ngModel)]="NewWork.category_id"  name="Category" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
+              <option *ngFor="let cat of categories" value="{{cat.cat_Id}}">{{cat.cat_Name}}</option>
+            </select>
+          </label>
+          </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Title:</label>
+            <textarea [(ngModel)]="NewWork.title" class="form-control" id="title-text" name="title"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Description:</label>
+            <textarea [(ngModel)]="NewWork.description" class="form-control" id="description-text" name="description"></textarea>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <app-upload-image (onUploadFinished)= getImage($event)>
+
+        </app-upload-image>
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button [disabled]=" !NewWork.category_id  || NewWork.description.length===0 || NewWork.title.length===0 "  (click)="Update()" type="button" class="btn btn-primary">Update</button> 
+      </div>
+
+    </div>
+  </div>
+</div>
+
+            </div>
+
+            <div class="col col-lg-6">
+              <button type="button" class="btn btn-info" (click)="Delete(work.id)"> Delete </button>
+            </div>
+          </div>
+     </div>
+      </div>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+
+  <!-- <script>
+    $('#buttonadd').click(function(){
+        $("#exampleModal11").modal("show");
+    });
+  </script> -->

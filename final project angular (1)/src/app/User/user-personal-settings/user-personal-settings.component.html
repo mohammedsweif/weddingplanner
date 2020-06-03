@@ -1,0 +1,67 @@
+<div class="container">
+	<div class="row">
+		<div class="col-6 ">
+	<input type="file"  (change)="fileChangeEvent($event)" />
+	
+	<image-cropper
+		[imageChangedEvent]="imageChangedEvent"
+		[maintainAspectRatio]="true"
+		[aspectRatio]="3 / 3"
+		format="png"
+		(imageCropped)="imageCropped($event)"
+	></image-cropper>
+	<button (click)="SaveImage()" class="btn btn-success">Save Image</button>
+	</div>
+	<div class="col-6">
+		<div class="row">
+	
+	
+			<div id="contact-form" class="form-container" data-form-container>
+				<div class="row">
+					<div class="form-title">
+						<span>Personal Information</span>
+					</div>
+				</div>
+				
+				<form [formGroup]="form">
+				<div class="input-container">
+					
+					<div class="row">
+						<span class="req-input">
+							<span class="input-status" data-toggle="tooltip" data-placement="top"
+								title="Input Your Address"> </span>
+							<input type="text" formControlName="addr" >
+						</span>
+					</div>
+					<div class="row">
+						<span class="req-input">
+							<span class="input-status" data-toggle="tooltip" data-placement="top"
+								title="Please Input BirthDate"> </span>
+							<input type="date" formControlName="birth_date" >
+						</span>
+					</div>
+					<div class="row">
+						<span class="req-input">
+							<span class="input-status" data-toggle="tooltip" data-placement="top"
+								title="Please Input Your Phone Number."> </span>
+							<input type="text" formControlName="PhoneNumber" >
+						</span>
+					</div>
+					<div class="row">
+						<span class="req-input message-box">
+							<span class="input-status" data-toggle="tooltip" data-placement="top"
+								title="Please Include a Message."> </span>
+							<textarea type="textarea" formControlName="Bio" data-min-length="10" placeholder="Bio" ></textarea>
+						</span>
+					</div>
+					<div class="row submit-row">
+						<button type="button" (click)="Save()" [disabled]="!form.valid" class="btn btn-block submit-form">Submit</button>
+					</div>
+				</div>
+				</form>		
+			</div>
+		
+		</div>
+	</div>
+	</div>
+	</div>

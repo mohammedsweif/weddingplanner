@@ -1,0 +1,110 @@
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Vendor Name</th>
+            <th>Category Name</th>
+            <th>Date</th>
+            <th>Cost</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let Book of BookList;let i=index; paginate: {id:'listing_pagination',
+    itemsPerPage:5,
+     currentPage:page,
+    totalItems:TotalNumber}">
+    <td>{{Book.vendorname}}</td>
+    <td>{{Book.category}}</td>
+    <td>{{Book.realDate}}</td>
+    <td>{{Book.cost}}</td>
+    <td>
+        <span class="custom-checkbox">
+            <input type="checkbox" id="selectAll" value="Book.status">
+            <label for="selectAll"></label>
+        </span>
+    </td>
+    <td>
+        <input type="button"  value="Cancel" (click)="CancelBook(i)"/>
+        <a class="delete" (click)="CancelBook(i)"><i class="fa fa-remove"></i></a>
+        <a [routerLink]="['/EditBooks',Book.id]">Edit Book</a>
+      <!-- <a class="delete" data-toggle="modal"><i class="fa fa-remove"></i></a>--> 
+    </td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <pagination-controls  id="listing_pagination"
+                      (pageChange)="page = $event"
+                      
+                      maxSize="5"
+                      directionLinks="true"
+                      autoHide="true"
+                      responsive="true"
+                      previousLabel="Previous"
+                      nextLabel="Next"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="You're on page">
+</pagination-controls>
+</div>
+
+
+<!--Edit Modal-->
+<div id="editBooking" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Bookings</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <textarea class="form-control" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-info" value="Save">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Delete Modal HTML -->
+<div id="deleteBooking" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Employee</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete these Records?</p>
+                    <p class="text-warning"><small>This action cannot be undone.</small></p>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

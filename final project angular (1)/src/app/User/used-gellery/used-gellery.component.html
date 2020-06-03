@@ -1,0 +1,72 @@
+
+<div class="container mt-2">
+
+  <div style="text-align: center;"><h1> For Sale Gallery</h1> </div>
+  <br>
+   <div class="row ">
+      <div class="col-md-3 col-sm-6 item " *ngFor="let item  of useds| paginate: {id:'listing_pagination',
+      itemsPerPage:4,
+       currentPage:page,
+      totalItems:TotalNumber}">
+        <div >
+          <div class="card item-card card-block text-center nevine">
+          <small underlined class="card-title text-right"><i>View Details</i></small>
+            <img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg" alt="Photo of sunset">
+            <h5 class="item-card-title mt-3 mb-3"><span class="text-primary">Owner Name : </span>{{item.userName}}</h5>
+            <span  class="d-inline p-2 bg-primary text-white">price : <span>{{item.piece_Cost}}</span></span>
+            <br>
+            <h3>Details</h3>
+            
+            <p class="card-text text-secondary">{{item.piece_description}}</p> 
+            
+            <button class="btn btn-warning">Contact Owner</button>
+            <br>
+            <small>Date: <span class="text-secondary">{{item. publish_date | date}}</span></small>
+            <!-- <span>{{ getAge(item.available_date) }}</span> -->
+
+          </div>
+        </div>
+        <!-- <div class="col-md-3 col-sm-6 item">
+          <div class="card item-card card-block">
+          <h4 class="item-card-title text-right"><i class="material-icons">settings</i></h4>
+        <img src="https://static.pexels.com/photos/7357/startup-photos.jpg" alt="Photo of sunset">
+            <h5 class="card-title  mt-3 mb-3">ProVyuh</h5>
+            <p class="card-text">This is a company that builds websites, web .</p> 
+      </div>
+        </div>
+        <div class="col-md-3 col-sm-6 item">
+          <div class="card item-card card-block">
+          <h4 class="item-card-title text-right"><i class="material-icons">settings</i></h4>
+        <img src="https://static.pexels.com/photos/262550/pexels-photo-262550.jpeg" alt="Photo of sunset">
+            <h5 class="card-title  mt-3 mb-3">ProVyuh</h5>
+            <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions.</p> 
+      </div>
+        </div>
+        <div class="col-md-3 col-sm-6 item">
+          <div class="card item-card card-block">
+          <h4 class="item-card-title text-right"><i class="material-icons">settings</i></h4>
+        <img src="https://static.pexels.com/photos/326424/pexels-photo-326424.jpeg" alt="Photo of sunset">
+            <h5 class="card-title  mt-3 mb-3">ProVyuh</h5>
+            <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions.</p> 
+      </div>
+        </div>     -->
+      </div>
+  </div> 
+  <div>
+    <pagination-controls  id="listing_pagination"
+                     (pageChange)="page = $event"
+                      
+                      maxSize="4"
+                      directionLinks="true"
+                      autoHide="true"
+                      responsive="true"
+                      previousLabel="Previous"
+                      nextLabel="Next"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="You're on page">
+</pagination-controls>
+</div>
+</div>
+
+    

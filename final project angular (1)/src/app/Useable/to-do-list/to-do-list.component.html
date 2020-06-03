@@ -1,0 +1,102 @@
+
+<div class="card-body">
+
+    <h4 class="card-title box-title">To Do List</h4>
+     <!-- yyyyyyy -->
+     <button type="button" class="btn btn-md btn-border-warning" data-toggle="modal" data-target="#myModall">Add </button>
+                                              
+     <!-- Modal -->
+                       <div class="modal fade" id="myModall" role="dialog">
+                         <div class="modal-dialog modal-sm">
+                         
+                           <!-- Modal content-->
+                           <div class="modal-content">
+                             <div class="modal-header">
+                               <button type="button" class="close" data-dismiss="modal">&times;</button>
+                               <h4 class="modal-title">Add new to do</h4>
+                             </div>
+                             <div class="modal-body">
+                               <div class="content">
+                                   <div class="animated fadeIn">
+                                       <div class="row">
+                                        <div class=" container">
+                                            <aside class="profile-nav alt">
+                                                
+                                                  <form class="list-group list-group-flush"> 
+                                                    <div class="form-group">
+                                                      <label class="font-weight-bold">Description</label>
+                                                      <input class="form-control" type="text" [(ngModel)]="toDo.Description" name="Des">
+                                                      <br>
+                                                      <button class="btn btn-primary btn-lg" (click)="save()" data-dismiss="modal">Add </button>
+                                                    </div>
+                                                   
+                                        
+                                                  </form>
+                                                   
+                                        
+                                            </aside>
+                                        </div>
+     
+     
+                                     </div>
+                                   </div>
+                                 </div>
+                             </div>
+                             <div class="modal-footer">
+                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                             </div>
+                           </div>
+                           
+                         </div>
+                       </div>
+            
+        <!-- eeee -->
+    <div class="card-content">
+       
+        <div class="todo-list">
+            <div class="tdl-holder">
+                <div class="tdl-content">
+                    <ul *ngFor="let item of does" (click)="datafill(item)" >
+                        <li>
+                            <label>
+                                <input type="checkbox"><i class="check-box"></i><span>{{item.description}}</span>
+                                <button class="btn btn-light fa fa-times" (click)="delete(item.id)" ></button>
+                                        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo" (click)="datafill(item)"><a  class="fa fa-pencil"></a> </button>
+                                        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Description</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                            
+                                            <div class="form-group">
+                                                <label for="message-text" class="col-form-label">Description:</label>
+                                                <textarea class="form-control" id="message-text" [(ngModel)]="toDo.Description" name=" Description"></textarea>
+                                            </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary" (click)="update()">OK</button> 
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                            
+                            
+                                <a href='#' class="fa fa-check"></a>
+                            </label>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div> <!-- /.todo-list -->
+    </div>
+    
+</div> <!-- /.card-body -->

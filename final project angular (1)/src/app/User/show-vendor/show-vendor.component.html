@@ -1,0 +1,138 @@
+﻿<div class="container">
+            <div class="row blog">
+                <div class="col-lg-6">
+                    <div id="blogCarousel" class="carousel slide" data-ride="carousel">
+
+                        <ol class="carousel-indicators">
+                            <li data-target="#blogCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#blogCarousel" data-slide-to="1"></li>
+                        </ol>
+
+                        <!-- Carousel items -->
+                        <div class="carousel-inner">
+
+                            <div class="carousel-item active">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="#">
+                                            <img src="assets/images/d3.jpg" alt="Image" style="max-width:100%;">
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="#">
+                                            <img src="assets/images/d2.jpg" alt="Image" style="max-width:100%;">
+                                        </a>
+                                    </div>
+                                   
+                                </div>
+                                <!--.row-->
+                            </div>
+                            <!--.item-->
+
+                            <div class="carousel-item">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="#">
+                                            <img src="assets/images/d3.jpg" alt="Image" style="max-width:100%;">
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="#">
+                                            <img src="assets/images/d2.jpg" alt="Image" style="max-width:100%;">
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--.row-->
+                            </div>
+                            <!--.item-->
+
+                        </div>
+                        <!--.carousel-inner-->
+                    </div>
+                                  </div>
+ <div class="col-lg-2"></div>
+ <div class="col-lg-4">
+   
+                <div class="image-flip" >
+                    <div class="mainflip flip-0">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p><img class=" img-fluid" src="assets/images/1.jpg" alt="card image"></p>
+                                    <h4 class="card-title">{{vendetails.vendorname}}<br><span class="star">
+                                         <!-- <ngb-rating [rate]="vendorrate" [readonly]="true" max="5"></ngb-rating>  -->
+                                        <br></span>
+
+                                    </h4>
+                                    
+                                    <p class="card-text">{{vendetails.cat}}.</p>
+                                    <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="backside">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title">{{vendetails.vendorname}}</h4>
+                                    <p class="card-text"> Facebook<br><a>{{vendetails.facebook}}</a><br>Twitter<br><a>{{vendetails.twitter}}</a><br>Instgram<br><a>{{vendetails.instgram}}</a> </p>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                                <i class="fa fa-skype"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                                <i class="fa fa-google"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+</div>
+<div class="container">
+<div class="be-comment-block">
+    <h1 class="comments-title">Client Reviews ({{ r.reviews.length}})</h1>
+    <ng-container  *ngFor="let item of r.reviews">
+	<div class="be-comment">
+		<div class="be-img-comment">	
+			<a href="blog-detail-2.html">
+				<img src="assets/images/d6.jpg" alt="" class="be-ava-comment">
+			</a>
+		</div>
+		<div class="be-comment-content">
+			
+				<span class="be-comment-name">
+					<a href="blog-detail-2.html">{{item.username}}</a>
+					</span>
+				<span class="be-comment-time">
+					<i class="fa fa-clock-o"></i>
+					{{item.postDate |timeago}}
+				</span>
+
+			<p class="be-comment-text">
+				{{item.comment}}
+			</p>
+		</div>
+	</div>
+	
+</ng-container>
+	
+</div>
+</div>

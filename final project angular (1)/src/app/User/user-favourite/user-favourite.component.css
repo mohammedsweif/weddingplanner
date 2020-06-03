@@ -1,0 +1,16 @@
+.filtter{
+    font-size: 30px;
+    width: 150px;
+    
+}
+.btn-success{
+background-color: teal;
+}
+.btn-success:hover{
+    background-color: rgb(107, 197, 197);
+    }
+img{
+    width:150px;
+    height: 150px;
+    border-radius:  50%;
+}    

@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row justify-content-center">
+    
+        <div class="btn btn-success m-5" id="bootstrap-data-table_length">
+            <label class="filtter">Filter</label>
+                <select name="bootstrap-data-table_length" aria-controls="bootstrap-data-table" class="form-control form-control-sm" *ngFor="let item of Cat;" (ngModelChange)="makeFilter($event)">
+                    <option value="All">All</option>
+                    <option value={{item}}>{{item}}</option>
+                    
+                </select>
+            
+        </div>
+       
+    </div>
+    
+    
+        
+    
+    <div class="row m-5" *ngFor="let item of Favorit; let i= index;">
+        <div class="col-lg-4 ">
+            <img src={{item.image}} >
+        </div>
+        <div class="col-lg-6 px-5">
+            <div  class="text-secondary">Name: {{item.vendorName}}</div>
+           <div  class="text-secondary">Category : {{item.category}}</div> 
+           <div  class="text-secondary">Address : {{item.address}}</div> 
+           <div  class="text-secondary">Phone : {{item.phone}}</div> 
+            
+
+        </div>
+        <div class="col-lg-2">
+            <a  (click)="RemoveFromFavorit(i)"><i class="fa fa-heart text-danger  fa-2x m-4" id="change" aria-hidden="true" ></i></a>
+
+        </div>
+    </div>
+   
+</div>

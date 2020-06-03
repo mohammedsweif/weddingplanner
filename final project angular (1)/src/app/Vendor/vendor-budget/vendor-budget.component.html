@@ -1,0 +1,146 @@
+
+<div class="container">
+
+    <div class="dataTables_length" id="bootstrap-data-table_length">
+        <label>Filter </label>
+         
+          <select (change)="changeCateg($event.target.value)"  class="form-control form-control-sm" >
+            <option value="" selected disabled>--Select a Category--</option>
+          <option *ngFor="let cat of categories" value="{{cat.cat_Id}}">{{cat.cat_Name}}</option>
+        </select>
+      </div>
+
+    <div class="mx-auto p=2 text-center border m-2" style="width: 700px ;height: 410px;">
+        <button  type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal11" data-whatever="@mdo">
+            Set New Budget
+          </button>
+    <div class="modal fade" id="exampleModal11" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel1">New Budget</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+
+       
+    <form>
+      <div class="form-group">
+        <label for="recipient-name" class="col-form-label">Categorie:</label>
+        <div class="dataTables_length" id="bootstrap-data-table_length">
+          <label>
+            <select (change)="changeAdd($event.target.value)" [(ngModel)]="addVendorBudget.catt_id"  name="Category" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
+              <option *ngFor="let cat of noBudgetList" value="{{cat.cat_Id}}">{{cat.cat_Name}}</option>
+              <option *ngIf="noBudgetList.length==0" selected disabled>-No Categories left to select-- </option>
+            </select>
+          </label>
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="budget-text" class="col-form-label">Estimated Cost :</label>
+        <input [(ngModel)]="addVendorBudget.cat_budget" class="form-control" id="budget-text" name="budget" type="number">
+      </div>
+    
+      
+    </form>
+    
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="buttonadd" (click)="Add()" [disabled]=" !addVendorBudget.catt_id  || !addVendorBudget.cat_budget"  type="button" class="btn btn-primary"  data-dismiss="modal">Add </button> 
+          </div>
+          </div>
+          </div>
+          </div> 
+    <h2 class="m-4">Budget</h2>
+    <ng-container *ngFor="let item of VendorData ">
+    <div class="row" *ngIf=" item.catt_id == this.catnum ">
+        <div class="col-lg-5 text-center">
+          
+           
+            <i class="fa fa-pie-chart  fa-3x  text-primary mt-5" aria-hidden="true"></i>
+            <br>
+
+            <div class="m-3 text-secondary">Cost of Category : </div>
+            <ng-container *ngFor="let c of categories">
+                <h4 *ngIf="c.cat_Id===item.catt_id">{{c.cat_Name}}</h4>
+            </ng-container>
+            
+
+            <div class="m-3 text-secondary">Estimated Cost </div>
+            <div class="row">
+                <div class="col">
+                    <h4>LE {{item.cat_budget}}</h4>
+                </div>
+                <div class="col">
+                    <button (click)="edit(this.item.vendor_id,this.item.catt_id)" type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">
+                        Edit
+                      </button>
+                <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true" data-backdrop="false">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Edit Budget</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                <form>
+                  
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Category:</label>
+                    <div class="dataTables_length" id="bootstrap-data-table_length">
+                        <label>
+                          <select disabled (change)="changeEdit($event.target.value)" [(ngModel)]="editVendorBudget.catt_id"  name="Category" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
+                            <option *ngFor="let cat of categories" value="{{cat.cat_Id}}">{{cat.cat_Name}}</option>
+                          </select>
+                        </label>
+                      </div>
+        
+                  </div>
+        
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Estimated Cost:</label>
+                    <div class="dataTables_length" id="bootstrap-data-table_length">
+                      <input type="number" [(ngModel)]="editVendorBudget.cat_budget" name="entercost">
+                    </div>
+               </div>
+                
+                </form>
+                
+                      </div>
+                      <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button id="buttonEdit" (click)="EditBudget()"   type="button" class="btn btn-primary"  data-dismiss="modal"> Update </button> 
+                      </div>
+                      </div>
+                      </div>
+                      </div> 
+                </div>
+            </div>
+            
+            <!-- <button type="button" class="btn btn-outline-primary m-3">Edit budget</button> -->
+          <div class="row">
+         
+          </div>
+        </div>
+        <div class="col-lg-1 border-right"></div>
+        
+        <div  class="col-lg-6 text-center">
+            <i class="fa fa-money fa-3x text-success mt-5" aria-hidden="true"></i>
+            <div class="m-3 text-secondary">Final cost</div>
+            <button (click)="GetTotal(this.item.vendor_id,this.item.catt_id)">Calculate Budget</button>
+            <h4 class="mb-2">LE {{this.TotalForCateg}}</h4>
+            <span class="m-2">Paid: LE  {{this.TotalPaid}} </span> <span class=" m-2">Pending: LE {{this.TotalPending}}</span>
+            
+        </div>
+    </div>
+     </ng-container>
+    </div>
+</div>
+
+
