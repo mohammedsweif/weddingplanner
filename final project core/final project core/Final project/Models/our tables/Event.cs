@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Final_project.Models.our_tables
 {
   // public enum season {winter,summer,spring, Autumn };
+  //llldldlldlldllldldldldldldl
     public class Event
     {
         public int id { get; set; }
