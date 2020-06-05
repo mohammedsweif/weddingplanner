@@ -19,7 +19,7 @@ namespace Final_project.Models.our_tables
 
        
        
-        public string? PostDate { get; set; }
+        public string PostDate { get; set; }
 
         [MaxLength(250)]
         [MinLength(20)]

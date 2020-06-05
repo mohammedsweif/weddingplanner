@@ -34,7 +34,7 @@ import {UserPersonalSettingsComponent} from './User/user-personal-settings/user-
 import {UserPackageComponent} from './User/user-package/user-package.component';
 import {BookPackageComponent} from './User/book-package/book-package.component';
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
-import { UserstablesComponent } from './admin/userstables/userstables.component';
+ 
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { CatagoriesSessionComponent } from './admin/catagories-session/catagories-session.component';
 import { MessagesComponent } from './admin/messages/messages.component';
@@ -50,10 +50,13 @@ import { ProductsComponent } from './shop/products/products.component';
 
 import { AdminProductsComponent } from './admin/productView/admin-products/admin-products.component';
 import { ShowVendorComponent } from './User/show-vendor/show-vendor.component';
+import { UserstablesComponent } from './admin/userstables/userstables.component';
+import { ChatComponent } from './chat/chat.component';
 //////admin
  
 
 const routes: Routes = [
+  {path:"chat",component:ChatComponent},
   {path:"Home",component: HomeComponent},
   {path:"Login",component:LoginComponent},                                // Login  --Nevine
   {path:"Register",component:RegisterComponent},
@@ -98,15 +101,16 @@ const routes: Routes = [
   {path:"Showvendor",component:ShowVendorComponent},
 ]}, 
 
-{path:"Admin/:id",component:AdminhomeComponent,children:[
+{path:"Admin",component:AdminhomeComponent,children:[
 {path:"product",component:AdminProductsComponent},
-{path:"usertables",component:UserstablesComponent},////http://localhost:4200/Admin/3/usertables
-{path:"dashboard",component:DashboardComponent},////http://localhost:4200/Admin/:3/dashboard
-{path:"catagories-session",component:CatagoriesSessionComponent}, ////http://localhost:4200/Admin/:3/catagories-session
-  {path:"Messages",component:MessagesComponent},////http://localhost:4200/Admin/:3/Messages
-  {path:"bookingdetails",component:BookingdetailsComponent},////http://localhost:4200/Admin/:3/bookingdetails
-  {path:"topdata",component:TopDataComponent},////http://localhost:4200/Admin/:3/topdata
+{path:"usertables",component:UserstablesComponent},////http://localhost:4200/Admin/usertables
+{path:"dashboard",component:DashboardComponent},////http://localhost:4200/Admin/:3/dashboard***********
+{path:"catagoriessession",component:CatagoriesSessionComponent}, ////http://localhost:4200/Admin/catagoriessession
+  {path:"Messages",component:MessagesComponent},////http://localhost:4200/Admin/:3/Messages**************
+  {path:"bookingdetails",component:BookingdetailsComponent},////http://localhost:4200/Admin/bookingdetails
+  {path:"topdata",component:TopDataComponent},////http://localhost:4200/Admin/:3/topdata 
   {path:"vendordetails",component:VendordetailsComponent},////http://localhost:4200/Admin/:3/vendordetails
+  
 {path:"Login",component:LoginComponent},
 {path:"register",component:RegisterComponent},
  

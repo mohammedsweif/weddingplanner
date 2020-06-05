@@ -11,6 +11,7 @@ import { adminuser } from 'src/app/_models/Adminclasses/adminusers';
 export class UserstablesComponent implements OnInit {
 
   constructor(private ser:AdminuserService) { }
+ 
 allusers:adminuser[]=[];
   ngOnInit(): void {
 this.ser.getall().subscribe(ea=>{ this.allusers = ea;
@@ -24,17 +25,19 @@ console.log(this.allusers);
     
     if( this.userides.includes(e)){
       this.userides=this.userides.filter(el=>el != e);
-      //console.log(e);
+     
     }else{
       this.userides.push(e);
-     // console.log(e);
+  
     }
     console.log(this.userides);
     
   
   }
+  messagecontent="";
   sendids(){
-    this.ser.senddata(this.userides).subscribe(e=>console.log(e));
+    
+     this.ser.senddata(this.userides,this.messagecontent).subscribe(e=>console.log(e));
   }
    
 }

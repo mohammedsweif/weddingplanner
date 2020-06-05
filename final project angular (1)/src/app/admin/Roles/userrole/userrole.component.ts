@@ -28,10 +28,10 @@ export class UserroleComponent implements OnInit {
       
       if( this.userides.includes(e)){
         this.userides=this.userides.filter(el=>el != e);
-        //console.log(e);
+       
       }else{
         this.userides.push(e);
-       // console.log(e);
+      
       }
       console.log(this.userides);
       
@@ -49,7 +49,7 @@ export class UserroleComponent implements OnInit {
     
   
     sendids(){
-      this.ser.senddata(this.userides).subscribe(e=>console.log(e));
+    //  this.ser.senddata(this.userides).subscribe(e=>console.log(e));
     }
      
   }
