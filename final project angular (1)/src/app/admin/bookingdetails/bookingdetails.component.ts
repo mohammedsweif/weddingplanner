@@ -26,6 +26,7 @@ export class BookingdetailsComponent implements OnInit {
       console.log(this.bookDetails)});
   }
   makeFilter(ID:any){
+    console.log(ID);
     if(ID == "0"){
       this.bookDetails=this.bookDetailsList;
     }else{

@@ -1,0 +1,47 @@
+<link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
+    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+<div class="container">
+    <div class="mx-auto p=2  m-2" style="width: 1100px ;height: 600px;">
+       <div class="text-center">
+        <!-- <h2 class="m-4">Wedding Ideas</h2>
+        <p>Planning a wedding is a truly magical experience. We’re offering our expertise to help make the planning process fun and stress-free 
+            for you from beginning to end. From decor inspiration to vow help, we’ve covered it all in our articles</p> -->
+              <div class="row justify-content-center">
+                
+            </div>
+            <!--  -->
+            <div class="row justify-content-center">
+                <div class="col-lg-3 col-md-6">
+                    <div class="dataTables_length" id="bootstrap-data-table_length">
+                        <label>Filter by Category
+                            <select name="bootstrap-data-table_length" aria-controls="bootstrap-data-table" class="form-control form-control-sm" [(ngModel)]="Cat.cat_Id" (ngModelChange)="makeFilter($event)">
+                                <option value="0">All</option>
+                                <option *ngFor="let cat of categories;" [value]="cat.cat_Id" >{{cat.cat_Name}}</option>
+                                
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+       </div>
+   
+        <div class="row m-5">
+            <div class="col-lg-6 col-sm-12 " *ngFor="let art of articals; let i= index; ">
+                <img [src]="" alt=""  style="width: 100%;">
+                <h5 class="text-secondary text-center m-3">{{art.catagory.cat_Name}}</h5>
+                <h3 class="m-2">{{art.article_Title}}</h3>
+                <p class="text-secondary">{{art.article_Description}}</p>
+                     <span class="text-secondary">By {{art.applicationUser.userName}},{{art.postDate}}</span>
+
+            </div>
+
+        </div>   
+       
+
+
+    </div>
+</div>
+
+
+

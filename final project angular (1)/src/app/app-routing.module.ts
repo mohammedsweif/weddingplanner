@@ -20,7 +20,6 @@ import { ClientChatComponent } from './Vendor/client-chat/client-chat.component'
 import { ClientMessagesComponent } from './Vendor/client-messages/client-messages.component';
 import { GoogleMapComponent } from './Useable/google-map/google-map.component';
 import { VendorPackagesComponent } from './Vendor/vendor-packages/vendor-packages.component';
-import { VendorPricePlanningComponent } from './Vendor/vendor-price-planning/vendor-price-planning.component';
 import {UserProfileComponent} from './User/user-profile/user-profile.component';
 import {VendorMessagesComponent} from './User/vendor-messages/vendor-messages.component';
 import {VendorChatComponent} from './User/vendor-chat/vendor-chat.component';
@@ -47,12 +46,16 @@ import { VendorRolesComponent } from './admin/Roles/vendor-roles/vendor-roles.co
 import { UserroleComponent } from './admin/Roles/userrole/userrole.component';
 import { UsedGelleryComponent } from './User/used-gellery/used-gellery.component';
 import { ProductsComponent } from './shop/products/products.component';
-
+import {UserArticleComponent} from './Articals/article/user-article.component';
+import {ArticlesComponent} from './Articals/crudarticles/articles.component';
 import { AdminProductsComponent } from './admin/productView/admin-products/admin-products.component';
 import { ShowVendorComponent } from './User/show-vendor/show-vendor.component';
+ 
+import {UserHomePageComponent} from './Home/user-home-page/user-home-page.component';
+ 
 import { UserstablesComponent } from './admin/userstables/userstables.component';
 import { ChatComponent } from './chat/chat.component';
-//////admin
+ 
  
 
 const routes: Routes = [
@@ -61,26 +64,25 @@ const routes: Routes = [
   {path:"Login",component:LoginComponent},                                // Login  --Nevine
   {path:"Register",component:RegisterComponent},
   {path:"Maps",component:GoogleMapComponent} ,
-  {path:"Vendor/:id",component: VendorProfileComponent,
+  {path:"Vendor",component: VendorProfileComponent,
   
   children:[
-  {path:"Messages/:id",component: ClientMessagesComponent,children:[
-    {path:"Chat/:id2",component:ClientChatComponent},         //**Nevine: router-link:Messages/message_id  //can be reused in other sectios
+  {path:"Messages",component: ClientMessagesComponent,children:[
+    {path:"Chat/:id",component:ClientChatComponent},         //**Nevine: router-link:Messages/message_id  //can be reused in other sectios
     {path:"",component:ClientChatComponent,pathMatch:"full"}  //*****http://localhost:4200/Vendor/3/Messages/3/Chat/1
                                                               //or** http://localhost:4200/Vendor/3/Messages/3
 ]} ,  
 {path:"edit/:id",component:EditComponent},
-{path:"PricePlan/:id",component:VendorPricePlanningComponent},
- {path:"Packages/:id",component:VendorPackagesComponent},
-  {path:"VendorSettings/:id",component: VendorPersonalSettingsComponent}, 
-  {path:"VendorBooking/:id",component: VendorBookingsComponent},          
-  {path:"VendorCalendar/:id",component: VendorCalendarComponent},         
-  {path:"VendorBudget/:id/:id1",component: VendorBudgetComponent},        
-  {path:"VendorClients/:id/:id1",component: CategClientsComponent},
-  {path:"VendorReviews/:id/:id1",component: VendorCategReviewsComponent},      
+ {path:"Packages",component:VendorPackagesComponent},
+  {path:"VendorSettings",component: VendorPersonalSettingsComponent}, 
+  {path:"VendorBooking",component: VendorBookingsComponent},          
+  {path:"VendorCalendar",component: VendorCalendarComponent},         
+  {path:"VendorBudget",component: VendorBudgetComponent},        
+  {path:"VendorClients",component: CategClientsComponent},
+  {path:"VendorReviews",component: VendorCategReviewsComponent},      
   {path:"BookingDetails/:id",component: ClientBookingDetailsComponent} ,
-  {path:"Work/:id",component: VendorWorkViewComponent} ,
-  {path:"Map",component:GoogleMapComponent} ,
+  {path:"Work",component: VendorWorkViewComponent},
+  {path:"Map",component:GoogleMapComponent},
   {path:"",component:TrafficComponent,pathMatch:"full"}
 
 ]}, 
@@ -101,7 +103,9 @@ const routes: Routes = [
   {path:"Showvendor",component:ShowVendorComponent},
 ]}, 
 
+ 
 {path:"Admin",component:AdminhomeComponent,children:[
+ 
 {path:"product",component:AdminProductsComponent},
 {path:"usertables",component:UserstablesComponent},////http://localhost:4200/Admin/usertables
 {path:"dashboard",component:DashboardComponent},////http://localhost:4200/Admin/:3/dashboard***********
@@ -113,17 +117,19 @@ const routes: Routes = [
   
 {path:"Login",component:LoginComponent},
 {path:"register",component:RegisterComponent},
+{path:"ArticalsOP",component:ArticlesComponent},
  
 {path:"vendorrole",component:VendorRolesComponent}//http://localhost:4200/Admin/3/vendorrole
 ,{path:"userole",component:UserroleComponent}
 
 
 ]},
+{path:"Articals",component:UserArticleComponent},
 {path:"VendorPackages/:id",component:UserPackageComponent},
 {path:"BookPackage/:id",component:BookPackageComponent},
 {path:"Gallery",component:GalleryComponent}, 
 {path:"EditBooks/:id",component:EditBookComponent},                
-{path:"",component: HomeComponent,pathMatch:"full"},       
+{path:"",component: UserHomePageComponent,pathMatch:"full"},       
 {path:"**",component:ErrorpageComponent}
 ];
 

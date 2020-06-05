@@ -4,14 +4,16 @@ using Final_project.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Final_project.Migrations
 {
     [DbContext(typeof(ProjectDbcontext))]
-    partial class ProjectDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20200604130110_Sattttar")]
+    partial class Sattttar
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -736,48 +738,6 @@ namespace Final_project.Migrations
                     b.ToTable("Shops");
                 });
 
-            modelBuilder.Entity("Final_project.Models.our_tables.signal.Connection", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("connectionId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("userid")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("userid")
-                        .IsUnique()
-                        .HasFilter("[userid] IS NOT NULL");
-
-                    b.ToTable("connections");
-                });
-
-            modelBuilder.Entity("Final_project.Models.our_tables.signal.UserGroups", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("groupname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("userId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("userId");
-
-                    b.ToTable("users");
-                });
-
             modelBuilder.Entity("Final_project.Models.our_tables.toDo", b =>
                 {
                     b.Property<int>("id")
@@ -1133,20 +1093,6 @@ namespace Final_project.Migrations
                     b.HasOne("Final_project.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("user_id");
-                });
-
-            modelBuilder.Entity("Final_project.Models.our_tables.signal.Connection", b =>
-                {
-                    b.HasOne("Final_project.Models.ApplicationUser", "user")
-                        .WithOne("connection")
-                        .HasForeignKey("Final_project.Models.our_tables.signal.Connection", "userid");
-                });
-
-            modelBuilder.Entity("Final_project.Models.our_tables.signal.UserGroups", b =>
-                {
-                    b.HasOne("Final_project.Models.ApplicationUser", "users")
-                        .WithMany("userGroups")
-                        .HasForeignKey("userId");
                 });
 
             modelBuilder.Entity("Final_project.Models.our_tables.toDo", b =>

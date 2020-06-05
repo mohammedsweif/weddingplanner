@@ -16,7 +16,7 @@ import { HomeComponent } from './Home/home/home.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistervendorComponent } from './_Account/registervendor/registervendor.component';
-
+import {UserHomePageComponent} from './Home/user-home-page/user-home-page.component';
 import { VendorProfileComponent } from './Vendor/vendor-profile/vendor-profile.component';
 import { VendorBookingsComponent } from './Vendor/vendor-bookings/vendor-bookings.component';
 import { VendorCalendarComponent } from './Vendor/vendor-calendar/vendor-calendar.component';
@@ -45,7 +45,7 @@ import { LiveChatComponent } from './Useable/live-chat/live-chat.component';
 import { ToDoListComponent } from './Useable/to-do-list/to-do-list.component';
 import { EditTodoListModalComponent } from './Useable/edit-todo-list-modal/edit-todo-list-modal.component';
 import { VendorPackagesComponent } from './Vendor/vendor-packages/vendor-packages.component';
-import { VendorPricePlanningComponent } from './Vendor/vendor-price-planning/vendor-price-planning.component';
+
 import { PricePlanCardComponent } from './Useable/Summerprice-plan-card/price-plan-card.component';
 import{WinterPricePlanCardComponent}  from './Useable/winter-price-plan-card/winter-price-plan-card.component';
 import { WeddingPackCardComponent } from './Useable/wedding-pack-card/wedding-pack-card.component';
@@ -85,9 +85,14 @@ import { UserroleComponent } from './admin/Roles/userrole/userrole.component';
 import { AdminProductsComponent } from './admin/productView/admin-products/admin-products.component';
 import { ShowVendorComponent } from './User/show-vendor/show-vendor.component';
 import { EditBookComponent } from './User/edit-book/edit-book.component';
+ 
+import {UserArticleComponent} from './Articals/article/user-article.component';
+import {ArticlesComponent} from './Articals/crudarticles/articles.component';
+ 
 import { ChatComponent } from './chat/chat.component';
+ 
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { DatePipe } from '@angular/common';
 const google_outh_client_id:string = "707593203866-msqo17ipi5tt4gg72af4hfb4ta4dpge0.apps.googleusercontent.com";
 let config= new AuthServiceConfig([{
   id:GoogleLoginProvider.PROVIDER_ID,
@@ -132,13 +137,12 @@ let config= new AuthServiceConfig([{
     ToDoListComponent,
     EditTodoListModalComponent,
     VendorPackagesComponent,
-    VendorPricePlanningComponent,
     PricePlanCardComponent,
     WinterPricePlanCardComponent,
     WeddingPackCardComponent,
     EngagementPackCardComponent,
     SinglePackCardComponent,
-    
+    UserArticleComponent,
     ClientCardComponent,
     UserBookingComponent,
     AllReviewsComponent,
@@ -163,8 +167,12 @@ let config= new AuthServiceConfig([{
     UserroleComponent,
     AdminProductsComponent,
     EditBookComponent,
+
+    ArticlesComponent,
+    UserHomePageComponent,
+ 
     ChatComponent,
-    
+ 
 
   ],
   imports: [
@@ -182,7 +190,7 @@ let config= new AuthServiceConfig([{
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot() // ToastrModule added
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,51 @@
+.form-control-borderless {
+    border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+.article{
+    margin: 10px;
+    padding: 25px;
+    background-color: #ddd;
+    height: 500px;
+   
+}
+.articles{
+    font-size: 34px;
+}
+a:hover{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    
+}
+img{
+  transition: all 2s ease-in-out
+}
+img:hover{
+  transform-origin: top;
+  animation: swinging 3s ease-in-out
+}
+
+@keyframes swinging{
+  0%{
+    transform: scale(.9,.9);
+  }
+      50%{
+        transform: scale(1,1);
+  }
+      100%{
+    transform: scale(1.1,1.1);
+  }
+   
+}
+h1,h2,h3{
+  font-size: 18px;
+}
+p{
+  font-size: 14px;
+}
