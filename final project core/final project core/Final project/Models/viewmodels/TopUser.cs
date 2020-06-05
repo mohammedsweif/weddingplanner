@@ -8,6 +8,7 @@ namespace Final_project.Models.viewmodels
     public class TopUser
     {
         public string id { get; set; }
+        public string username { get; set; }
         public int count { get; set; }
     }
 }

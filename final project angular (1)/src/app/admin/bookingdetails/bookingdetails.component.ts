@@ -11,20 +11,22 @@ import {BookingDetails} from '../../_models/Adminclasses/BookondDetails';
 export class BookingdetailsComponent implements OnInit {
 
   categryList :Category[]=[];
-Cat:Category = new Category();
+  Cat:Category = new Category();
   bookDetails: BookingDetails[]=[];
   bookDetailsList: BookingDetails[]=[];
   date:Date;
   constructor(private AdminServ:AdminBookingService,private CatServ:CategoryService){ }
 
   ngOnInit(): void {
-    this.CatServ.getallcategories().subscribe(Response=>{this.categryList = Response as Category[],console.log(this.categryList)})
+    this.CatServ.getallcategories().subscribe(Response=>
+      {this.categryList = Response as Category[],console.log(this.categryList)})
     this.AdminServ.getBookDeatils().subscribe(a=>{
       this.bookDetailsList= a as BookingDetails[];
       this.bookDetails=this.bookDetailsList;
       console.log(this.bookDetails)});
   }
   makeFilter(ID:any){
+    console.log(ID);
     if(ID == "0"){
       this.bookDetails=this.bookDetailsList;
     }else{

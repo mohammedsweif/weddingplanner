@@ -6,10 +6,9 @@
 
         <div class="FilterBtn m-5 mx-auto" id="bootstrap-data-table_length">
             <label class="filtter ">Filter</label>
-                <select name="bootstrap-data-table_length" aria-controls="bootstrap-data-table" class="form-control form-control-sm" *ngFor="let item of Cat;" [(ngModel)]="FilterBase" (ngModelChange)="makeFilter($event)">
+                <select name="bootstrap-data-table_length" aria-controls="bootstrap-data-table" class="form-control form-control-sm" [(ngModel)]="FilterBase" (ngModelChange)="makeFilter($event)">
                     <option value="All">All</option>
-                    <option value={{item}}>{{item}}</option>
-                    
+                    <option *ngFor="let item of Cat;"  value={{item}}>{{item}}</option>
                 </select>
             
         </div>

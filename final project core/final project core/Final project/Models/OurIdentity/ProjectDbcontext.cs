@@ -1,4 +1,5 @@
 ﻿using Final_project.Models.our_tables;
+using Final_project.Models.our_tables.signal;
 using Final_project.Models.OurIdentity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -22,8 +23,8 @@ namespace Final_project.Models
          
         }
 
-        
-        //public DbSet<Pack_Feat> pack_Feats { get; set; }
+        public DbSet<UserGroups> users { get; set; }
+        public DbSet<Connection> connections { get; set; }
         public DbSet<Article> articles { get; set; }
         public DbSet<Booking> booking { get; set; }
         public DbSet<catagory> catagories { get; set; }
@@ -95,7 +96,9 @@ namespace Final_project.Models
         public List<Vendor> vendors { get; set; }
         public List<VendorWorks> vendorWorks { get; set; }
         public List<VendorBusy> vendorBusies { get; set; }
-     //   public List<Favorit_user> favorit_Users { get; set; }
+        //   public List<Favorit_user> favorit_Users { get; set; }
+        public List<UserGroups> userGroups { get; set; }
+        public Connection connection { get; set; }
 
 
     }

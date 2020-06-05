@@ -152,6 +152,13 @@ namespace Final_project.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
+                    b.Property<int>("CatId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("PostDate")
                         .HasColumnType("datetime2");
 
@@ -159,6 +166,8 @@ namespace Final_project.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CatId");
 
                     b.HasIndex("user_id");
 
@@ -727,6 +736,48 @@ namespace Final_project.Migrations
                     b.ToTable("Shops");
                 });
 
+            modelBuilder.Entity("Final_project.Models.our_tables.signal.Connection", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("connectionId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("userid")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("userid")
+                        .IsUnique()
+                        .HasFilter("[userid] IS NOT NULL");
+
+                    b.ToTable("connections");
+                });
+
+            modelBuilder.Entity("Final_project.Models.our_tables.signal.UserGroups", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("groupname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("userId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("userId");
+
+                    b.ToTable("users");
+                });
+
             modelBuilder.Entity("Final_project.Models.our_tables.toDo", b =>
                 {
                     b.Property<int>("id")
@@ -892,6 +943,12 @@ namespace Final_project.Migrations
 
             modelBuilder.Entity("Final_project.Models.OurIdentity.Article", b =>
                 {
+                    b.HasOne("Final_project.Models.OurIdentity.catagory", "catagory")
+                        .WithMany()
+                        .HasForeignKey("CatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Final_project.Models.ApplicationUser", "applicationUser")
                         .WithMany("articles")
                         .HasForeignKey("user_id");
@@ -1076,6 +1133,20 @@ namespace Final_project.Migrations
                     b.HasOne("Final_project.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("user_id");
+                });
+
+            modelBuilder.Entity("Final_project.Models.our_tables.signal.Connection", b =>
+                {
+                    b.HasOne("Final_project.Models.ApplicationUser", "user")
+                        .WithOne("connection")
+                        .HasForeignKey("Final_project.Models.our_tables.signal.Connection", "userid");
+                });
+
+            modelBuilder.Entity("Final_project.Models.our_tables.signal.UserGroups", b =>
+                {
+                    b.HasOne("Final_project.Models.ApplicationUser", "users")
+                        .WithMany("userGroups")
+                        .HasForeignKey("userId");
                 });
 
             modelBuilder.Entity("Final_project.Models.our_tables.toDo", b =>

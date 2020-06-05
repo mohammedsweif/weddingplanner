@@ -9,6 +9,6 @@ namespace Final_project.Models.viewmodels
     {
         public string id { get; set; }
         public int count { get; set; }
-        // public int category_id { get; set; }
+        public string username { get; set; }
     }
 }

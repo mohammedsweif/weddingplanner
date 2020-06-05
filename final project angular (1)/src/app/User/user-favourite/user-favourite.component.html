@@ -2,13 +2,12 @@
     <div class="row justify-content-center">
     
         <div class="btn btn-success m-5" id="bootstrap-data-table_length">
-            <label class="filtter">Filter</label>
-                <select name="bootstrap-data-table_length" aria-controls="bootstrap-data-table" class="form-control form-control-sm" *ngFor="let item of Cat;" (ngModelChange)="makeFilter($event)">
-                    <option value="All">All</option>
-                    <option value={{item}}>{{item}}</option>
-                    
-                </select>
-            
+           <!-- <label class="filtter">Filter</label>
+            <select name="bootstrap-data-table_length" aria-controls="bootstrap-data-table" class="form-control form-control-sm"  [(ngModel)]="Category" (ngModelChange)="makeFilter($event)">
+                <option value="All">All</option>
+                <option *ngFor="let item of Cat;" value={{item}}>{{item}}</option>
+            </select>
+        -->
         </div>
        
     </div>
