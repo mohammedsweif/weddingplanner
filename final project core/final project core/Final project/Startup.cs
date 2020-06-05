@@ -70,6 +70,7 @@ namespace Final_project
             services.AddScoped<VendorWorksRepsitory>();
             services.AddSignalR();
 
+ 
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
