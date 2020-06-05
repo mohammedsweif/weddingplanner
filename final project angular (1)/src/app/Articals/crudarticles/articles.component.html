@@ -1,0 +1,209 @@
+<div class="container">
+  <div class="row">
+    <button class="btn btn-danger btn-xs"
+    data-title="Delete" data-toggle="modal" data-target="#add">Add New Artical
+      </button>
+
+    <div class="col-md-12">
+      
+      <div class="table-responsive">
+
+
+        <table id="mytable" class="table table-bordred table-striped">
+
+          <thead>
+
+            <tr>
+              <th>Name</th>
+              <th>date</th>
+              <th>Description</th>
+              <th>image</th>
+              <th>Category</th>
+              <th class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let art of articals;let i=index;">
+              <td>{{art.applicationUser.userName}}</td>
+              <td>{{art.postDate}}|data</td>
+              <td>
+                <!--{{art.article_Description}}-->
+              </td>
+              <td>
+                <!-- <img [src]="art.imageUrl" alt="image">-->
+              </td>
+              <td>{{art.catagory.cat_Name}}</td>
+              <td>
+                <p data-placement="top" data-toggle="tooltip" title="Edit"><button (click)="selectEditArtical(i)" class="btn btn-primary btn-xs"
+                    data-title="Edit" data-toggle="modal" data-target="#edit"><i class="fa fa-edit"></i></button></p>
+              </td>
+              <td>
+                <p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs"
+                    data-title="Delete" data-toggle="modal"  (click)="deleteArtical(i)"><i class="fa fa-times text-white" aria-hidden="true"></i>
+                      </button></p>
+              </td>
+            </tr>
+
+
+          </tbody>
+
+        </table>
+
+        
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span
+            class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        <h4 class="modal-title custom_align" id="Heading">Edit Artical</h4>
+      </div>
+      <div class="modal-body">
+        <form #articalform="ngForm">
+          <div class="contact-form">
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="ProductName"> Name:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="Product Name" placeholder="Enter Article Name"
+                  name="Article_Title" #Article_Title="ngModel" required [(ngModel)]="EditArtical.Article_Title">
+              </div>
+              <div class="col-sm-10 alert alert-danger"
+                [hidden]="Article_Title.valid  && (Article_Title.dirty || Article_Title.touched)">
+                Artical Title is required
+              </div>
+            </div>
+
+            
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="Product Discription"> Discription:</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" rows="5" id="Discription" required
+                  [(ngModel)]="EditArtical.Article_Description" name="Article_Description"
+                  #Article_Description="ngModel"></textarea>
+              </div>
+            </div>
+            <div class="col-sm-10 alert alert-danger"
+              [hidden]="Article_Description.valid && (Article_Description.dirty || Article_Description.touched)">
+              Artical Description is required
+            </div>
+            <div class="form-group">
+              <div class="dataTables_length" id="bootstrap-data-table_length">
+                <label for="Category"> Categories </label>
+                <select id="Category" aria-controls="bootstrap-data-table" required
+                  [(ngModel)]="EditArtical.CatId" name="CatId" #CatId="ngModel"
+                  class="form-control form-control-sm">
+                  <option *ngFor="let cat of category;" value="{{cat.cat_Id}}">{{cat.cat_Name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-10 alert alert-danger"
+              [hidden]="CatId.valid  && (CatId.dirty || CatId.touched)">
+              you should select category
+            </div>
+            
+
+          </div>
+          
+
+        </form></div>
+      <div class="modal-footer ">
+        <input type="submit" class="btn btn-primary" (click)="SubmitEdit()"
+              [disabled]="!articalform.form.valid" data-dismiss="modal" style="width: 100%;">
+        <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span
+             data-dismiss="modal"></span>Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+
+
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span
+            class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        <h4 class="modal-title custom_align" id="Heading">Add New Artical</h4>
+      </div>
+      <div class="modal-body">
+        <div class="modal-body">
+          <div style="width: 100px;height: 100px;">
+            <img [src]="ImageUrl" alt="image" style="width: 100px;height: 100px;" />
+        </div>
+        
+        <form #Addarticalform="ngForm">
+          <div class="contact-form">
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="ProductName"> Name:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="Product Name" placeholder="Enter Article Name"
+                [(ngModel)]="artical.Article_Title"  name="Article_Title" #Article_Title="ngModel" required >
+              </div>
+              <div class="col-sm-10 alert alert-danger"
+                [hidden]="Article_Title.valid  && (Article_Title.dirty || Article_Title.touched)">
+                Artical Title is required
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="exampleFormControlFile1"> image:</label>
+              <div class="col-sm-10">
+                <input type="file" value="select image" #Image accept="image/" required
+                  (change)="handleFileInput($event.target.files)" />
+                <br />
+
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="Product Discription"> Discription:</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" rows="5" id="Discription" required
+                  [(ngModel)]="artical.Article_Description" name="Article_Description"
+                  #Article_Description="ngModel"></textarea>
+              </div>
+            </div>
+            <div class="col-sm-10 alert alert-danger"
+              [hidden]="Article_Description.valid && (Article_Description.dirty || Article_Description.touched)">
+              Artical Description is required
+            </div>
+            <div class="form-group">
+              <div class="dataTables_length" id="bootstrap-data-table_length">
+                <label for="Category"> Categories </label>
+                <select id="Category" aria-controls="bootstrap-data-table" required
+                  [(ngModel)]="artical.CatId" #CatId="ngModel" name="CatId" 
+                  class="form-control form-control-sm">
+                  <option *ngFor="let cat of category;" value="{{cat.cat_Id}}">{{cat.cat_Name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-10 alert alert-danger"
+              [hidden]="CatId.valid  && (CatId.dirty || CatId.touched)">
+              you should select category
+            </div>
+           
+
+          </div>
+          
+
+        </form>
+
+     </div>
+      <div class="modal-footer ">
+        <input type="submit" class="btn btn-primary" (click)="onSubmit()"
+              [disabled]="!Addarticalform.form.valid" data-dismiss="modal" style="width: 100%;">
+        <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span
+          data-dismiss="modal"></span>Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>

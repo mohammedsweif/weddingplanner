@@ -22,8 +22,14 @@ namespace Final_project.Models.OurIdentity
         [Required]
         [DataType(DataType.Date)]
         public DateTime PostDate { get; set; }
+        [Required]
+        public string ImageUrl { get; set; }
+
         [ForeignKey("applicationUser")]
         public string user_id { get; set; }
         public ApplicationUser applicationUser { get; set; }
+        [ForeignKey("catagory")]
+        public int CatId { get; set; }
+        public catagory catagory { get; set; }
     }
 }

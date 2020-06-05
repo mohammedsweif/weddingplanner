@@ -12,7 +12,7 @@ export class UserFavouriteComponent implements OnInit {
   Favorit:FavoritVendors[]=[];
   AllFavorit:FavoritVendors[]=[];
   Cat:string[]=[];
- 
+  Category:string;
   constructor(private FavServ:VendorFavoritService) { }
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class UserFavouriteComponent implements OnInit {
     
     this.FavServ.RemoveFromFavorit(id).subscribe(a=>{this.Favorit.splice(index,1)});
   }
-  makeFilter(cat){
+  makeFilter(cat:any){
     if(cat=="All"){
       this.Favorit=this.AllFavorit;
     }else{
