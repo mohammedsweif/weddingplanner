@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
+using Final_project.Hubs;
 using Final_project.Models;
 using Final_project.Models.Repositories;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -61,10 +62,15 @@ namespace Final_project
             .AddDefaultTokenProviders();
             services.AddControllers().AddNewtonsoftJson(options =>
        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            
-           services.AddCors();
-            services.AddScoped<VendorWorksRepsitory>();
 
+            services.AddCors(Options => {
+                Options.AddPolicy("allowany", x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200").AllowCredentials());
+
+            });
+            services.AddScoped<VendorWorksRepsitory>();
+            services.AddSignalR();
+
+ 
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -94,18 +100,19 @@ namespace Final_project
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseCors("allowany");
             app.UseStaticFiles();
             app.UseRouting();
             //   app.UseCookiePolicy();//
             app.UseAuthentication();
             app.UseAuthorization();
-        
+            
             
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chat");
             });
         }
     }

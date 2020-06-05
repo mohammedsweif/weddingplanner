@@ -4,14 +4,16 @@ using Final_project.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Final_project.Migrations
 {
     [DbContext(typeof(ProjectDbcontext))]
-    partial class ProjectDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20200605151905_aaaaaaas")]
+    partial class aaaaaaas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -152,13 +154,6 @@ namespace Final_project.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<int>("CatId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("PostDate")
                         .HasColumnType("datetime2");
 
@@ -166,8 +161,6 @@ namespace Final_project.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CatId");
 
                     b.HasIndex("user_id");
 
@@ -943,12 +936,6 @@ namespace Final_project.Migrations
 
             modelBuilder.Entity("Final_project.Models.OurIdentity.Article", b =>
                 {
-                    b.HasOne("Final_project.Models.OurIdentity.catagory", "catagory")
-                        .WithMany()
-                        .HasForeignKey("CatId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Final_project.Models.ApplicationUser", "applicationUser")
                         .WithMany("articles")
                         .HasForeignKey("user_id");

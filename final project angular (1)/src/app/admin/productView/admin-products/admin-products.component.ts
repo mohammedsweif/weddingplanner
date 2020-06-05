@@ -44,7 +44,9 @@ Delete(id:number){
     
   }
   AddType(){
-    this.ser.addType(this.newType).subscribe(a=>{this.ser.getTypes().subscribe(a=>{this.types=a;console.log(a)});console.log(a)})
+    this.ser.addType(this.newType).subscribe(a=>{
+      this.ser.getTypes().subscribe(a=>{this.types=a;console.log(a);   this.ser.getTypes().subscribe(a=>{this.types=a;console.log(a)})});console.log(a)})
+   
   }
 
   editOne(x:number){

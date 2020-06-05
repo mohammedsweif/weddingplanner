@@ -23,7 +23,7 @@ namespace Final_project.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-  
+
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
@@ -40,7 +40,7 @@ namespace Final_project.Controllers
             signInManager = _signInManager;
             db = _db;
         }
-     
+
         [HttpPost]
         [Route("Register")]
         // http://localhost:50414/account/Register
@@ -59,12 +59,12 @@ namespace Final_project.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (EmailExsist(model.Email))
+               /* if (EmailExsist(model.Email))
                 {
                     return BadRequest("Email is exist");
-                }
+                }*/
 
-               
+
 
                 ApplicationUser user = new ApplicationUser
                 {
@@ -81,8 +81,8 @@ namespace Final_project.Controllers
                         Token = HttpUtility.UrlEncode(token)
                     }, Request.Scheme);
                     string Subject = "Wedding Plane Confirmation";
-                    string Body = "hi " +user.UserName+ "please press here to confirm" + "<a href="+confirmation+">Confirm</a>";
-                    if (SendEmail.Excute(user.Email, Subject,Body))
+                    string Body = "hi " + user.UserName + "please press here to confirm" + "<a href=" + confirmation + ">Confirm</a>";
+                    if (SendEmail.Excute(user.Email, Subject, Body))
                     {
                         return Ok();
 
@@ -105,10 +105,10 @@ namespace Final_project.Controllers
             {
                 return NotFound();
             }
-            var user =await userManager.FindByIdAsync(Id);
+            var user = await userManager.FindByIdAsync(Id);
             if (user == null)
                 return NotFound();
-                var result= await userManager.ConfirmEmailAsync(user, HttpUtility.UrlDecode(Token));
+            var result = await userManager.ConfirmEmailAsync(user, HttpUtility.UrlDecode(Token));
             if (result.Succeeded)
             {
                 return Ok("has been confirmed");
@@ -119,7 +119,7 @@ namespace Final_project.Controllers
             }
         }
 
- 
+
 
 
         /*********************************************************************************/
@@ -138,7 +138,7 @@ namespace Final_project.Controllers
 } 
              */
         public async Task<IActionResult> login(LoginViewModel model)
-        
+
         {
             if (ModelState.IsValid)
             {
@@ -153,7 +153,7 @@ namespace Final_project.Controllers
                     var result = await signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RemmberMe, true);
                     if (result.Succeeded)
                     {
-                        var role =await userManager.GetRolesAsync(user);
+                        var role = await userManager.GetRolesAsync(user);
                         //  await addCookie(user.UserName,user.Id, "Admin", model.RemmberMe);
                         var claims = new List<Claim>
                         {
@@ -162,33 +162,36 @@ namespace Final_project.Controllers
                         //     new Claim(ClaimTypes.Role,"Admin")
 
                         };
-                        if(role != null)
+                        if (role != null)
                         {
-                            foreach(string r in role)
+                            foreach (string r in role)
                             {
                                 claims.Add(new Claim(ClaimTypes.Role, r));
                             }
 
-                        } 
+                        }
                         var signinkey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("mohammedmohammedsweif"));
                         var token = new JwtSecurityToken
                         (
                             issuer: "http://oec.com",
                             audience: "http://oec.com",
                             expires: DateTime.UtcNow.AddHours(1)
-                            ,claims:claims,
-                            signingCredentials:new SigningCredentials(signinkey,SecurityAlgorithms.HmacSha256)
-                        ); 
+                            , claims: claims,
+                            signingCredentials: new SigningCredentials(signinkey, SecurityAlgorithms.HmacSha256)
+                        );
 
-                      
+
                         return Ok(
-                            new {token=new JwtSecurityTokenHandler().WriteToken(token),
-                                  expiration= token.ValidTo,
-                                   role=role,
-                                username=user.UserName
+                            new
+                            {
+                                token = new JwtSecurityTokenHandler().WriteToken(token),
+                                expiration = token.ValidTo,
+                                role = role,
+                                username = user.UserName
                             }
                             );
-                    }else if (result.IsLockedOut)
+                    }
+                    else if (result.IsLockedOut)
                     {
                         return Unauthorized("you can try after one minute");
                     }
@@ -204,11 +207,11 @@ namespace Final_project.Controllers
             }
             else
             {
-               return NotFound("data is not valid please check your email or password");                
+                return NotFound("data is not valid please check your email or password");
             }
 
         }
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles = "Admin")]
         [Route("test")]
         [HttpGet]
         public IActionResult test()
@@ -226,25 +229,25 @@ namespace Final_project.Controllers
                 EmailConfirmed = true,
                 UserName = "Admin"
             };
-            var result=await userManager.CreateAsync(admin, "123+Aa");
+            var result = await userManager.CreateAsync(admin, "123+Aa");
             if (result.Succeeded)
             {
-               await CreateRoleAdmin(admin);
+                await CreateRoleAdmin(admin);
             }
 
         }
-        
+
         public async Task CreateRoleAdmin(ApplicationUser user)
         {
-            var x= await roleManager.FindByNameAsync("Admin");
-            if(x == null)
+            var x = await roleManager.FindByNameAsync("Admin");
+            if (x == null)
             {
                 IdentityRole r = new IdentityRole("Admin");
                 await roleManager.CreateAsync(r);
             }
             await userManager.AddToRoleAsync(user, "Admin");
         }
-        public async Task addCookie(string username, string userid,string rolename,bool remmberme)
+        public async Task addCookie(string username, string userid, string rolename, bool remmberme)
         {
             var claim = new List<Claim>()
             {
@@ -254,7 +257,7 @@ namespace Final_project.Controllers
 
             };
             var claimidentity = new ClaimsIdentity(claim, CookieAuthenticationDefaults.AuthenticationScheme);
-           
+
             if (remmberme)
             {
                 var authproperties = new AuthenticationProperties
@@ -271,7 +274,7 @@ namespace Final_project.Controllers
             }
             else
             {
-              var  authproperties = new AuthenticationProperties
+                var authproperties = new AuthenticationProperties
                 {
                     AllowRefresh = true,
                     IsPersistent = true,
@@ -283,7 +286,7 @@ namespace Final_project.Controllers
             authproperties
            );
             }
-           
+
         }
 
     }
