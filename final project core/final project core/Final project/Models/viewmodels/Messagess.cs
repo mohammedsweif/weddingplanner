@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace Final_project.Models.viewmodels
 {
-    public class TopUser
+    public class Messagess
     {
-        public string id { get; set; }
-        public string username { get; set; }
-        public int count { get; set; }
+        public List<string> ids { get; set; }
+        public string messagee { get; set; }
     }
 }

@@ -9,5 +9,6 @@ namespace Final_project.Models.viewmodels
     {
         public int id { get; set; }
         public int count { get; set; }
+        public string catname { get; set; }
     }
 }

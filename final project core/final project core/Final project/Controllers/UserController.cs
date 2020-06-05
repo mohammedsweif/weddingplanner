@@ -32,6 +32,7 @@ namespace Final_project.Controllers
         {
             _context = context;
             environment = _environment;
+            //contextAccessor.HttpContext.User.Claims.Where(a => a.Type == "UserID").Select(a => a);
             this.contextAccessor = contextAccessor;
         }
 
