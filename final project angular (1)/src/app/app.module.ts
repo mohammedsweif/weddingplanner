@@ -84,7 +84,9 @@ import { CommonModule } from '@angular/common';
 import { UserroleComponent } from './admin/Roles/userrole/userrole.component';
 import { AdminProductsComponent } from './admin/productView/admin-products/admin-products.component';
 import { ShowVendorComponent } from './User/show-vendor/show-vendor.component';
+import { ShopHomeComponent } from './shop/shop-home/shop-home.component';
 import { EditBookComponent } from './User/edit-book/edit-book.component';
+
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const google_outh_client_id:string = "707593203866-msqo17ipi5tt4gg72af4hfb4ta4dpge0.apps.googleusercontent.com";
@@ -162,8 +164,8 @@ let config= new AuthServiceConfig([{
     UserroleComponent,
     AdminProductsComponent,
     EditBookComponent,
+    ShopHomeComponent
     
-
   ],
   imports: [
     CommonModule,

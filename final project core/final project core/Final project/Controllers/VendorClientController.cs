@@ -21,6 +21,31 @@ namespace Final_project.Controllers
             _context = context;
         }
 
+        [HttpGet("bookingbyId/{id}")]
+        public ActionResult GetbookingbyId(int id)
+        {
+            var One = _context.booking.Where(a => a.BookingId == id).Select(e => new
+            {
+               
+                vendor_id = e.VendorId,
+                name = e.vendor.UserName,
+                email = e.vendor.Email,
+                phone = e.vendor.PhoneNumber,
+                Address = e.vendor.address,
+                cat_name = e.category.cat_Name,
+                cat_id = e.CategoryId,
+                book_date = e.BookDate.ToString("dddd, dd MMMM yyyy"),
+                real_date = e.RealDate.ToString("dddd, dd MMMM yyyy"),
+                status = e.Status,
+                bookingid = e.BookingId,
+                user_id = e.UserId,
+                cost=e.Cost
+
+            }).FirstOrDefault();
+            return Ok(One);
+        }
+
+
         [HttpGet("getVenClients/{id}")]
         public ActionResult GetVendorClients(string id)
         {
@@ -28,6 +53,7 @@ namespace Final_project.Controllers
             List<Booking> list = new List<Booking>();
             var lists = _context.booking.Where(a => a.VendorId == id).Select(e => new
             {
+                id=e.UserId,
                 name = e.user.UserName,
                 email = e.user.Email,
                 phone = e.user.PhoneNumber,

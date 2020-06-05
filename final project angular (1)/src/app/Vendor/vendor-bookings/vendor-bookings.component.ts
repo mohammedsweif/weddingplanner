@@ -21,9 +21,10 @@ export class VendorBookingsComponent implements OnInit {
   getclient:Booking =new Booking();
   //topagination
   config: any;
+  modalBookId:number=0
 
   //vendor to get his booking
-  VendorNo:string ="e75335e1-23f7-44c7-bac0-e6c35f5bd732" 
+  VendorNo:string ="891372ef-93a8-49cd-aa5e-04bff5c1538a" 
   
   constructor(private s:BookingService,private ser:MyserviceService) {
     //topagination
@@ -58,7 +59,8 @@ var timeDiff = Math.abs(Date.now() - new Date(time).getTime());
 }
 
 //for client details
-getuser(n:Number){
+getuser(n:number){
+  this.modalBookId=n
 console.log(n);
 this.s.getClient(n).subscribe(a=>{this.getclient=a;
 console.log(a);})

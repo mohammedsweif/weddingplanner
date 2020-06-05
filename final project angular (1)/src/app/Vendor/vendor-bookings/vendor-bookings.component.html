@@ -4,22 +4,22 @@
         <div class="row">
           <div class="col-lg-3 col-md-6">
             <div class="dataTables_length" id="bootstrap-data-table_length">
-                <label>Filter By Category 
-                    <select #refCategory="ngModel" [(ngModel)]="this.catnum">
+                <label class="text-info">Filter By Category  </label>
+                    <select #refCategory="ngModel" [(ngModel)]="this.catnum"  aria-controls="bootstrap-data-table" class="form-control form-control-sm">
                         <option value="0">ALL</option>
                         <option *ngFor="let item of cats" value={{item.cat_Id}}>{{item.cat_Name}}</option>  
                     </select>
-                </label>
+               
             </div>
             
         </div>  
         <div class="col-lg-3"></div>
         
           <div class="col-lg-6 col-md-6">
-            <label>Search by Name </label>
+            <label class="text-info">Search by Name </label>
           <div id="bootstrap-data-table_filter" class="dataTables_filter">
                
-  <input type="search" #f (keyup)="search(f)" class="form-control form-control-sm" placeholder="search..." > </div></div></div>
+  <input type="search" #f (keyup)="search(f)" class="form-control form-control-sm" placeholder="search..."  aria-controls="bootstrap-data-table" class="form-control form-control-sm"> </div></div></div>
   <br>
         <div class="card shadow mb-4">
           <div class="card-header py-3">
@@ -27,8 +27,8 @@
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"  style="text-align: center;">
+                <thead class="thead-light">
                 <tr>
                     
                     
@@ -48,71 +48,17 @@
                   
                    
                     <td><div class="container">
-                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1" (click)="getuser(item.bookingId)">{{item.username}}
-                          </button></div></td>
+                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1" data-backdrop="false" (click)="getuser(item.bookingId)">{{item.username}}
+                          </button>
+                        </div>
+                      </td>
                       
                         
                           <!-- //modeldetails -->
   
   
                                         
-  <div class="modal fade" id="myModal1" role="dialog">
-    <div class="modal-dialog modal-sm">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Client Details</h4>
-        </div>
-        <div class="modal-body">
-          <div class="content">
-              <div class="animated fadeIn">
-                  <div class="row">
-  
-                <div >
-                          <aside class="profile-nav alt">
-                              <section class="card">
-                                  <div class="card-header user-header alt bg-dark">
-                                      <div class="media">
-                                          <a href="#">
-                                              <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="">
-                                          </a>
-                                          <div class="media-body">
-                                              <h4 class="text-light display-6">{{getclient.username}}</h4>
-                                             
-                                          </div>
-                                      </div>
-                                  </div>
-  
-  
-                                  <ul class="list-group list-group-flush">
-                                      <li class="list-group-item">
-                                          <a href="#"> <i class="fa fa-envelope-o"></i><br>{{getclient.useremail}}</a>
-                                      </li>
-                                      <li class="list-group-item">
-                                          <a href="#"> <i class="fa fa-comments-o"></i><br>{{getclient.userphone}}</a>
-                                      </li>
-                                      
-                                      <li class="list-group-item">
-                                          <a routerLink="/Vendor/3/Messages/3/Chat/1"><br><i class="fa fa-comments-o"></i> Message</a>
-                                      </li>
-                                  </ul>
-  
-                              </section>
-                          </aside>
-                      </div>
-  
-                 </div>
-              </div>
-  </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
+ 
                         
         <!-- --end modeldetails--                 -->
                     
@@ -122,7 +68,7 @@
                     <td>{{item.realDate | date}}</td>
                     <td>{{item.cost}}</td>
                    
-                    <td *ngIf="checkdate(item.realDate) ; else elseBlock">Pendding<div class="progress">
+                    <td *ngIf="checkdate(item.realDate) ; else elseBlock">Pending<div class="progress">
                       <div class="progress-bar" style="width:50%"></div>
                     </div></td>
                       <ng-template #elseBlock><td>Done<div class="progress">
@@ -137,4 +83,63 @@
 
             </div>
      
-  
+            <div class="modal fade" id="myModal1" role="dialog">
+              <div class="modal-dialog modal-sm">
+              
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Client Details</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    
+                  </div>
+                  <div class="modal-body">
+                    <div class="content">
+                        <div class="animated fadeIn">
+                            <div class="row">
+            
+                          <div >
+                                    <aside class="profile-nav alt">
+                                        <section class="card">
+                                            <div class="card-header user-header alt bg-dark">
+                                                <div class="media">
+                                                    <a href="#">
+                                                        <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <h4 class="text-light display-6">{{this.getclient.username}}</h4>
+                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+            
+            
+                                            <ul class="list-group list-group-flush">
+                                              <li class="list-group-item">
+                                                  <a href="#"> <i class="fa fa-envelope-o"></i> Mail Inbox <span class="badge badge-primary pull-right">10</span></a>
+                                              </li>
+                                              <li class="list-group-item">
+                                                  <a href="#"> <i class="fa fa-tasks"></i> Recent Review <span class="badge badge-danger pull-right">15</span></a>
+                                              </li>
+                                              <li class="list-group-item">
+                                                  <a routerLink="/Vendor/3/BookingDetails/{{modalBookId}}"> <i class="fa fa-bell-o"></i> Bookings <span class="badge badge-success pull-right">11</span></a>
+                                              </li>
+                                              <li class="list-group-item">
+                                                  <a routerLink="/Vendor/3/Messages/3/Chat/1"> <i class="fa fa-comments-o"></i> Message <span class="badge badge-warning pull-right r-activity">03</span></a>
+                                              </li>
+                                          </ul>
+            
+                                        </section>
+                                    </aside>
+                                </div>
+            
+                           </div>
+                        </div>
+            </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>

@@ -50,6 +50,7 @@ import { ProductsComponent } from './shop/products/products.component';
 
 import { AdminProductsComponent } from './admin/productView/admin-products/admin-products.component';
 import { ShowVendorComponent } from './User/show-vendor/show-vendor.component';
+import { ShopHomeComponent } from './shop/shop-home/shop-home.component';
 //////admin
  
 
@@ -58,24 +59,29 @@ const routes: Routes = [
   {path:"Login",component:LoginComponent},                                // Login  --Nevine
   {path:"Register",component:RegisterComponent},
   {path:"Maps",component:GoogleMapComponent} ,
+
+
   {path:"Vendor/:id",component: VendorProfileComponent,
   
   children:[
+    {path:"BookingDetails/:id",component: ClientBookingDetailsComponent} ,
   {path:"Messages/:id",component: ClientMessagesComponent,children:[
     {path:"Chat/:id2",component:ClientChatComponent},         //**Nevine: router-link:Messages/message_id  //can be reused in other sectios
     {path:"",component:ClientChatComponent,pathMatch:"full"}  //*****http://localhost:4200/Vendor/3/Messages/3/Chat/1
                                                               //or** http://localhost:4200/Vendor/3/Messages/3
 ]} ,  
+// {path:"BookingDetails/:id",component:BookingdetailsComponent},
 {path:"edit/:id",component:EditComponent},
 {path:"PricePlan/:id",component:VendorPricePlanningComponent},
  {path:"Packages/:id",component:VendorPackagesComponent},
   {path:"VendorSettings/:id",component: VendorPersonalSettingsComponent}, 
   {path:"VendorBooking/:id",component: VendorBookingsComponent},          
   {path:"VendorCalendar/:id",component: VendorCalendarComponent},         
-  {path:"VendorBudget/:id/:id1",component: VendorBudgetComponent},        
-  {path:"VendorClients/:id/:id1",component: CategClientsComponent},
+  {path:"VendorBudget/:id/:id1",component: VendorBudgetComponent},   
+     
+  {path:"VendorClients/:id/:id1",component: CategClientsComponent },
   {path:"VendorReviews/:id/:id1",component: VendorCategReviewsComponent},      
-  {path:"BookingDetails/:id",component: ClientBookingDetailsComponent} ,
+  // {path:"BookingDetails/:id",component: ClientBookingDetailsComponent} ,
   {path:"Work/:id",component: VendorWorkViewComponent} ,
   {path:"Map",component:GoogleMapComponent} ,
   {path:"",component:TrafficComponent,pathMatch:"full"}
@@ -99,6 +105,7 @@ const routes: Routes = [
 ]}, 
 
 {path:"Admin/:id",component:AdminhomeComponent,children:[
+{path:"Shop",component:ShopHomeComponent},
 {path:"product",component:AdminProductsComponent},
 {path:"usertables",component:UserstablesComponent},////http://localhost:4200/Admin/3/usertables
 {path:"dashboard",component:DashboardComponent},////http://localhost:4200/Admin/:3/dashboard

@@ -2,3 +2,9 @@ table tr:hover{
     cursor: pointer;
     background-color: #DDD;
 }
+.modal-header {
+    background-color: gainsboro
+}
+.modal-footer{
+    background-color: gainsboro
+}

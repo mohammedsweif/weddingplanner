@@ -6,6 +6,12 @@
     display: inline-block;
     font-size: 2rem;
     color: #ffa600;
-    float:center;
     
      }
+     .modal-header {
+        background-color: gainsboro
+        }
+        .modal-footer{
+          background-color: gainsboro
+        
+        }

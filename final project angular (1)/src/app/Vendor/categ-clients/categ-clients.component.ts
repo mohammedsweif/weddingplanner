@@ -11,7 +11,6 @@ import { VendorClientViewModel } from 'src/app/BookingModel/VendorClientViewMode
 })
 export class CategClientsComponent implements OnInit {
 
-
   VendorClients:VendorClientViewModel[]=[]
   catnumC:number=0
   categories:category[]=[]
@@ -19,6 +18,8 @@ export class CategClientsComponent implements OnInit {
   TotalNumber:number
   page:number=1
   VendorNo:string ="891372ef-93a8-49cd-aa5e-04bff5c1538a" 
+  modalUserName:string=""
+  modalUserId:string=""
 
   constructor(private ser:MyserviceService) { }
 
@@ -48,5 +49,10 @@ export class CategClientsComponent implements OnInit {
       this.clientname = f.value;
       console.log(f.value);
       console.log(this.clientname);
+    }
+
+    sendUserName(name:string,id:string){
+      this.modalUserName=name;
+      this.modalUserId=id;
     }
 }

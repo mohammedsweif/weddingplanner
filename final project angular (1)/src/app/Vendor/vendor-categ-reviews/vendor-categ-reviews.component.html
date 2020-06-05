@@ -9,8 +9,8 @@
 	<div class="row">
 		<div class="col-lg-3 col-md-6">
 		  <div class="dataTables_length" id="bootstrap-data-table_length">
-			  <label>Filter By Category 
-				  <select #refCategory="ngModel" [(ngModel)]="this.catnum">
+			  <label class="text-info">Filter By Category 
+				  <select #refCategory="ngModel" [(ngModel)]="this.catnum" class="form-control form-control-sm">
 					<!-- // <option value="0">ALL</option>  -->
 					  <option *ngFor="let item of cats" value={{item.cat_Id}}>{{item.cat_Name}}</option>  
 				  </select>
@@ -50,7 +50,7 @@
 					<p>{{item.comment}}</p>
         	        <p>
         	            <a class="float-right btn btn-outline-primary ml-2" data-toggle="modal" data-target="#exampleModal"  (click)="qqq(item.id)"> <i class="fa fa-reply"></i> Reply</a>
-        	            <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+        	            <!-- <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a> -->
         	       </p>
         	    </div>
             </div>
@@ -71,7 +71,7 @@
 								<!-- <input type="text" ng-value="item."  [(ngModel)]="newreplay.Review_Id"> -->
                     	        <p>
                     	            <a class="float-right btn btn-outline-primary ml-2" data-toggle="modal" data-target="#exampleModal"  (click)="qqq(item.id)">  <i class="fa fa-reply"></i> Reply</a>
-                    	            <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+                    	            <!-- <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a> -->
                     	       </p>
                     	    </div>
             	        </div>
