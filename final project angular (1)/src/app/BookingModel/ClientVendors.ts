@@ -11,5 +11,5 @@ export class ClientVendorsViewModel{
     public real_date:string;
     public status :boolean;
     public user_id:string;
-    
+    public cost:number;
 }

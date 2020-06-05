@@ -65,12 +65,13 @@
                                           <tr *ngIf="(catnumC==0 || item.cat_id == this.catnumC) && (clientname == '' || this.item.name.startsWith(this.clientname))">
                                             <td><div class="container">
                                               <!-- Trigger the modal with a button -->
-                                              <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal1">{{this.item.name}}</button>
+                                              <button (click)="sendUserName(item.name,item.id)" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal1" data-backdrop="false">
+                                                {{item.name}}
+                                              </button>
                                             
                                               <!-- Modal -->
                                               <div class="modal fade" id="myModal1" role="dialog">
                                                 <div class="modal-dialog modal-sm">
-                                                
                                                   <!-- Modal content-->
                                                   <div class="modal-content">
                                                     <div class="modal-header">
@@ -91,7 +92,7 @@
                                                                                           <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="">
                                                                                       </a>
                                                                                       <div class="media-body">
-                                                                                          <h2 class="text-light display-6">{{this.item.name}}</h2>
+                                                                                          <h2 class="text-light display-6">{{modalUserName}}</h2>
                                                                                          
                                                                                       </div>
                                                                                   </div>
@@ -106,7 +107,7 @@
                                                                                       <a href="#"> <i class="fa fa-tasks"></i> Recent Review <span class="badge badge-danger pull-right">15</span></a>
                                                                                   </li>
                                                                                   <li class="list-group-item">
-                                                                                      <a href="#"> <i class="fa fa-bell-o"></i> Bookings <span class="badge badge-success pull-right">11</span></a>
+                                                                                      <!-- <a routerLink="/Vendor/3/BookingDetails/{{modalUserId}}"> <i class="fa fa-bell-o"></i> Bookings <span class="badge badge-success pull-right">11</span></a> -->
                                                                                   </li>
                                                                                   <li class="list-group-item">
                                                                                       <a href="#"> <i class="fa fa-comments-o"></i> Message <span class="badge badge-warning pull-right r-activity">03</span></a>

@@ -11,7 +11,6 @@ export class Booking {
     public Status?:boolean,
     public Cost?:Number,
     public UserId?:string,
-    public VendorId?:string,
-   
+    public VendorId?:string
     ){}
 }

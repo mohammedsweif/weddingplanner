@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import "owl.carousel/dist/owl.carousel.min";
+ 
 
 
 @Component({
