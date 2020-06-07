@@ -97,7 +97,10 @@ namespace Final_project.Controllers
         {
             if (ModelState.IsValid)
             {
-                _projectDbcontext.Entry(artical).State = EntityState.Modified;
+                Article articleold = _projectDbcontext.articles.Find(artical.Id);
+                articleold.Article_Title = artical.Article_Title;
+                articleold.Article_Description = artical.Article_Description;
+                articleold.CatId = artical.CatId;
                 await _projectDbcontext.SaveChangesAsync();
                
                 return Ok();

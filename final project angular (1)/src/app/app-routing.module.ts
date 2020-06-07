@@ -59,8 +59,7 @@ import {UserHomePageComponent} from './Home/user-home-page/user-home-page.compon
  
 import { UserstablesComponent } from './admin/userstables/userstables.component';
 import { ChatComponent } from './chat/chat.component';
- 
- 
+
 
 const routes: Routes = [
   {path:"chat",component:ChatComponent},

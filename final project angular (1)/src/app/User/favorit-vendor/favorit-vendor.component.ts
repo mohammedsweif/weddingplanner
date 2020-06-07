@@ -23,11 +23,17 @@ export class FavoritVendorComponent implements OnInit {
 
   categories:category[]=[]
   subs:Subscription
-  UserNo:string ="2620e326-0f8c-4ad3-ad5d-5de3d3096beb" 
+  UserNo:string ="937be65d-b7dc-4dd8-8939-2fe6798aedc4" 
   TotalNumber:number
   page:number=1
+  config:any;
 
-  constructor(private ser:MyserviceService) { }
+  constructor(private ser:MyserviceService) {
+    this.config = {
+      itemsPerPage: 2,
+      currentPage: 1
+    }
+   }
 
   ngOnInit(): void {
  
@@ -71,4 +77,7 @@ export class FavoritVendorComponent implements OnInit {
         return new Array(stars)
         
     }
+    pageChanged(event){
+      this.config.currentPage = event;
+     }
 }

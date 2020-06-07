@@ -547,7 +547,7 @@ aside.left-panel {
   height: 100vh;
   padding: 0;
   vertical-align: top;
-  width: 280px;
+  width: 250px;
   -webkit-box-shadow: 1px 0 20px rgba(0, 0, 0, 0.08);
           box-shadow: 1px 0 20px rgba(0, 0, 0, 0.08);
   position: fixed;
@@ -806,8 +806,8 @@ aside.left-panel {
 /* Right panel */
 .right-panel {
   background: #f1f2f7;
-  margin-left: 280px;
-  margin-top: 55px; }
+  margin-left: 250px;
+  }
   .right-panel .top-left {
     width: 350px;
     float: left; }
@@ -956,7 +956,7 @@ header .form-inline {
       display: none; }
 
 .header-left {
-  display: inline-block; }
+  display: block; }
 
 .header-left.open .form-inline {
   display: block; }
@@ -1180,9 +1180,20 @@ header .form-inline {
 
 .content {
   float: left;
-  padding: 1.875em;
+  padding-right: 1.875em;
+  padding-bottom: 1.875em;
+  padding-left: 1.875em;
   width: 100%; }
-
+  img {
+    height: 320px;
+    }
+  .modal{
+    z-index:100;
+  }
+  /* .modal-backdrop {
+       
+    display: none;    
+} */
 .card {
   margin-bottom: 1.875em;
   border-radius: 5px;
@@ -1548,7 +1559,7 @@ header .form-inline {
     color: #878787;
     display: inline-block;
     font-size: 16px;
-    float: left;
+ 
     padding: 0 7px;
     width: inherit;
     text-align: center; }
@@ -1590,7 +1601,7 @@ header .form-inline {
   left: 40%; }
 
 .twt-feed {
-  -webkit-border-radius: 4px 4px 0 0;
+  
   color: #FFFFFF;
   padding: 40px 10px 10px;
   position: relative;
@@ -2183,8 +2194,8 @@ footer.site-footer {
     font-size: 12px; } }
 @media (max-width: 1024px) {
   .open aside.left-panel {
-    width: 280px;
-    max-width: 280px; }
+    width: 250px;
+    max-width: 250px; }
 
   aside.left-panel:hover {
     overflow-x: inherit; }
@@ -2354,7 +2365,7 @@ footer.site-footer {
       display: inline-block; }
     .card-footer.bg-white [class*="float"].fa {
       display: inline-block;
-      float: left !important; }
+      }
 
   #traffic-chart {
     height: 232px !important; }
@@ -2416,7 +2427,7 @@ footer.site-footer {
     overflow: scroll; }
 
   .right-panel header.header {
-    height: 62px; }
+    height:1px; }
   .right-panel .top-left, .right-panel .top-right {
     width: 100%;
     float: none;
@@ -2622,6 +2633,7 @@ div.cs-skin-elastic {
 }
 
 
+
 @-webkit-keyframes expand { 
 	0% { -webkit-transform: scale3d(1,0,1); }
 	25% { -webkit-transform: scale3d(1,1.2,1); }
@@ -2763,4 +2775,56 @@ div.cs-active {
 
 .cs-select li.cs-optgroup > span {
 	cursor: default;
+}
+
+
+
+
+
+/* nnnnnnnnnnnn */
+#weatherWidget .currentDesc {
+  color: #ffffff!important;
+}
+  .traffic-chart {
+      min-height: 335px;
+  }
+  #flotPie1  {
+      height: 150px;
+  }
+  #flotPie1 td {
+      padding:3px;
+  }
+  #flotPie1 table {
+      top: 20px!important;
+      right: -10px!important;
+  }
+  .chart-container {
+      display: table;
+      min-width: 270px ;
+      text-align: left;
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+  #flotLine5  {
+       height: 105px;
+  }
+
+  #flotBarChart {
+      height: 150px;
+  }
+  #cellPaiChart{
+      height: 160px;
+  }
+  .be-ava-comment {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+.circle-img {
+  width: 90px;
+  height: 90px;
+  overflow: hidden;
+  margin-left: 10px;
+  margin-top: 15px;
+  margin-right: 5px;
 }

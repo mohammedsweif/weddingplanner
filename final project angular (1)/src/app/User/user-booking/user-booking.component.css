@@ -213,3 +213,9 @@ table.table .avatar {
 .modal form label {
     font-weight: normal;
 }	
+.Header{
+    background:rgb(197, 197, 197);
+}
+.title{
+text-align: center;
+}
