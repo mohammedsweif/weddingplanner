@@ -1,103 +1,92 @@
 <!-- **Nevine:: List detaills of routed param client.client_id -->
 
 <div class="card" >
-    <div class="card-body badge-warning card border-danger" >
-      <h5 class="card-title">Booking Details</h5>
-      <div class="card-text">
-        <ul>
-            <li><span><button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal2">Samar Hussein</button>
-                                            
-                <!-- Modal -->
-                <div class="modal fade" id="myModal2" role="dialog">
-                  <div class="modal-dialog modal-sm">
-                  
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Client Details</h4>
-                      </div>
-                      <div class="modal-body">
-                        <div class="content">
-                            <div class="animated fadeIn">
-                                <div class="row">
-                
-                                  <app-client-card></app-client-card>
-
-                               </div>
-                            </div>
-                </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                    
-                  </div>
-                </div></span></li>
-                <br>
-            <li><span class="font-italic" style="font-weight: bold;">Phone : 012485796526</span></li>
-            <br>
-            <li><span class="font-italic" style="font-weight: bold;">Place : Hotel Alexandria</span></li>
-            <br>
-            <li><span class="font-italic" style="font-weight: bold;">Categorie : Veiling </span></li>
-            <br>
-            <li><span class="font-italic" style="font-weight: bold;">Total Cost: 3000 LE </span></li>
-            <br>
-        </ul> 
-      </div>
+  <div class="card-body badge-info card border-danger" >
+    <h5 class="card-title">Booking Details</h5>
+    <div class="card-text">
+      <ul>
          
+            <span>
+              <div class="row">
+                <div class="col-6 Nev">
+                  {{book.name}}
+                </div>
+                <div class="col-6">
+                  <!-- <div class="col-2"> -->
+                    <a href="#"><i class="fa fa-envelope"></i></a>
+                  <!-- </div> -->
+                </div>
 
-      
-      <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Edit Booking </button>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-     <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Booking</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-            <div class="form-group">
-                <label for="message-text" class="col-form-label">Name:</label>
-                <textarea class="form-control" id="message-text"></textarea>
               </div>
+           
+            </span>
+         
+              <br>
+              
+          <li><span  style="font-weight: bold;">Phone : </span> {{book.phone}}</li>
+          <br>
+          <li><span  style="font-weight: bold;">Categorie : </span> {{book.cat_name}} </li>
+          <br>
+          <li><span  style="font-weight: bold;">Total Cost: </span> {{book.cost}} LE </li>
+          <br>
+          <li><span  style="font-weight: bold;">Booking Date:  </span>{{book.book_date |date }} LE</li>
+          <br>
+          <li><span  style="font-weight: bold;">Event date:</span> {{book.real_date | date }} LE </li>
+          <br>
+      </ul> 
+    </div>
+       
 
+    
+    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Edit Booking </button>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Edit Booking</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Categorie:</label>
-          <!-- Example single danger button -->
+              <label for="message-text" class="col-form-label">Name:</label>
+              <textarea  class="form-control" id="message-text"></textarea>
+            </div>
+
+        <div class="form-group">
+          <label for="recipient-name" class="col-form-label">Categorie:</label>
+        <!-- Example single danger button -->
 <!-- Example single danger button -->
 <div class="dataTables_length" id="bootstrap-data-table_length"><label><select name="bootstrap-data-table_length" aria-controls="bootstrap-data-table" class="form-control form-control-sm"><option value="20">Makeup</option><option value="50">Veiling</option></select></label></div>
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Description:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
+        </div>
+        <div class="form-group">
+          <label for="message-text" class="col-form-label">Description:</label>
+          <textarea class="form-control" id="message-text"></textarea>
+        </div>
 
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Cost:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
+        <div class="form-group">
+          <label for="message-text" class="col-form-label">Cost:</label>
+          <textarea class="form-control" id="message-text"></textarea>
+        </div>
 
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">CLient Contact:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
+        <div class="form-group">
+          <label for="message-text" class="col-form-label">CLient Contact:</label>
+          <textarea class="form-control" id="message-text"></textarea>
+        </div>
 
-          
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Update</button> 
-      </div>
+        
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary">Update</button> 
     </div>
   </div>
 </div>
+</div>
 
 
-    </div>
   </div>
+</div>

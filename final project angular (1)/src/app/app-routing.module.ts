@@ -51,6 +51,10 @@ import {ArticlesComponent} from './Articals/crudarticles/articles.component';
 import { AdminProductsComponent } from './admin/productView/admin-products/admin-products.component';
 import { ShowVendorComponent } from './User/show-vendor/show-vendor.component';
  
+import { ShopHomeComponent } from './shop/shop-home/shop-home.component';
+//////admin
+ 
+ 
 import {UserHomePageComponent} from './Home/user-home-page/user-home-page.component';
  
 import { UserstablesComponent } from './admin/userstables/userstables.component';
@@ -63,15 +67,19 @@ const routes: Routes = [
   {path:"Login",component:LoginComponent},                                // Login  --Nevine
   {path:"Register",component:RegisterComponent},
   {path:"Maps",component:GoogleMapComponent} ,
+ 
   {path:"Vendor",component: VendorProfileComponent,
   
   children:[
   {path:"Messages",component: ClientMessagesComponent,children:[
     {path:"Chat/:id",component:ClientChatComponent},         //**Nevine: router-link:Messages/message_id  //can be reused in other sectios
+ 
     {path:"",component:ClientChatComponent,pathMatch:"full"}  //*****http://localhost:4200/Vendor/3/Messages/3/Chat/1
                                                               //or** http://localhost:4200/Vendor/3/Messages/3
 ]} ,  
+// {path:"BookingDetails/:id",component:BookingdetailsComponent},
 {path:"edit/:id",component:EditComponent},
+ 
  {path:"Packages",component:VendorPackagesComponent},
   {path:"VendorSettings",component: VendorPersonalSettingsComponent}, 
   {path:"VendorBooking",component: VendorBookingsComponent},          
@@ -82,6 +90,7 @@ const routes: Routes = [
   {path:"BookingDetails/:id",component: ClientBookingDetailsComponent} ,
   {path:"Work",component: VendorWorkViewComponent},
   {path:"Map",component:GoogleMapComponent},
+ 
   {path:"",component:TrafficComponent,pathMatch:"full"}
 
 ]}, 
@@ -102,6 +111,9 @@ const routes: Routes = [
   {path:"Showvendor",component:ShowVendorComponent},
 ]}, 
 
+ 
+{path:"Shop",component:ShopHomeComponent},
+ 
  
 {path:"Admin",component:AdminhomeComponent,children:[
  

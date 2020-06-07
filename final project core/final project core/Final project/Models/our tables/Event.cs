@@ -8,6 +8,7 @@ namespace Final_project.Models.our_tables
 {
   // public enum season {winter,summer,spring, Autumn };
   //llldldlldlldllldldldldldldl
+  //ffhhfhfhfhfhfhfhfh
     public class Event
     {
         public int id { get; set; }
