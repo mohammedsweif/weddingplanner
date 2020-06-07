@@ -1,17 +1,18 @@
 .card-inner{
-    margin-left: 4rem;
+  margin-left: 4rem;
 }
 .star {
-    position:relative;
-    display: inline-block;
-    font-size: 2rem;
-    color: #ffa600;
-    
-     }
-     .modal-header {
+  position:relative;
+  display: inline-block;
+  font-size: 2rem;
+  color: #ffa600;
+  float:center;
+  
+   }
+   .modal-header {
+      background-color: gainsboro
+      }
+      .modal-footer{
         background-color: gainsboro
-        }
-        .modal-footer{
-          background-color: gainsboro
-        
-        }
+      
+      }

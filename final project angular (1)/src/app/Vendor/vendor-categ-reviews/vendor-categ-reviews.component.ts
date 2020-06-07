@@ -20,12 +20,12 @@ reviews:Review[];
 newreplay:Reviewreplay=new Reviewreplay();
 revnum:number;
 cats:Category[];
-catnum:Number;
+catnum:number=0;
 config:any;
 //sabt rate
 venrate:Rate;
 //vendor to get his booking
-VendorNo:string ="e75335e1-23f7-44c7-bac0-e6c35f5bd732" 
+VendorNo:string ="323db842-2cda-49e3-9092-a8d2bad55e38" 
 
   constructor(public r:ReviewService,private ser:MyserviceService) { 
     this.config = {
@@ -36,16 +36,16 @@ VendorNo:string ="e75335e1-23f7-44c7-bac0-e6c35f5bd732"
   }
  
   ngOnInit(): void {
-    this.r.getallreviews(this.VendorNo);
+    this.r.getallreviews(this.VendorNo).subscribe(a=>{this.reviews=a;console.log(a)});
     this.r.getallreplays();
     this.ser.GetVenCategories(this.VendorNo).subscribe(
       a=>{this.cats=a;
+        console.log(a)
         this.catnum=this.cats[0].cat_Id;})
 
-  this.ser.GetVenrate(this.VendorNo).subscribe(a=>{this.venrate=a;
-  console.log(this.venrate)})
-       
-         
+  // this.ser.GetVenrate(this.VendorNo).subscribe(a=>{this.venrate=a;
+  // console.log(this.venrate)})
+          
   }
   
   qqq(q:number){

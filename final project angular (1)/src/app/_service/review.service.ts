@@ -8,8 +8,8 @@ import { Reviewreplay } from '../model/reviewreplay';
   providedIn: 'root'
 })
 export class ReviewService {
-reviews:Review[];
-replays:Reviewreplay[];
+reviews:Review[]=[];
+replays:Reviewreplay[]=[];
   constructor( private http:HttpClient) { }
 
   getallreviews(id:string){
@@ -17,10 +17,7 @@ replays:Reviewreplay[];
       headers :new HttpHeaders({
         'Content-Type':'application/json',
       })};
-    return this.http.get<Review[]>("http://localhost:50414/review/Getureviews/"+id,httpOptions).subscribe(
-      a=>{this.reviews=a;
-      console.log(this.reviews);
-      });
+    return this.http.get<Review[]>("http://localhost:50414/review/Getureviews/"+id,httpOptions)
   }
   postreview(r:Reviewadd){
     const httpOptions={

@@ -10,10 +10,11 @@ import { BookingService } from 'src/app/_service/booking.service';
   styleUrls: ['./vendor-calendar.component.css']
 })
 export class VendorCalendarComponent implements OnInit {
-  calend:Calendar[];
-  cal:Calendar;
-  // book:Booking[];
+  calenders:Calendar[];
+  cal:Calendar=new Calendar();
+  newCal:Calendar=new Calendar()
   id:number;
+  calStatus:boolean;
   constructor(private s:CalendarService) {
    
 
@@ -21,24 +22,13 @@ export class VendorCalendarComponent implements OnInit {
 getall(){
   this.s.getCalendar().subscribe(
     a=>{
-      this.calend=a;
-      console.log("aaaaaaaaaa");
+      this.calenders=a;
     console.log(a)});
 }
   ngOnInit(): void {
-   this.cal==new Calendar();
-   this.getall();
-   this.cal={
-    Id: 0, 
-    vendor_id: "11A", 
-  BookingId: null,
- BusyDay: new Date ("2020-02-02T00:00:00"),
- Reason:  null,
-  Status: null
+  this.getall();
+   }
 
- }
-     
-  }
   delete(id)
   {
     this.s.deleteDate(id).subscribe(
@@ -49,37 +39,25 @@ getall(){
         console.log(a)
   });
   }
-  datafill(it){
-    // this.cal.Id=it.Id;
-    // this.cal.vendor_id=it.vendor_id;
-    // this.cal.BookingId=it.BookingId;
-    this.cal.BusyDay=it.busyDay;
-    this.cal.Reason=it.Reason;
-    this.cal.Status=it.status;
-  }
+ 
   update(){
     this.s.update(this.cal).subscribe(a=>
       {
-        this.s.getCalendar().subscribe(
-          a=>{
-            this.calend=a;
-            console.log("uuuuuu");
-          console.log(a)});
-        console.log(a);
+        this.s.getCalendar().subscribe(a=>{this.calenders=a});
+
+        console.log(this.cal)
         this.s.getCalendar();
-      },
-     err=> {
-       console.log(err);
-     }
-      )
+      })
   }
+
+
   save()
   {
-    this.s.addCalendar(this.cal).subscribe(a=>
+    this.s.addCalendar(this.newCal).subscribe(a=>
       {
         this.s.getCalendar().subscribe(
           a=>{
-            this.calend=a;
+            this.calenders=a;
             console.log("sssssssss");
           console.log(a)});
         console.log(a);
@@ -91,10 +69,38 @@ getall(){
       )
   }
   
-  // save()
-  // {
-  //   this.s.addCalendar(this.cal).subscribe(a=>
-  //     console.log(a))
-  // }
+  getCal(id:number){
+    this.s.getCal(id).subscribe(a=>{this.cal=a;})
+    console.log(this.cal)
+  }
+
+  change(value:number){
+    console.log(value);
+    if(value==0){
+      this.calStatus=false;
+    }
+    
+    else{
+      this.calStatus=true;
+    }
+    
+    this.cal.status =this.calStatus;
+    
+    }
+
+    changeAdd(value:number){
+      console.log(value);
+      if(value==0){
+        this.calStatus=false;
+      }
+      
+      else{
+        this.calStatus=true;
+      }
+      
+      this.newCal.status =this.calStatus;
+    }
+
+    
 
 }

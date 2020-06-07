@@ -31,7 +31,7 @@
   <br>
 	<div class="card">
 
-		<ng-container *ngFor="let item of r.reviews |paginate: this.config">         
+		<ng-container *ngFor="let item of reviews |paginate: this.config">         
 
       <div class="card-body" *ngIf="(item.catagory_id==catnum || catnum==0)">
 	        <div class="row">

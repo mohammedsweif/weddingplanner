@@ -171,7 +171,7 @@ let config= new AuthServiceConfig([{
     AdminProductsComponent,
     EditBookComponent,
  
-    ShopHomeComponent
+    ShopHomeComponent,
     
  
 
@@ -195,7 +195,8 @@ let config= new AuthServiceConfig([{
     // NgbModule,
     SocialLoginModule.initialize(config),
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot() ,// ToastrModule added
+    BsDatepickerModule.forRoot()
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
