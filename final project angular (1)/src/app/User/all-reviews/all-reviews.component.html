@@ -1,79 +1,94 @@
-<section id="team" class="pb-5">
-    <div class="container">
-        <h5 class="section-title h1">MY REVIEWS</h5>
-       <div class="row">
+
+        <h3 class="title">My Reviews</h3>
+        <div class="row s">
+        
+ 
+         <div>
+             <label class="text-info">Filter By Catagory</label>
+                 <select name="bootstrap-data-table_length" aria-controls="bootstrap-data-table" class="form-control form-control-sm" [(ngModel)]="FilterBase" (ngModelChange)="makeFilter($event)">
+                     <option value="All">All</option>
+                     <option *ngFor="let item of Cat;"  value={{item}}>{{item}}</option>
+                 </select>
+                     
+                
+             
+         </div>
+        
+         </div> 
+         <br>
+             <!-- Team member -->
+             <!-- <div  class="col-xs-12 col-sm-6 col-md-4"> -->
+                 <ng-container *ngFor="let item of reviews;let i = index;">
+                 <div class="card" style="margin-bottom: 10px;" >
+                     <div class="card-header">
+                         <img class="rounded-circle img-fluid" src="assets/images/1.jpg" alt="card image"> <a  [routerLink]="['/User/Showvendor']">{{item.vendor}} </a>({{item.category}})
+                     </div>
+                     <div class="card-body">
+                       <blockquote class="blockquote mb-0">
+                         <h5 class="text-info">Your Review</h5><p>{{item.comment}}.</p>
+                         <footer class="blockquote-footer">{{item.date|date}}</footer>
+                       </blockquote>
+                     </div>
+                     <br>
+                   </div>
+                 </ng-container>
+                 <!-- <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                     <div class="mainflip">
+                         <div class="frontside">
+                             <div class="card">
+                                 <div class="card-body text-center">
+                                     <p><img class=" img-fluid" src="assets/images/1.jpg" alt="card image"></p>
+                                     <h4 class="card-title">{{item.vendor}}</h4>
+                                     <p class="card-text">{{item.category}}</p>
+                                     <p class="card-text">{{item.date}}</p>
+                                     <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="backside">
+                             <div class="card">
+                                 <div class="card-body text-center mt-4">
+                                     <h4 class="card-title">{{item.vendor}}</h4>
+                                     <p class="card-text">{{item.comment}}</p>
+                                     <ul class="list-inline">
+                                         <li class="list-inline-item">
+                                             <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                                 <i class="fa fa-facebook"></i>
+                                             </a>
+                                         </li>
+                                         <li class="list-inline-item">
+                                             <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                                 <i class="fa fa-twitter"></i>
+                                             </a>
+                                         </li>
+                                         <li class="list-inline-item">
+                                             <a class="social-icon text-xs-center" (click)="delete(i)" data-toggle="modal" data-target=".bs-example-modal-new"  target="_blank">
+                                                 <i class="fa fa-remove"></i>
+                                                 
+                                             </a>
+                                         </li>
+                                         <li class="list-inline-item">
+                                             <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                                 <i class="fa fa-google"></i>
+                                             </a>
+                                         </li>
+                                     </ul>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div> -->
+            <!-- ./Team member -->
+            
+             
+             
+            
+            
        
-
-        <div class="FilterBtn m-5 mx-auto" id="bootstrap-data-table_length">
-            <label class="filtter ">Filter</label>
-                <select name="bootstrap-data-table_length" aria-controls="bootstrap-data-table" class="form-control form-control-sm" [(ngModel)]="FilterBase" (ngModelChange)="makeFilter($event)">
-                    <option value="All">All</option>
-                    <option *ngFor="let item of Cat;"  value={{item}}>{{item}}</option>
-                </select>
-            
-        </div>
-        </div> 
-        <div class="row">
-            <!-- Team member -->
-            <div  *ngFor="let item of reviews;let i = index;" class="col-xs-12 col-sm-6 col-md-4">
-                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                    <div class="mainflip">
-                        <div class="frontside">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src= {{item.image}} alt="card image"></p>
-                                    <h4 class="card-title">{{item.vendor}}</h4>
-                                    <p class="card-text">{{item.category}}</p>
-                                    <p class="card-text">{{item.date}}</p>
-                                    <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="backside">
-                            <div class="card">
-                                <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">{{item.vendor}}</h4>
-                                    <p class="card-text">{{item.comment}}</p>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                                                <i class="fa fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" (click)="delete(i)" data-toggle="modal" data-target=".bs-example-modal-new"  target="_blank">
-                                                <i class="fa fa-remove"></i>
-                                                
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                                                <i class="fa fa-google"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- ./Team member -->
-           
-            
-            
-           
-           
-        </div>
-    </div>
-</section>
-
-
-  
-  
-  
-  
+     
+ 
+ 
+   
+   
+   
+ 
