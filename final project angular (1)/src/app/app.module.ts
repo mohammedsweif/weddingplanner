@@ -92,6 +92,9 @@ import {UserArticleComponent} from './Articals/article/user-article.component';
 import {ArticlesComponent} from './Articals/crudarticles/articles.component';
  
 import { ChatComponent } from './chat/chat.component';
+
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
   
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
@@ -170,7 +173,7 @@ let config= new AuthServiceConfig([{
     AdminProductsComponent,
     EditBookComponent,
  
-    ShopHomeComponent
+    ShopHomeComponent,
     
  
 
@@ -193,7 +196,8 @@ let config= new AuthServiceConfig([{
     // NgbModule,
     SocialLoginModule.initialize(config),
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot() ,// ToastrModule added
+    BsDatepickerModule.forRoot()
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

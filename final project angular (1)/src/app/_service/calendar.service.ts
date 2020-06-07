@@ -26,7 +26,7 @@ export class CalendarService {
     };
    return this.http.post("http://localhost:50414/vendorBusies/PostVendorBusy",cal,httpOption);
   }
-  update(cal)
+  update(cal:Calendar)
   {
     const httpOption={
       headers:new HttpHeaders({
@@ -40,5 +40,9 @@ export class CalendarService {
   deleteDate(id:number)
   {
    return this.http.delete<boolean>("http://localhost:50414/vendorBusies/"+id)
+  }
+
+  getCal(id:number){
+    return this.http.get<Calendar>("http://localhost:50414/vendorBusies/GetVendorBusy/"+id)
   }
 }

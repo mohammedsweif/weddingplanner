@@ -27,19 +27,19 @@ namespace Final_project.Controllers
             return _context.vendorBusies.ToList();
         }
 
-        // GET: api/VendorBusies/5
-        [HttpGet("{id}")]
-        ///[Route("GetVendorBusy")]
+        
+         [HttpGet("GetVendorBusy/{id}")]
+      
         public ActionResult<VendorBusy> GetVendorBusy(int id)
         {
-            var vendorBusy = _context.vendorBusies.Find(id);
+            var vendorBusy = _context.vendorBusies.FirstOrDefault(a => a.Id == id);
 
             if (vendorBusy == null)
             {
                 return NotFound();
             }
 
-            return vendorBusy;
+            return Ok(vendorBusy);
         }
 
         // PUT: api/VendorBusies/5
@@ -62,7 +62,7 @@ namespace Final_project.Controllers
                 // vendor.vendor_id = vendorBusy.vendor_id;
                 //vendor.BookingId = vendorBusy.BookingId;
                 vendor.BusyDay = vendorBusy.BusyDay.Date;
-                // vendor.Reason = vendorBusy.Reason;
+                 vendor.Reason = vendorBusy.Reason;
                 vendor.Status = vendorBusy.Status;
                 //_context.Entry(vendorBusy).State = EntityState.Modified;
                 _context.SaveChanges();

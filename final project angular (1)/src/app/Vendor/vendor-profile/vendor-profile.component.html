@@ -32,113 +32,108 @@
 </head>
 
 <body>
- 
-    <!-- Left Panel -->
-        
-    <aside id="left-panel" class="left-panel">
-        <nav class="navbar navbar-expand-sm navbar-default">
-            <div id="main-menu" class="main-menu collapse navbar-collapse">
-                
-                <ul class="nav navbar-nav">
-                    <!-- <li class="active">
-                        <a href="index.html"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
-                    </li> -->
-                   
-                    <p class="menu-title"><!-- /.menu-title -->
-                    <img class="rounded-circle circle-img"src="assets/images/1.jpg" alt="card image">Dalia Darwish</p>
-                    <li class="menu-title"> Profile </li><!-- /.menu-title -->
-                    <!-- MyProfile -->
-                    <li>
-                        <!-- change link to be  <a routerLink="/VendorSettings/{{vendor.vendor_id}}">MyPersonalSettings</a> --> 
-                        <a [routerLink]="['/Vendor/VendorSettings']"    aria-expanded="false"> <i class="menu-icon fa fa-address-card"></i>My Personal Info</a>
-                        
-                    </li>
-                    <!-- MyBookings -->
-                    <li>
-                        <a [routerLink]="['/Vendor/VendorBooking']" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>My Bookings</a>
-                        <!-- <ul class="sub-menu children dropdown-menu">   -->
-                            
-                        <!-- *****Nevine :: Add here routerlinks for below items forward to booking page ,param :vendor_id -->
-                      <!-- Example:change to be  <a routerLink="/VendorBooking/{{vendor.vendor_id}}">All</a> -->
+   <!-- Left Panel -->
+       
+   <aside id="left-panel" class="left-panel">
+       <nav class="navbar navbar-expand-sm navbar-default">
+           <div id="main-menu" class="main-menu collapse navbar-collapse">
+               
+               <ul class="nav navbar-nav">
+                   <!-- <li class="active">
+                       <a href="index.html"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                   </li> -->
+                  
+                   <p class="menu-title"><!-- /.menu-title -->
+                   <img class="rounded-circle circle-img"src="assets/images/1.jpg" alt="card image">Dalia Darwish</p>
+                   <li class="menu-title"> Profile </li><!-- /.menu-title -->
+                   <!-- MyProfile -->
+                   <li>
+                       <!-- change link to be  <a routerLink="/VendorSettings/{{vendor.vendor_id}}">MyPersonalSettings</a> --> 
+                       <a [routerLink]="['/Vendor/VendorSettings']"    aria-expanded="false"> <i class="menu-icon fa fa-address-card"></i>My Personal Info</a>
+                       
+                   </li>
+                   <!-- MyBookings -->
+                   <li>
+                       <a [routerLink]="['/Vendor/VendorBooking']" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>My Bookings</a>
+                       <!-- <ul class="sub-menu children dropdown-menu">   -->
+                           
+                       <!-- *****Nevine :: Add here routerlinks for below items forward to booking page ,param :vendor_id -->
+                     <!-- Example:change to be  <a routerLink="/VendorBooking/{{vendor.vendor_id}}">All</a> -->
 
 <!-- 
-                            <li><i class="menu-icon fa fa-th"></i><a href="#">All</a></li>
-                            <li><i class="fa fa-id-badge"></i><a href="#">Upcomming</a></li>
-                            <li><i class="fa fa-bars"></i><a href="#">Historical</a></li>
+                           <li><i class="menu-icon fa fa-th"></i><a href="#">All</a></li>
+                           <li><i class="fa fa-id-badge"></i><a href="#">Upcomming</a></li>
+                           <li><i class="fa fa-bars"></i><a href="#">Historical</a></li>
 
-                            
-                        </ul> -->
-                    </li>
-                    <!-- MyCalendar -->
-                    <li>
-                        <a  [routerLink]="['/Vendor/VendorCalendar']"> <i class="menu-icon fa fa-table"></i>My Calendar</a>
-                        
-                    </li>
-                    <!-- Budget Menu of vendor has menu children budge for each categorie  -->
-                    <li>
-                        <a [routerLink]="['/Vendor/VendorBudget']" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>My Budget</a>
-                        
-                    </li>
-                    
-                    <!-- MyClients -->
-                    <li>
-                        <a [routerLink]="['/Vendor/VendorClients']" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-id-badge"></i>My Clients</a>
-                        
-                    </li>
-                    
-
-                    <li class="menu-title">My Work</li><!-- /.menu-title -->
-
-                    <li>
-                        <a [routerLink]="['/Vendor/Packages']" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Packages & Offers</a>
+                           
+                       </ul> -->
+                   </li>
+                   <!-- MyCalendar -->
+                   <li>
+                       <a  [routerLink]="['/Vendor/VendorCalendar']"> <i class="menu-icon fa fa-table"></i>My Calendar</a>
                        
-                    </li>
-
-                    <li>
-                        <a [routerLink]="['/Vendor/Work']" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Work View</a>
-                        
-                    </li>
-
-                    <li >
-                        <a [routerLink]="['/Vendor/VendorReviews']" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Reviews</a>
-                    
-                    </li>
-                    <li>
-                        <a [routerLink]="['/Vendor/Messages/Chat/1']"> <i class="menu-icon ti-email"></i>Messages </a>
-                    </li>
+                   </li>
+                   <!-- Budget Menu of vendor has menu children budge for each categorie  -->
+                   <li>
+                       <a [routerLink]="['/Vendor/VendorBudget']" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>My Budget</a>
+                       
+                   </li>
                    
+                   <!-- MyClients -->
+                   <li>
+                       <a [routerLink]="['/Vendor/VendorClients']" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-id-badge"></i>My Clients</a>
+                       
+                   </li>
                    
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </nav>
-    </aside>
-     
-    <!-- /#left-panel -->
-    <!-- Right Panel -->
-    <div id="right-panel" class="right-panel">
-        <!-- Header-->
-        <header id="header" class="header-left">
-        </header>
-        <!-- /#header -->
-        <!-- Content -->
-        <div class="content">
-            <!-- Animated -->
-            <div class="animated fadeIn">
-                <!-- Widgets  -->
-                <div class="row " >
-                    <img src="assets/images/12.jpg" class="w-100 p-3" alt="Responsive image">  
 
-                </div> 
-                <!-- /Widgets -->
-                <!--  Traffic  -->
-                <div class="card">
-                    <div class="card-body">
-                     <router-outlet></router-outlet>
-                </div>
-            </div>
-              <!-- /To Do and Live Chat -->
-                 </div>
- 
+                   <li class="menu-title">My Work</li><!-- /.menu-title -->
+
+                   <li>
+                       <a [routerLink]="['/Vendor/Packages']" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Packages & Offers</a>
+                      
+                   </li>
+
+                   <li>
+                       <a [routerLink]="['/Vendor/Work']" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Work View</a>
+                       
+                   </li>
+
+                   <li >
+                       <a [routerLink]="['/Vendor/VendorReviews']" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Reviews</a>
+                   
+                   </li>
+                   <li>
+                       <a [routerLink]="['/Vendor/Messages/Chat/1']"> <i class="menu-icon ti-email"></i>Messages </a>
+                   </li>
+                  
+                  
+               </ul>
+           </div><!-- /.navbar-collapse -->
+       </nav>
+   </aside>
+    
+   <!-- /#left-panel -->
+   <!-- Right Panel -->
+   <div id="right-panel" class="right-panel">
+       <!-- Header-->
+       <header id="header" class="header-left">
+       </header>
+       <!-- /#header -->
+       <!-- Content -->
+       <div class="content">
+           <!-- Animated -->
+           <div class="animated fadeIn">
+               <!-- Widgets  -->
+               <div class="row " >
+                   <img src="assets/images/12.jpg" class="w-100 p-3" alt="Responsive image">  
+
+               </div> 
+               <!-- /Widgets -->
+               <!--  Traffic  -->
+               <div class="card">
+                   <div class="card-body">
+                    <router-outlet></router-outlet>
+               </div>
            </div>
              <!-- /To Do and Live Chat -->
                 </div>

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Final_project.Migrations
 {
-    public partial class aaaa : Migration
+    public partial class z1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -140,28 +140,6 @@ namespace Final_project.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "articles",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Article_Title = table.Column<string>(maxLength: 50, nullable: false),
-                    Article_Description = table.Column<string>(maxLength: 1000, nullable: false),
-                    PostDate = table.Column<DateTime>(nullable: false),
-                    user_id = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_articles", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_articles_AspNetUsers_user_id",
-                        column: x => x.user_id,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
                 columns: table => new
                 {
@@ -247,6 +225,26 @@ namespace Final_project.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "connections",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    connectionId = table.Column<string>(nullable: true),
+                    userid = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_connections", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_connections_AspNetUsers_userid",
+                        column: x => x.userid,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "messages",
                 columns: table => new
                 {
@@ -322,6 +320,26 @@ namespace Final_project.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "users",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    groupname = table.Column<string>(nullable: true),
+                    userId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_users", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_users_AspNetUsers_userId",
+                        column: x => x.userId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "userSelleds",
                 columns: table => new
                 {
@@ -369,6 +387,36 @@ namespace Final_project.Migrations
                     table.ForeignKey(
                         name: "FK_vendorWorks_AspNetUsers_vendor_id",
                         column: x => x.vendor_id,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "articles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Article_Title = table.Column<string>(maxLength: 50, nullable: false),
+                    Article_Description = table.Column<string>(maxLength: 1000, nullable: false),
+                    PostDate = table.Column<DateTime>(nullable: false),
+                    ImageUrl = table.Column<string>(nullable: false),
+                    user_id = table.Column<string>(nullable: true),
+                    CatId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_articles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_articles_catagories_CatId",
+                        column: x => x.CatId,
+                        principalTable: "catagories",
+                        principalColumn: "cat_Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_articles_AspNetUsers_user_id",
+                        column: x => x.user_id,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -703,7 +751,7 @@ namespace Final_project.Migrations
                     BookingId = table.Column<int>(nullable: true),
                     BusyDay = table.Column<DateTime>(nullable: false),
                     Reason = table.Column<string>(nullable: true),
-                    Status = table.Column<string>(nullable: true)
+                    Status = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -721,6 +769,11 @@ namespace Final_project.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_articles_CatId",
+                table: "articles",
+                column: "CatId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_articles_user_id",
@@ -785,6 +838,13 @@ namespace Final_project.Migrations
                 name: "IX_booking_pack_id",
                 table: "booking",
                 column: "pack_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_connections_userid",
+                table: "connections",
+                column: "userid",
+                unique: true,
+                filter: "[userid] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_favorits_cat_id",
@@ -902,6 +962,11 @@ namespace Final_project.Migrations
                 column: "userseller_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_users_userId",
+                table: "users",
+                column: "userId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_userSelleds_userbuyer_id",
                 table: "userSelleds",
                 column: "userbuyer_id");
@@ -958,6 +1023,9 @@ namespace Final_project.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "connections");
+
+            migrationBuilder.DropTable(
                 name: "favorits");
 
             migrationBuilder.DropTable(
@@ -977,6 +1045,9 @@ namespace Final_project.Migrations
 
             migrationBuilder.DropTable(
                 name: "userProducts");
+
+            migrationBuilder.DropTable(
+                name: "users");
 
             migrationBuilder.DropTable(
                 name: "userSelleds");

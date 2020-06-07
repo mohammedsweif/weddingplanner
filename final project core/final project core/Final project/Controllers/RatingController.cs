@@ -24,6 +24,10 @@ namespace Final_project.Controllers
             {
                 rate = e.Rate
             }).ToList();
+            if (x.Count == 0)
+            {
+                return null;
+            }
             var avg = x.Average(e => e.rate);
             return Ok(avg);
         }

@@ -20,7 +20,7 @@ namespace Final_project.Models.our_tables
         [DataType(DataType.Date)]
         public DateTime BusyDay { get; set; }
         public string Reason { get; set; }
-        public string Status { get; set; }
+        public bool Status { get; set; }
         public ApplicationUser applicationUser { get; set; }
         public Booking Booking { get; set; }
     }
