@@ -4,6 +4,7 @@ import {UserBookingService} from '../../_service/user-booking.service';
 import { Bookings } from 'src/app/_models/bookings';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
+import { BusyDate } from 'src/app/_models/BusyDates';
 @Component({
   selector: 'app-edit-book',
   templateUrl: './edit-book.component.html',
@@ -12,7 +13,7 @@ import {Router} from '@angular/router';
 export class EditBookComponent implements OnInit {
 
   BookDetails:any;
-  DateBusy:Array<any>;
+  DateBusy:BusyDate[]=[];
   Bookings:Bookings = new Bookings();
   show:boolean =  false;
   constructor(private route:Router,private _route:ActivatedRoute,private BookServ:UserBookingService,private toast:ToastrService) { }
@@ -44,19 +45,20 @@ export class EditBookComponent implements OnInit {
   }
   EditBook(){
     if(this.Bookings.RealDate){
-      
+      console.log(this.Bookings.RealDate)
     
-    this.show= this.DateBusy.some(item=> item.busyDate===this.Bookings.RealDate);
+    this.show= this.DateBusy.some(item=> item.busyDate == this.Bookings.RealDate);
     if(!this.show){
         this.BookServ.EditBook(this.Bookings).subscribe(a=>{
-          this.DateBusy.push(a);
+          this.DateBusy.push(a as BusyDate);
           this.toast.success("Your Book Edited","WOW")
         },error=>{this.toast.error("Filed To Edit you select Invalid Date","Sorry")});
     
-    }
+    
   }else{
       this.toast.error("You must Seelect Valid Date","No")
-  }}
+  }}else{this.toast.error("You must Seelect Valid Date","No")}
+}
   CancelEdit(){
     this.route.navigate(['User/Booking']);
   }

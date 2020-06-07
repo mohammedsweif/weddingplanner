@@ -1,7 +1,14 @@
 <div class="container">
+	<h3 class="title">More Personal info</h3>
+	<br>
 	<div class="row">
-		<div class="col-6 ">
-	<input type="file"  (change)="fileChangeEvent($event)" />
+		<div class="col-6">
+			
+		
+			<br>
+			<h4 class="title">Choose your image.</h4>
+			<br>
+	<input type="file" class="text-info"  (change)="fileChangeEvent($event)" />
 	
 	<image-cropper
 		[imageChangedEvent]="imageChangedEvent"
@@ -10,58 +17,79 @@
 		format="png"
 		(imageCropped)="imageCropped($event)"
 	></image-cropper>
-	<button (click)="SaveImage()" class="btn btn-success">Save Image</button>
+	<button (click)="SaveImage()" class="btn btn-info">Save Image</button>
 	</div>
+	<hr/>
+
 	<div class="col-6">
-		<div class="row">
-	
-	
-			<div id="contact-form" class="form-container" data-form-container>
-				<div class="row">
-					<div class="form-title">
-						<span>Personal Information</span>
-					</div>
-				</div>
-				
-				<form [formGroup]="form">
-				<div class="input-container">
-					
-					<div class="row">
-						<span class="req-input">
-							<span class="input-status" data-toggle="tooltip" data-placement="top"
-								title="Input Your Address"> </span>
-							<input type="text" formControlName="addr" >
-						</span>
-					</div>
-					<div class="row">
-						<span class="req-input">
-							<span class="input-status" data-toggle="tooltip" data-placement="top"
-								title="Please Input BirthDate"> </span>
-							<input type="date" formControlName="birth_date" >
-						</span>
-					</div>
-					<div class="row">
-						<span class="req-input">
-							<span class="input-status" data-toggle="tooltip" data-placement="top"
-								title="Please Input Your Phone Number."> </span>
-							<input type="text" formControlName="PhoneNumber" >
-						</span>
-					</div>
-					<div class="row">
-						<span class="req-input message-box">
-							<span class="input-status" data-toggle="tooltip" data-placement="top"
-								title="Please Include a Message."> </span>
-							<textarea type="textarea" formControlName="Bio" data-min-length="10" placeholder="Bio" ></textarea>
-						</span>
-					</div>
-					<div class="row submit-row">
-						<button type="button" (click)="Save()" [disabled]="!form.valid" class="btn btn-block submit-form">Submit</button>
-					</div>
-				</div>
-				</form>		
-			</div>
 		
-		</div>
+            
+                    
+                
+            
+		
+				<!-- <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12">
+					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+						<a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Profile</a>
+						<a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Password Change</a>
+						</div>
+				</div> -->
+					<div class="tab-content" id="v-pills-tabContent">
+						<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+							<div class="card">
+								<div class="card-header"><h4>More Info</h4></div>
+								<div class="card-body">
+									<form [formGroup]="form">
+										<!-- Form Name -->
+								
+										<div class="personal-form-info">
+											
+												
+													<div class="form-group">
+														
+														<label class="control-label" for="vendorname">Your Address</label>
+														
+														<input id="vendorname" name="vendorname" type="text" placeholder="" formControlName="addr" class="form-control">
+													</div>
+													
+												
+												
+												
+													<div class="form-group">
+														<label class="control-label" for="email">Your Birth day</label>
+														<input id="date" name="date" type="date" placeholder="" formControlName="birth_date" class="form-control">
+													</div>
+												
+												
+													<div class="form-group">
+														<label class="control-label" for="phone">Phone</label>
+														<input id="phone" name="phone" type="text" placeholder="" formControlName="PhoneNumber" class="form-control">
+													</div>
+											
+												
+													<div class="form-group">
+														<label class="control-label text-info" for="summernote">Bio </label>
+														<textarea class="form-control" id="summernote" name="editordata" rows="6" placeholder="Write Your bio info."formControlName="Bio" data-min-length="10"></textarea>
+													</div>
+												
+												<button type="button" (click)="Save()" [disabled]="!form.valid" class="btn btn-info submit-form">Submit</button>
+	
+											
+										</div>
+									
+									</form>
+								</div>
+							</div>
+						</div>
+						
+				
+					
+					</div>
+			
+			
+		
+		
+		
+		
 	</div>
-	</div>
-	</div>
+	

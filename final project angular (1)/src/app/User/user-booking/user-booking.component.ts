@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {UserBookingService} from '../../_service/user-booking.service'
 import { ToastrService } from 'ngx-toastr';
 import {GetBooking} from '../../_models/bookings';
+import { MyserviceService } from 'src/app/_service/myservice.service';
+import { Subscription } from 'rxjs';
+import { category } from 'src/app/CategoryModel/category';
 
 
 
@@ -12,22 +15,38 @@ import {GetBooking} from '../../_models/bookings';
 })
 export class UserBookingComponent implements OnInit {
 
-id:string="497a2b25-b878-42ed-9554-678ace76fdaa";
+id:string="937be65d-b7dc-4dd8-8939-2fe6798aedc4";
 BookList:GetBooking[]=[];
+Books:GetBooking[]=[];
+
+config:any;
 Id:number;
 TotalNumber:number
+subs:Subscription
 page:number=1
-  constructor(private BookServ:UserBookingService,private toast:ToastrService) { 
+categories:category[]=[]
+  constructor(private BookServ:UserBookingService,private toast:ToastrService,private ser:MyserviceService) { 
     this.BookList= new Array<any>()
+    this.config = {
+      itemsPerPage: 3,
+      currentPage: 1}
 }
 
   ngOnInit(): void {
     this.BookServ.GetBooking(this.id).subscribe(response=>{
       
       this.BookList= response as GetBooking[];
+      this.Books=this.BookList
       console.log(this.BookList)
       console.log(this.BookList.length);
     });
+    this.subs=this.ser.GetVenUserCategories(this.id).subscribe(
+      a=>{this.categories=a;
+        console.log(this.categories);}
+    )
+   
+    
+
   }
 CancelBook(i:number){
   let deleted:GetBooking=this.BookList[i];
@@ -36,4 +55,17 @@ CancelBook(i:number){
   this.BookList.splice(i,1);
 },error=> {console.log(error); this.toast.error("no",error.error)});
 }
+pageChanged(event){
+  this.config.currentPage = event;
+ }
+
+ makeFilter(tt:string){
+  if(tt=="All"){
+    this.Books=this.BookList;
+  }else{
+    this.Books=this.BookList.filter(a=>a.category== tt);
+    console.log( this.Books);
+  }
+ 
+ }
 }

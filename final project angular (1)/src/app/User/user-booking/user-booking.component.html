@@ -1,6 +1,39 @@
+<h3 class="title">My Booking</h3>
+ <div class="row">
+    <div class="col-lg-3 col-md-6">
+      <div class="dataTables_length" id="bootstrap-data-table_length">
+         <label class="text-info" >Filter By Catagory</label>
+            <select name="bootstrap-data-table_length"  #mySelect (change)="makeFilter(mySelect.value)" aria-controls="bootstrap-data-table" class="form-control form-control-sm" >
+                <option value="All">All</option>
+                <option *ngFor="let cat of categories"value="{{cat.cat_Name}}">{{cat.cat_Name}}</option>
+                
+            </select>
+        </div>
+        
+    </div>  
+    <div class="col-lg-3"></div>
+ </div>
+    
+      <!-- <div class="col-lg-6 col-md-6">
+        <label class="text-info">Search by Name </label>
+      <div id="bootstrap-data-table_filter" class="dataTables_filter">
+           
+<input type="search" #f (keyup)="search(f)" class="form-control form-control-sm" placeholder="search..."  aria-controls="bootstrap-data-table" class="form-control form-control-sm"> </div></div></div> -->
+<br>
+    
 
+<div class="card shadow mb-4">
+    <div class="card-header py-3 Header">
+      <h6 class="m-0 font-weight-bold">Your Booking</h6>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-12 col-lg-3">
+              
 
-<table class="table table-striped">
+      <div class="table-responsive">
+        <table class="table table-bordered-table table-striped custab " id="dataTable" width="100px" cellspacing="0">
+         
     <thead>
         <tr>
             <th>Vendor Name</th>
@@ -12,43 +45,34 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let Book of BookList;let i=index; paginate: {id:'listing_pagination',
-    itemsPerPage:5,
-     currentPage:page,
-    totalItems:TotalNumber}">
+        <ng-container *ngFor="let Book of Books|paginate: this.config;let i=index">
+        <tr>
     <td>{{Book.vendorname}}</td>
     <td>{{Book.category}}</td>
-    <td>{{Book.realDate}}</td>
+    <td>{{Book.realDate|date}}</td>
     <td>{{Book.cost}}</td>
     <td>
-        <span class="custom-checkbox">
+        <!-- <span class="custom-checkbox">
             <input type="checkbox" id="selectAll" value="Book.status">
             <label for="selectAll"></label>
-        </span>
+        </span> -->
+        Pendding<div class="progress">
+            <div class="progress-bar" style="width:50%"></div>
+     </div>
     </td>
     <td>
-        <input type="button"  value="Cancel" (click)="CancelBook(i)"/>
-        <a class="delete" (click)="CancelBook(i)"><i class="fa fa-remove"></i></a>
-        <a [routerLink]="['/EditBooks',Book.id]">Edit Book</a>
+        <input type="button" class="btn btn-danger"  value="Cancel" (click)="CancelBook(i)"/>
+        
+        <!-- <a class="delete" (click)="CancelBook(i)"><i class="fa fa-remove"></i></a> -->
+        <a [routerLink]="['/User/EditBooks',Book.id]">Edit Book</a>
       <!-- <a class="delete" data-toggle="modal"><i class="fa fa-remove"></i></a>--> 
     </td>
         </tr>
+    </ng-container>
     </tbody>
 </table>
 <div>
-    <pagination-controls  id="listing_pagination"
-                      (pageChange)="page = $event"
-                      
-                      maxSize="5"
-                      directionLinks="true"
-                      autoHide="true"
-                      responsive="true"
-                      previousLabel="Previous"
-                      nextLabel="Next"
-                      screenReaderPaginationLabel="Pagination"
-                      screenReaderPageLabel="page"
-                      screenReaderCurrentLabel="You're on page">
-</pagination-controls>
+    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
 </div>
 
 
@@ -58,7 +82,7 @@
         <div class="modal-content">
             <form>
                 <div class="modal-header">
-                    <h4 class="modal-title">Edit Bookings</h4>
+                    <h4 class="modal-title">Edit Bookingszzzzzzzzzzzzzzzzzzzzz</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -108,3 +132,4 @@
         </div>
     </div>
 </div>
+

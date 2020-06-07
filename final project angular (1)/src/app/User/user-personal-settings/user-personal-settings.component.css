@@ -369,3 +369,30 @@ image-cropper{
 	-o-transition: all .3s ease-in-out;
 	transition: all .3s ease-in-out;
 }
+
+
+.user-avatar {
+    float: right;
+	width: 70px; }
+	.card{
+		border: 2px solid rgba(0,0,0,.125);
+		border-radius: .70rem;
+		text-align: center;
+		
+	}
+	.hr {
+		margin-top:5px;
+		 margin-bottom:5px;
+ 		height:1px;
+ 		width:100%;
+		 border-top:1px solid gray
+	  }
+	  .title{
+		  text-align: center;
+	  }
+	  .card-header{
+		  background-color: #17a2b8;
+		 
+		  
+	  }
+	  

@@ -219,24 +219,32 @@ namespace Final_project.Controllers
         [Route("AddBook")]
         public async Task<ActionResult> AddBook(Booking booking)
         {
-            if (ModelState.IsValid)
+            if(booking.RealDate > DateTime.Now)
             {
-                booking.BookDate = DateTime.Now;
-                await _context.booking.AddAsync(booking);
-                await _context.SaveChangesAsync();
-                VendorBusy vendorBusy = new VendorBusy();
-                vendorBusy.vendor_id = booking.VendorId;
-                vendorBusy.BusyDay = booking.RealDate;
-                vendorBusy.Reason = "Book For " + booking.UserId;
-                vendorBusy.BookingId = booking.BookingId;
-                await _context.vendorBusies.AddAsync(vendorBusy);
-                await _context.SaveChangesAsync();
-                return Ok(new { BusyDate = booking.RealDate.ToString("yyyy-MM-dd") });
-            }
-            else
+                if (ModelState.IsValid)
+                {
+                    booking.BookDate = DateTime.Now;
+                    await _context.booking.AddAsync(booking);
+                    await _context.SaveChangesAsync();
+                    VendorBusy vendorBusy = new VendorBusy();
+                    vendorBusy.vendor_id = booking.VendorId;
+                    vendorBusy.BusyDay = booking.RealDate;
+                    vendorBusy.Reason = "Book For " + booking.UserId;
+                    vendorBusy.BookingId = booking.BookingId;
+                    await _context.vendorBusies.AddAsync(vendorBusy);
+                    await _context.SaveChangesAsync();
+                    return Ok(new { BusyDate = booking.RealDate.ToString("yyyy-MM-dd") });
+                }
+                else
+                {
+                    return NoContent();
+                }
+            } 
+            else 
             {
-                return NoContent();
+                return NotFound("You Must Select New Data"); 
             }
+           
         }
         [HttpGet]
         [Route("GetSpecificPackage/{id}")]
@@ -337,6 +345,7 @@ namespace Final_project.Controllers
             Booking book = await _context.booking.FindAsync(id);
             if (book != null)
             {
+                
                 DateTime datenow = DateTime.Now;
                 DateTime BookDate = book.RealDate;
 
@@ -367,22 +376,30 @@ namespace Final_project.Controllers
             Booking Book = await _context.booking.FindAsync(booking.BookingId);
             if (Book != null)
             {
-                DateTime DateNow = DateTime.Now;
-                DateTime RealDate = Book.RealDate;
-                double NOofDays = (RealDate - DateNow).TotalDays;
-                if (NOofDays > 10)
+                if(booking.RealDate > DateTime.Now) 
                 {
-                    Book.RealDate = booking.RealDate;
-                    //   _context.Entry(booking).State = EntityState.Modified;
-                    VendorBusy BusyDate = await _context.vendorBusies.Where(a => a.BookingId == booking.BookingId).SingleAsync();
-                    BusyDate.BusyDay = booking.RealDate;
-                    await _context.SaveChangesAsync();
-                    return Ok(new { BusyDate = booking.RealDate.ToString("yyyy-MM-dd") });
+                    DateTime DateNow = DateTime.Now;
+                    DateTime RealDate = Book.RealDate;
+                    double NOofDays = (RealDate - DateNow).TotalDays;
+                    if (NOofDays > 10)
+                    {
+                        Book.RealDate = booking.RealDate;
+                        
+                        VendorBusy BusyDate = await _context.vendorBusies.Where(a => a.BookingId == booking.BookingId).SingleAsync();
+                        BusyDate.BusyDay = booking.RealDate;
+                        await _context.SaveChangesAsync();
+                        return Ok(new { BusyDate = booking.RealDate.ToString("yyyy-MM-dd") });
+                    }
+                    else
+                    {
+                        return NotFound("you can not Edit your");
+                    }
                 }
                 else
                 {
-                    return NotFound("you can not Edit your");
+                    return NotFound("You Must Select new Data");
                 }
+                
             }
             else
             {
@@ -398,6 +415,7 @@ namespace Final_project.Controllers
                 a.vendor.Email,
                 a.vendor.PhoneNumber,
                 a.VendorId,
+                a.vendor.UserName,
                 a.UserId,
                 a.RealDate,
                 a.Cost,

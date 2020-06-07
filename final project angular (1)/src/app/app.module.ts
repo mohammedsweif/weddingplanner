@@ -63,7 +63,6 @@ import {UsedGelleryComponent} from './User/used-gellery/used-gellery.component'
 import { HttpClientModule ,HttpClient} from '@angular/common/http';
 import { TimeagoModule } from 'ngx-timeago';
 import { UploadImageComponent } from './Useable/upload-image/upload-image.component';
-import {NgxPaginationModule} from 'ngx-pagination';
 import{ NgInitDirective} from './User/ng-init-directive'
 // admin
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
@@ -92,10 +91,9 @@ import {UserArticleComponent} from './Articals/article/user-article.component';
 import {ArticlesComponent} from './Articals/crudarticles/articles.component';
  
 import { ChatComponent } from './chat/chat.component';
-
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-  
+ 
+ import {NgxPaginationModule} from 'ngx-pagination';
+ 
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 const google_outh_client_id:string = "707593203866-msqo17ipi5tt4gg72af4hfb4ta4dpge0.apps.googleusercontent.com";
@@ -193,6 +191,7 @@ let config= new AuthServiceConfig([{
     HttpClientModule, TimeagoModule.forRoot(),
     ChartsModule,
     NgxPaginationModule,
+
     // NgbModule,
     SocialLoginModule.initialize(config),
     BrowserAnimationsModule, // required animations module
