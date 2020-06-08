@@ -196,7 +196,7 @@ let config= new AuthServiceConfig([{
     SocialLoginModule.initialize(config),
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot() ,// ToastrModule added
-    BsDatepickerModule.forRoot()
+   // BsDatepickerModule.forRoot()
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
