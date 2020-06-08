@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Final_project.Migrations
 {
     [DbContext(typeof(ProjectDbcontext))]
-    [Migration("20200607162008_z1")]
-    partial class z1
+    [Migration("20200608195745_start")]
+    partial class start
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -975,7 +975,7 @@ namespace Final_project.Migrations
                     b.HasOne("Final_project.Models.OurIdentity.Package", "Package")
                         .WithMany("Bookings")
                         .HasForeignKey("pack_id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 

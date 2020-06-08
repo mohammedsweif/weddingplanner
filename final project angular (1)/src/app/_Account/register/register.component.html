@@ -1,119 +1,113 @@
-<div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="this.message !=''     ">
-  {{message}}
- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-   <span aria-hidden="true">&times;</span>
- </button>
-</div>
-<div class="container my-5 py-5 z-depth-1">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
- <!--Section: Content-->
- <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
-
-
-   <!--Grid row-->
-   <div class="row d-flex justify-content-center">
-
-     <!--Grid column-->
-     <div class="col-md-6">
-       <div style="background-color: #e6e6e6;"> 
-         <p>choose your </p>         
-         <span class="btn btn-info my-4 btn-lg  " (click)="changestyle()" [ngClass]=" checkclass == 1 ? 'btn-lg active':''" style="margin-right: 20px;"  >user</span>   
-                <span class="btn btn-info my-4 btn-lg" (click)="changestyle()" [ngClass]=" checkclass == 2 ? 'btn-lg active':''" >vendor</span>
-               </div>
-       <!-- Default form register -->
-       <form class="text-center" [formGroup]="userForm" *ngIf="checkclass == 1" (ngSubmit)="register()">
-
-         <p class="h4 mb-4">Register</p>
-
-         <input type="text" formControlName="UserName"  class="form-control mb-4" placeholder="UserName">
-        <div *ngIf="!this.userForm.get('UserName').valid && this.userForm.get('UserName').touched">
-         <small *ngIf="this.userForm.get('UserName').errors.required == true "  class="form-text  text-danger   mb-4">
-           {{this.massageValidator.UserName.required}}
-         </small>
-         <small *ngIf="this.userForm.get('UserName').errors.minlength"  class="form-text  text-danger   mb-4">
-           {{this.massageValidator.UserName.minLength}}
-         </small>
-         <small *ngIf="this.userForm.get('UserName').errors.maxlength"  class="form-text  text-danger   mb-4">
-           {{this.massageValidator.UserName.maxlength}}
-           
-         </small>
-       </div>
-         <!-- E-mail -->
-         <input type="email" formControlName="Email" class="form-control mb-4" placeholder="E-mail">
-         <small *ngIf="!this.userForm.get('Email').valid && this.userForm.get('Email').touched"  class="form-text text-danger   mb-4">
-           {{this.massageValidator.Email.required}}
-         </small>
-
-
-   
-
-         <!-- Password -->
-         <input type="password"   formControlName="Password" class="form-control" placeholder="Password"
-          >
-          <div *ngIf="!this.userForm.get('Password').valid && this.userForm.get('Password').touched">      
-           <small  class="form-text text-danger mb-4" *ngIf="this.userForm.get('Password').errors.required == true" >
-             {{this.massageValidator.Password.required}}
-         </small>
-         <small  class="form-text text-danger mb-4" *ngIf="this.userForm.get('Password').errors.minLength !== null" >
-           {{this.massageValidator.Password.required}}
-
-         </small>
-       </div>
-
-         <input type="password"  formControlName="ConfirmPassword" class="form-control" placeholder="ConfirmPassword"
-        >
-        <div *ngIf="!this.userForm.get('ConfirmPassword').valid && this.userForm.get('ConfirmPassword').touched">      
-         <small  class="form-text text-danger mb-4" *ngIf="this.userForm.get('ConfirmPassword').errors.required == true" >
-        required 
-       </small>
-       <small  class="form-text text-danger mb-4" *ngIf="this.userForm.get('ConfirmPassword').errors.minLength !== null" >
-         At least 8 characters and 1 digit
-       </small>
-      
-     </div>
-     <small  class="form-text text-danger mb-4" *ngIf="!checkpassandconfirm()" >
-       not matched
-     </small>
-<div style="height:200;width:15000">
-
-</div>
+<section class="login-block">
+  <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="this.message !=''     ">
+    {{message}}
+   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+     <span aria-hidden="true">&times;</span>
+   </button>
+  </div>
+    <div class="container">
+	<div class="row">
+		<div class="col-md-4 login-sec">
+      <div class="row">
         
-
-         <!-- Sign up button -->
-         <button class="btn btn-info my-4 btn-block" type="submit" [disabled]="this.userForm.invalid || !checkpassandconfirm()" >Register</button>
-       </form>
-        
-       <!-- Default form register -->
-
-
-
-       <form class="text-center" #f="ngForm" *ngIf="checkclass == 2" (ngSubmit)="registerve()">
-
-         <p class="h4 mb-4">Register</p>
-
-         <input type="text"  #user="ngModel" minlength="15" maxlength="30" [(ngModel)]="registervendor.UserName" required  name="usernames"  
-          class="form-control mb-4" placeholder="UserName">
-    <div *ngIf="user.touched">
-     <small  class="form-text text-danger mb-4" *ngIf="user.errors?.required != null" >
-       it is required
-     </small>
-     <small  class="form-text text-danger mb-4" *ngIf="user.errors?.minlength != null" >
-       it is minlength
-     </small>
-    
+          <span class="col-xs-5 col-sm-5 col-md-5 btn btn-info btn-block  change" (click)="changestyle()" [ngClass]=" checkclass == 1 ? 'btn-lg active':''"  >User</span>   
+          <span class="col-xs-5 col-sm-5 col-md-5 btn btn-info btn-block  change" (click)="changestyle()" [ngClass]=" checkclass == 2 ? 'btn-lg active':''"  >Vendor</span>
+         
       </div>
+      
+            <h2 class="text-center">Register</h2>
+            <form class="text-center" [formGroup]="userForm" *ngIf="checkclass == 1" (ngSubmit)="register()">
+
+              <input type="text" formControlName="UserName"  class="form-control mb-4" placeholder="UserName">
+             <div *ngIf="!this.userForm.get('UserName').valid && this.userForm.get('UserName').touched">
+              <small *ngIf="this.userForm.get('UserName').errors.required == true "  class="form-text  text-danger   mb-4">
+                {{this.massageValidator.UserName.required}}
+              </small>
+              <small *ngIf="this.userForm.get('UserName').errors.minlength"  class="form-text  text-danger   mb-4">
+                {{this.massageValidator.UserName.minLength}}
+              </small>
+              <small *ngIf="this.userForm.get('UserName').errors.maxlength"  class="form-text  text-danger   mb-4">
+                {{this.massageValidator.UserName.maxlength}}
+                
+              </small>
+            </div>
+              <!-- E-mail -->
+              <input type="email" formControlName="Email" class="form-control mb-4" placeholder="E-mail">
+              <small *ngIf="!this.userForm.get('Email').valid && this.userForm.get('Email').touched"  class="form-text text-danger   mb-4">
+                {{this.massageValidator.Email.required}}
+              </small>
+     
+     
+        
+     
+              <!-- Password -->
+              <input type="password"   formControlName="Password" class="form-control" placeholder="Password"
+               >
+               <div *ngIf="!this.userForm.get('Password').valid && this.userForm.get('Password').touched">      
+                <small  class="form-text text-danger mb-4" *ngIf="this.userForm.get('Password').errors.required == true" >
+                  {{this.massageValidator.Password.required}}
+              </small>
+              <small  class="form-text text-danger mb-4" *ngIf="this.userForm.get('Password').errors.minLength !== null" >
+                {{this.massageValidator.Password.required}}
+     
+              </small>
+            </div>
+     
+              <input type="password"  formControlName="ConfirmPassword" class="form-control" placeholder="ConfirmPassword"
+             >
+             <div *ngIf="!this.userForm.get('ConfirmPassword').valid && this.userForm.get('ConfirmPassword').touched">      
+              <small  class="form-text text-danger mb-4" *ngIf="this.userForm.get('ConfirmPassword').errors.required == true" >
+             required 
+            </small>
+            <small  class="form-text text-danger mb-4" *ngIf="this.userForm.get('ConfirmPassword').errors.minLength !== null" >
+              At least 8 characters and 1 digit
+            </small>
+           
+          </div>
+          <small  class="form-text text-danger mb-4" *ngIf="!checkpassandconfirm()" >
+            not matched
+          </small>
+     <div style="height:200;width:15000">
+     
+     </div>
+             
+     
+              <!-- Sign up button -->
+              <button class="btn my-4 btn-block  btn-login" type="submit" [disabled]="this.userForm.invalid || !checkpassandconfirm()" >Register</button>
+    </form>
+<!-- 
+    <form class="text-center" #f="ngForm" *ngIf="checkclass == 2" (ngSubmit)="registerve()">
+
+     
+
+      <input type="text"  #user="ngModel" minlength="15" maxlength="30" [(ngModel)]="registervendor.UserName" required  name="usernames"  
+       class="form-control mb-4" placeholder="UserName">
+ <div *ngIf="user.touched">
+  <small  class="form-text text-danger mb-4" *ngIf="user.errors?.required != null" >
+    it is required
+  </small>
+  <small  class="form-text text-danger mb-4" *ngIf="user.errors?.minlength != null" >
+    it is minlength
+  </small>
+ 
+   </div>
 <input type="email" email required #e="ngModel" [(ngModel)]="registervendor.Email" name="emailadd"
 class="form-control mb-4" placeholder="Eamil"/>
 <div *ngIf="e.touched">
- <small  class="form-text text-danger mb-4" *ngIf="e.errors?.required != null" >
-   it is required
- </small>
- <small  class="form-text text-danger mb-4" *ngIf="e.errors.email  " >
-   email like a@a.a
- </small>
- </div>
- <input type="text"  #add="ngModel" minlength="15" maxlength="150" [(ngModel)]="registervendor.address" required  name="address"  
- class="form-control mb-4" placeholder="address">
+<small  class="form-text text-danger mb-4" *ngIf="e.errors?.required != null" >
+it is required
+</small>
+<small  class="form-text text-danger mb-4" *ngIf="e.errors.email  " >
+email like a@a.a
+</small>
+</div>
+<input type="text"  #add="ngModel" minlength="15" maxlength="150" [(ngModel)]="registervendor.address" required  name="address"  
+class="form-control mb-4" placeholder="address">
 <div *ngIf="add.touched">
 <small  class="form-text text-danger mb-4" *ngIf="add.errors?.required != null" >
 it is required
@@ -143,8 +137,8 @@ required
 At least 6 characters and 1 digit
 </small>
 <small  class="form-text text-danger mb-4" *ngIf=" checkpassandconfirmvendor()" >
- not matched
- </small>
+not matched
+</small>
 </div>
 
 
@@ -155,39 +149,48 @@ class="form-control" >
 required 
 </small>
 </div>
+<button class="btn my-4 btn-block btn-login" type="submit" [disabled]="!checkpassandconfirmvendor() && f.invalid" >Register</button>
+</form>
 
-          <!-- Sign up button -->
-         <button class="btn btn-info my-4 btn-block" type="submit" [disabled]="!checkpassandconfirmvendor() && f.invalid" >Register</button>
-       </form>
-
-
-
-
-        <!-- Social register -->
-        <p>or sign up with:</p>
-
-        <a href="#" class="mx-1" role="button"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="mx-1" role="button"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="mx-1" role="button"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#" class="mx-1" role="button"><i class="fab fa-github"></i></a>
-
-    <hr>
-
-    <!-- Terms of service -->
-    <p>By clicking
-      <em>Sign up</em> you agree to our
-      <a href="" target="_blank">terms of service</a>
-</p>
-
-     </div>
-     <!--Grid column-->
-
-   </div>
-   <!--Grid row-->
-
-
- </section>
- <!--Section: Content-->
-
-
+-->
+		</div>
+		<div class="col-md-8 banner-sec">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                 <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                  </ol>
+            <div class="carousel-inner" role="listbox">
+    <div class="carousel-item active sec">
+      <img class="d-block img-fluid " src="./../../../assets/images/l2.jpg" alt="First slide">
+      <div class="carousel-caption d-none d-md-block">
+        <div class="banner-text">
+          <h4>A wedding is a ceremony where two people are united in marriage</h4>
+        </div>	
+  </div>
+    </div>
+    <div class="carousel-item sec">
+      <img class="d-block img-fluid" src="./../../../assets/images/l4.jpg" alt="First slide">
+      <div class="carousel-caption d-none d-md-block">
+        <div class="banner-text">
+          <h4>A wedding is a ceremony where two people are united in marriage</h4>
+            
+        </div>	
+    </div>
+    </div>
+    <div class="carousel-item sec">
+      <img class="d-block img-fluid " src="./../../../assets/images/l8.jpg" alt="First slide">
+      <div class="carousel-caption d-none d-md-block">
+        <div class="banner-text">
+          <h4>A wedding is a ceremony where two people are united in marriage</h4>
+        </div>	
+    </div>
+  </div>
+            </div>	   
+		    
+		</div>
+	</div>
 </div>
+</div>
+</section>

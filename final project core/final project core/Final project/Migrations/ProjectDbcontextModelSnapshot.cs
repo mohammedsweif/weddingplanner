@@ -973,7 +973,7 @@ namespace Final_project.Migrations
                     b.HasOne("Final_project.Models.OurIdentity.Package", "Package")
                         .WithMany("Bookings")
                         .HasForeignKey("pack_id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 

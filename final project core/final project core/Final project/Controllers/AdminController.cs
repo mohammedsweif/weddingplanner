@@ -174,9 +174,7 @@ namespace Final_project.Controllers
             }).ToListAsync();
             return Ok(booklist);
         }
-        /******************************************************/
- 
-        /******************************************************/
+       
 
         [HttpGet]
         [Route("getProducts")]

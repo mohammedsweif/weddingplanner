@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Final_project.Migrations
 {
-    public partial class z1 : Migration
+    public partial class start : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -737,8 +737,7 @@ namespace Final_project.Migrations
                         name: "FK_booking_packages_pack_id",
                         column: x => x.pack_id,
                         principalTable: "packages",
-                        principalColumn: "PackageId",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "PackageId");
                 });
 
             migrationBuilder.CreateTable(

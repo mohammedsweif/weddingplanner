@@ -58,6 +58,8 @@ namespace Final_project.Models
         {
             base.OnModelCreating(builder);
             builder.Entity<VenBudget>().HasKey(ba => new { ba.vendor_id, ba.catt_id });
+            builder.Entity<Booking>().HasOne(e => e.Package).WithMany(e => e.Bookings)
+                .OnDelete(DeleteBehavior.NoAction);
         }
 
        
