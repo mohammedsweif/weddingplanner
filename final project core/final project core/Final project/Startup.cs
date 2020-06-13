@@ -63,10 +63,10 @@ namespace Final_project
             services.AddControllers().AddNewtonsoftJson(options =>
        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            services.AddCors(Options => {
-                Options.AddPolicy("allowany", x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200").AllowCredentials());
+                services.AddCors(Options => {
+                    Options.AddPolicy("allowany", x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200").AllowCredentials());
 
-            });
+                });
             services.AddScoped<VendorWorksRepsitory>();
             services.AddSignalR();
 

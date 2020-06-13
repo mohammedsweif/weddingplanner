@@ -42,7 +42,7 @@ namespace Final_project.Controllers
         }
 
         [HttpPost]
-        [Route("Register")]
+        [Route("Register/{type}")]
         // http://localhost:50414/account/Register
         /*
              *  
@@ -55,15 +55,14 @@ namespace Final_project.Controllers
             "ConfirmPassword":"123+Aa"
 } 
              */
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model,[FromRoute]int type)
         {
             if (ModelState.IsValid)
             {
-               /* if (EmailExsist(model.Email))
+                 if (EmailExsist(model.Email))
                 {
                     return BadRequest("Email is exist");
-                }*/
-
+                } 
 
 
                 ApplicationUser user = new ApplicationUser
@@ -74,6 +73,13 @@ namespace Final_project.Controllers
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    if(type == 2) { 
+                    await userManager.AddToRoleAsync(user, "user");
+                    }
+                    else
+                    {
+                        await userManager.AddToRoleAsync(user, "vendor");
+                    }
                     var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
                     var confirmation = Url.Action("registerationconfirm", "Account", new
                     {
@@ -94,7 +100,9 @@ namespace Final_project.Controllers
         /***************************************************************************/
         public bool EmailExsist(string Email)
         {
-            return db.Users.Any(x => x.Email == Email);
+            if(db.Users.FirstOrDefault(x => x.Email == Email) != null)
+                return true;
+            return false;
         }
         /**************************************************************************/
         [HttpGet]

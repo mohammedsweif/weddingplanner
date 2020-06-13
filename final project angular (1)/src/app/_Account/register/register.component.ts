@@ -19,6 +19,11 @@ changestyle(){
     this.checkclass = 1;
   }
 }
+registertype:number=1;
+type(e){
+console.log(e.target.value);
+  this.registertype = e.target.value ;
+}
  constructor(private fb:FormBuilder,private ser:RegisterServiceService) { }
  userForm:FormGroup;
  massageValidator={
@@ -50,7 +55,7 @@ changestyle(){
    if(this.checkclass==1){
 if(this.userForm.valid){
   this.completeregisterobject();
-this.ser.register(this.regist).subscribe(success =>{
+this.ser.register(this.regist,this.registertype).subscribe(success =>{
   
   this.message =String(this.success);
   console.log(this.message ,this.success);
