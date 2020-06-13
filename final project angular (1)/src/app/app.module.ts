@@ -7,8 +7,7 @@ import { ToastrModule } from 'ngx-toastr';
 //import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './_Account/login/login.component';
-import { RegisterComponent } from './_Account/register/register.component';
+ 
 import { IndexComponent } from './Home/index/index.component';
 import { FooterComponent } from './Home/footer/footer.component';
 import { NavbarComponent } from './Useable/navbar/navbar.component';
@@ -96,6 +95,8 @@ import { ChatComponent } from './chat/chat.component';
  
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
+import { LoginComponent } from './_Account/login/login.component';
+import { RegisterComponent } from './_Account/register/register.component';
 const google_outh_client_id:string = "707593203866-msqo17ipi5tt4gg72af4hfb4ta4dpge0.apps.googleusercontent.com";
 let config= new AuthServiceConfig([{
   id:GoogleLoginProvider.PROVIDER_ID,

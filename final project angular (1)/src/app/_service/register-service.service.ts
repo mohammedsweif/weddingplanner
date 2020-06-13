@@ -24,8 +24,8 @@ header2={
   })
 }
   constructor( public http:HttpClient) { }
-  register(obj:Registerr):Observable<Registerr>{
-    return this.http.post<Registerr>(this.urlcon+"Register",obj,this.header).pipe();
+  register(obj:Registerr,role:number):Observable<Registerr>{
+    return this.http.post<Registerr>(this.urlcon+"Register/"+role,obj,this.header).pipe();
   } 
   registerven(obj:RegisterVendor):Observable<RegisterVendor>{
     return this.http.post<RegisterVendor>(this.urlcon+"Register",obj,this.header).pipe();

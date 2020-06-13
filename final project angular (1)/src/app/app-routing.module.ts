@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './Home/home/home.component';
-import { LoginComponent } from './_Account/login/login.component';
-import { RegisterComponent } from './_Account/register/register.component';
+ 
+
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { VendorProfileComponent } from './Vendor/vendor-profile/vendor-profile.component';
 
@@ -59,13 +59,17 @@ import {UserHomePageComponent} from './Home/user-home-page/user-home-page.compon
  
 import { UserstablesComponent } from './admin/userstables/userstables.component';
 import { ChatComponent } from './chat/chat.component';
+import { LoginComponent } from './_Account/login/login.component';
+import { RegisterComponent } from './_Account/register/register.component';
 
 
 const routes: Routes = [
   {path:"chat",component:ChatComponent},
   {path:"Home",component: HomeComponent},
-  {path:"Login",component:LoginComponent},                                // Login  --Nevine
+  {path:"Login",component:LoginComponent},
   {path:"Register",component:RegisterComponent},
+                            // Login  --Nevine
+   
   {path:"Maps",component:GoogleMapComponent} ,
  
   {path:"Vendor",component: VendorProfileComponent,
@@ -116,7 +120,6 @@ const routes: Routes = [
  
  
 {path:"Admin",component:AdminhomeComponent,children:[
- 
 {path:"product",component:AdminProductsComponent},
 {path:"usertables",component:UserstablesComponent},////http://localhost:4200/Admin/usertables
 {path:"dashboard",component:DashboardComponent},////http://localhost:4200/Admin/:3/dashboard***********
@@ -126,8 +129,8 @@ const routes: Routes = [
   {path:"topdata",component:TopDataComponent},////http://localhost:4200/Admin/:3/topdata 
   {path:"vendordetails",component:VendordetailsComponent},////http://localhost:4200/Admin/:3/vendordetails
   
-{path:"Login",component:LoginComponent},
-{path:"register",component:RegisterComponent},
+ 
+ 
 {path:"ArticalsOP",component:ArticlesComponent},
  
 {path:"vendorrole",component:VendorRolesComponent}//http://localhost:4200/Admin/3/vendorrole
@@ -140,7 +143,8 @@ const routes: Routes = [
 {path:"BookPackage/:id",component:BookPackageComponent},
 {path:"Gallery",component:GalleryComponent}, 
 {path:"EditBooks/:id",component:EditBookComponent},                
-{path:"",component: UserHomePageComponent,pathMatch:"full"},       
+{path:"",component: UserHomePageComponent,pathMatch:"full"},
+   
 {path:"**",component:ErrorpageComponent}
 ];
 

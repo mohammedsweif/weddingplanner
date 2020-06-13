@@ -13,16 +13,15 @@
     <div class="container">
 	<div class="row">
 		<div class="col-md-4 login-sec">
-      <div class="row">
-        
-          <span class="col-xs-5 col-sm-5 col-md-5 btn btn-info btn-block  change" (click)="changestyle()" [ngClass]=" checkclass == 1 ? 'btn-lg active':''"  >User</span>   
-          <span class="col-xs-5 col-sm-5 col-md-5 btn btn-info btn-block  change" (click)="changestyle()" [ngClass]=" checkclass == 2 ? 'btn-lg active':''"  >Vendor</span>
-         
-      </div>
+      
       
             <h2 class="text-center">Register</h2>
             <form class="text-center" [formGroup]="userForm" *ngIf="checkclass == 1" (ngSubmit)="register()">
-
+<span> Register as </span>
+              <select style="height: 32px; width: 237px;" #r (change)="type($event)">
+               <option value="1">Vendor</option>
+                <option value="2">User</option>
+                </select>
               <input type="text" formControlName="UserName"  class="form-control mb-4" placeholder="UserName">
              <div *ngIf="!this.userForm.get('UserName').valid && this.userForm.get('UserName').touched">
               <small *ngIf="this.userForm.get('UserName').errors.required == true "  class="form-text  text-danger   mb-4">
@@ -41,10 +40,7 @@
               <small *ngIf="!this.userForm.get('Email').valid && this.userForm.get('Email').touched"  class="form-text text-danger   mb-4">
                 {{this.massageValidator.Email.required}}
               </small>
-     
-     
-        
-     
+
               <!-- Password -->
               <input type="password"   formControlName="Password" class="form-control" placeholder="Password"
                >
@@ -80,79 +76,7 @@
               <!-- Sign up button -->
               <button class="btn my-4 btn-block  btn-login" type="submit" [disabled]="this.userForm.invalid || !checkpassandconfirm()" >Register</button>
     </form>
-<!-- 
-    <form class="text-center" #f="ngForm" *ngIf="checkclass == 2" (ngSubmit)="registerve()">
-
-     
-
-      <input type="text"  #user="ngModel" minlength="15" maxlength="30" [(ngModel)]="registervendor.UserName" required  name="usernames"  
-       class="form-control mb-4" placeholder="UserName">
- <div *ngIf="user.touched">
-  <small  class="form-text text-danger mb-4" *ngIf="user.errors?.required != null" >
-    it is required
-  </small>
-  <small  class="form-text text-danger mb-4" *ngIf="user.errors?.minlength != null" >
-    it is minlength
-  </small>
  
-   </div>
-<input type="email" email required #e="ngModel" [(ngModel)]="registervendor.Email" name="emailadd"
-class="form-control mb-4" placeholder="Eamil"/>
-<div *ngIf="e.touched">
-<small  class="form-text text-danger mb-4" *ngIf="e.errors?.required != null" >
-it is required
-</small>
-<small  class="form-text text-danger mb-4" *ngIf="e.errors.email  " >
-email like a@a.a
-</small>
-</div>
-<input type="text"  #add="ngModel" minlength="15" maxlength="150" [(ngModel)]="registervendor.address" required  name="address"  
-class="form-control mb-4" placeholder="address">
-<div *ngIf="add.touched">
-<small  class="form-text text-danger mb-4" *ngIf="add.errors?.required != null" >
-it is required
-</small>
-<small  class="form-text text-danger mb-4" *ngIf="add.errors?.minlength != null" >
-it is minlength
-</small>
-</div>
-<input type="password"  #p="ngModel" [(ngModel)]="registervendor.Password" name="pass" required minlength="6"
-class="form-control" placeholder="Password">
-<div *ngIf="p.touched">      
-<small  class="form-text text-danger mb-4" *ngIf="p.errors?.required != null" >
-required 
-</small>
-<small  class="form-text text-danger mb-4" *ngIf="p.errors?.minLength !== null" >
-At least 6 characters and 1 digit
-</small>
-
-</div>
-<input type="password"  #cp="ngModel" [(ngModel)]="registervendor.ConfirmPassword" name="cpass" required minlength="6"
-class="form-control" placeholder="ConfirmPassword">
-<div *ngIf="cp.touched">      
-<small  class="form-text text-danger mb-4" *ngIf="cp.errors?.required != null" >
-required 
-</small>
-<small  class="form-text text-danger mb-4" *ngIf="cp.errors?.minLength !== null" >
-At least 6 characters and 1 digit
-</small>
-<small  class="form-text text-danger mb-4" *ngIf=" checkpassandconfirmvendor()" >
-not matched
-</small>
-</div>
-
-
-<input type="date"  #bd="ngModel" [(ngModel)]="registervendor.birth_date" name="birth_date" required  
-class="form-control" >
-<div *ngIf="bd.touched">      
-<small  class="form-text text-danger mb-4" *ngIf="bd.errors?.required != null" >
-required 
-</small>
-</div>
-<button class="btn my-4 btn-block btn-login" type="submit" [disabled]="!checkpassandconfirmvendor() && f.invalid" >Register</button>
-</form>
-
--->
 		</div>
 		<div class="col-md-8 banner-sec">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
