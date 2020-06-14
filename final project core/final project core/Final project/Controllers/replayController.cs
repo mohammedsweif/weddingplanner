@@ -28,20 +28,30 @@ namespace Final_project.Controllers
                 ID = e.ID,
                 Review_Id = e.Review_Id,
                 PostDate = e.PostDate,
-                Comment = e.Comment,
+                comment = e.Comment,
                 User_Id = e.User_Id,
-                Vendor_Id = e.Vendor_Id
+                Vendor_Id = e.Vendor_Id,
+                liked=e.liked
             }).ToList();
             return Ok(x);
         }
 
-        //to add replay
-        [HttpPost("Add")]
-        public ActionResult<Review_replays> Postreplay([FromBody]Review_replays n)
+        [HttpPut("toggleReply")]
+        public ActionResult toggleReply([FromBody] Review_replays replay)
         {
-            _context.review_Replays.Add(n);
+            var r = _context.review_Replays.FirstOrDefault(a => a.ID == replay.ID);
+            r.liked = !r.liked;
             _context.SaveChanges();
-            return Ok(n);
+            return Ok(r);
+        }
+
+        [HttpPut("toggleReview")]
+        public ActionResult toggleReview([FromBody] Review_replays replay)
+        {
+            var r = _context.reviews.FirstOrDefault(a => a.ID == replay.ID);
+            r.liked = !r.liked;
+            _context.SaveChanges();
+            return Ok(r);
         }
 
 

@@ -26,9 +26,12 @@ namespace Final_project.Models.OurIdentity
         public string Vendor_Id { get; set; }
         [ForeignKey("catagory")]
         public int catagory_id { get; set; }
+
+        public bool liked { get; set; }
         public catagory catagory { get; set; }
         public ApplicationUser ApplicationUser { set; get; }
         public ApplicationUser Vendor { set; get; }
+        
 
     }
 }

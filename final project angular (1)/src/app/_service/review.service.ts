@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Review } from '../model/review';
 import { Reviewadd } from '../model/reviewadd';
 import { Reviewreplay } from '../model/reviewreplay';
+import { reply } from '../model/reply';
 
 @Injectable({
   providedIn: 'root'
@@ -43,15 +44,38 @@ replays:Reviewreplay[]=[];
 
 
    s:Reviewreplay=new Reviewreplay();
-   postreplay(r:Reviewreplay){
+
+   postreplay(r:reply){
       const httpOptions={
         headers:new HttpHeaders({
           'Content-Type':'application/json',
         })
       }
-       return this.http.post("http://localhost:50414/replay/Add",r,httpOptions)
+       return this.http.post<reply>("http://localhost:50414/VendorClient/addReplay",r,httpOptions)
     }
 
+    toggleReply(item:Reviewreplay){
 
+      const httpOptions={
+        headers:new HttpHeaders({
+          'Content-Type':'application/json',
+        })
+      }
+
+
+      return this.http.put<Reviewreplay>("http://localhost:50414/replay/toggleReply",item,httpOptions)
+    }
+
+    toggleReview(item:Review){
+
+      const httpOptions={
+        headers:new HttpHeaders({
+          'Content-Type':'application/json',
+        })
+      }
+
+
+      return this.http.put<Reviewreplay>("http://localhost:50414/replay/toggleReview",item,httpOptions)
+    }
 
   } 

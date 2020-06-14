@@ -84,7 +84,8 @@ import { AdminProductsComponent } from './admin/productView/admin-products/admin
 import { ShowVendorComponent } from './User/show-vendor/show-vendor.component';
 import { ShopHomeComponent } from './shop/shop-home/shop-home.component';
 import { EditBookComponent } from './User/edit-book/edit-book.component';
- 
+import {ScrollingModule} from '@angular/cdk/scrolling';
+
  
 import {UserArticleComponent} from './Articals/article/user-article.component';
 import {ArticlesComponent} from './Articals/crudarticles/articles.component';
@@ -197,13 +198,16 @@ let config= new AuthServiceConfig([{
     HttpClientModule, TimeagoModule.forRoot(),
     ChartsModule,
     NgxPaginationModule,
+    ScrollingModule,
 
     // NgbModule,
     SocialLoginModule.initialize(config),
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot() ,// ToastrModule added
+ 
     BsDatepickerModule.forRoot(),
    // BsDatepickerModule.forRoot()
+ 
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

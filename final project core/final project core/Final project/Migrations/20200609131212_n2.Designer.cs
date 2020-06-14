@@ -4,14 +4,16 @@ using Final_project.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Final_project.Migrations
 {
     [DbContext(typeof(ProjectDbcontext))]
-    partial class ProjectDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20200609131212_n2")]
+    partial class n2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -524,7 +526,8 @@ namespace Final_project.Migrations
 
                     b.Property<string>("Comment")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
 
                     b.Property<string>("PostDate")
                         .HasColumnType("nvarchar(max)");
@@ -978,7 +981,7 @@ namespace Final_project.Migrations
                     b.HasOne("Final_project.Models.OurIdentity.Package", "Package")
                         .WithMany("Bookings")
                         .HasForeignKey("pack_id")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
