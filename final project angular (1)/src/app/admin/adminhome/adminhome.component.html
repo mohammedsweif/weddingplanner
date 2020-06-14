@@ -64,7 +64,7 @@
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" [routerLink]="['usertables']">
           <i class="fa fa-wrench"></i>
           <span>User Details</span>
         </a>         
@@ -72,12 +72,17 @@
       
 
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" [routerLink]="['userole']">
           <i class="fa fa-wrench"></i>
-          <span>Roles</span>
+          <span>Users Roles</span>
         </a>         
       </li>
-      
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['vendorrole']">
+          <i class="fa fa-wrench"></i>
+          <span>Vendors Roles</span>
+        </a>         
+      </li>
      
       <!-- <hr class="sidebar-divider"> -->
 
@@ -86,24 +91,39 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" [routerLink]="['catagoriessession']">
           <i class="fa fa-folder"></i>
           <span>Catagories and Session</span>
         </a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['topdata']">
+          <i class="fa fa-folder"></i>
+          <span>Top Data</span></a>
+      </li>
       <!-- Nav Item -Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" [routerLink]="['vendordetails']">
           <i class="fa fa-folder"></i>
           <span>Vendors Details</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['bookingdetails']">
+          <i class="fa fa-folder"></i>
+          <span>Booking Details</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['product']">
+          <i class="fa fa-folder"></i>
+          <span>Products</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link"  [routerLink]="['ArticalsOP']">
           <i class="fa fa-table"></i>
-          <span>Tables</span></a>
+          <span>Articles</span></a>
       </li>
 
       <!-- Divider -->

@@ -10,7 +10,13 @@
         <a class="nav-link" routerLink="/Home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link"  routerLink="/Login">Link</a>
+        <a class="nav-link"  [routerLink]="['/ShopHome']">Shop</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"  [routerLink]="['/Articals']">Articals</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"  [routerLink]="['/Cart']">My Cart</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -25,8 +31,6 @@
               <a class="dropdown-item" routerLink=" "  *ngIf="this.vendor">control Panal</a>
             <a class="dropdown-item" routerLink=" "  *ngIf="this.vendor">My Account</a>
             <a class="dropdown-item" routerLink=" "  *ngIf="this.user">My Account</a>
-
-         
         </div>
           <a class="dropdown-item" routerLink="/Home" *ngIf="check()" (click)="logout()">logout</a>
 

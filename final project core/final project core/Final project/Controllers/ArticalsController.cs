@@ -72,6 +72,20 @@ namespace Final_project.Controllers
                 return NotFound();
             }
         }
+        [HttpGet]
+        [Route("ArticalDetails/{id}")]
+        public async Task<ActionResult> ArticalDetails(int id)
+        {
+            var artical = await _projectDbcontext.articles.FindAsync(id);
+            if(artical != null)
+            {
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
         [HttpPost]
         [Route("AddArtical")]
         public async Task<ActionResult> AddArtical(Article artical)

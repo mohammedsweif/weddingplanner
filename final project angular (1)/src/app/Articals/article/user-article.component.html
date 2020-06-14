@@ -28,12 +28,12 @@
    
         <div class="row m-5">
             <div class="col-lg-6 col-sm-12 " *ngFor="let art of articals; let i= index; ">
-                <img [src]="" alt=""  style="width: 100%;">
+                <img [src]="art.imageUrl" alt=""  style="width: 100%; height: 200px;">
                 <h5 class="text-secondary text-center m-3">{{art.catagory.cat_Name}}</h5>
                 <h3 class="m-2">{{art.article_Title}}</h3>
-                <p class="text-secondary">{{art.article_Description}}</p>
-                     <span class="text-secondary">By {{art.applicationUser.userName}},{{art.postDate}}</span>
-
+               
+                       <span class="text-secondary">By {{art.applicationUser.userName}},{{art.postDate}}</span>
+                       <a  class="btn btn-success" [routerLink]="['/articalDetails',art.id]">Details</a> 
             </div>
 
         </div>   

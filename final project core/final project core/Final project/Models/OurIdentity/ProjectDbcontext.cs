@@ -46,7 +46,8 @@ namespace Final_project.Models
         public DbSet<product> products { get; set; }
         public DbSet<productType> ProductTypes { get; set; }
         public DbSet<shop> Shops { get; set; }
-
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetails> orderDetails { get; set; }
         //  public DbSet<bookrelation_user> books { get; set; }
         //  public DbSet<Favorit_user> favorit_Users { get; set; }
 
