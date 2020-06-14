@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 signingoogle(platform:string){
   platform=GoogleLoginProvider.PROVIDER_ID;
   this.social.signIn(platform).then((r)=>{console.log(r);})
-}
+                             }
   logs:loginClass;
   message:string;
 login(){

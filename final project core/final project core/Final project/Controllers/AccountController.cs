@@ -42,7 +42,7 @@ namespace Final_project.Controllers
         }
 
         [HttpPost]
-        [Route("Register")]
+        [Route("Register/{type}")]
         // http://localhost:50414/account/Register
         /*
              *  
@@ -55,15 +55,14 @@ namespace Final_project.Controllers
             "ConfirmPassword":"123+Aa"
 } 
              */
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model,[FromRoute]int type)
         {
             if (ModelState.IsValid)
             {
-               /* if (EmailExsist(model.Email))
+                 if (EmailExsist(model.Email))
                 {
                     return BadRequest("Email is exist");
-                }*/
-
+                } 
 
 
                 ApplicationUser user = new ApplicationUser
@@ -74,6 +73,13 @@ namespace Final_project.Controllers
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    if(type == 2) { 
+                    await userManager.AddToRoleAsync(user, "user");
+                    }
+                    else
+                    {
+                        await userManager.AddToRoleAsync(user, "vendor");
+                    }
                     var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
                     var confirmation = Url.Action("registerationconfirm", "Account", new
                     {
@@ -94,7 +100,9 @@ namespace Final_project.Controllers
         /***************************************************************************/
         public bool EmailExsist(string Email)
         {
-            return db.Users.Any(x => x.Email == Email);
+            if(db.Users.FirstOrDefault(x => x.Email == Email) != null)
+                return true;
+            return false;
         }
         /**************************************************************************/
         [HttpGet]
@@ -187,7 +195,8 @@ namespace Final_project.Controllers
                                 token = new JwtSecurityTokenHandler().WriteToken(token),
                                 expiration = token.ValidTo,
                                 role = role,
-                                username = user.UserName
+                                username = user.UserName,
+                                id=user.Id
                             }
                             );
                     }
@@ -211,23 +220,31 @@ namespace Final_project.Controllers
             }
 
         }
-        [Authorize(Roles = "Admin")]
-        [Route("test")]
+
+        /*****************************************************/ 
+         
         [HttpGet]
-        public IActionResult test()
+        [Route("startapp")]
+        //http://localhost:50414/account/startapp
+        public async Task<IActionResult> startapp()
         {
-            var x = new { name = "ali" };
-            return Json(x);
+            await CreateAdmin();
+            await CreateRolevendor();
+            await CreateRoleuser();
+            return Ok("the app work good");
         }
-        [HttpGet]
-        [Route("CreateAdmin")]
+
         public async Task CreateAdmin()
         {
             ApplicationUser admin = new ApplicationUser
             {
                 Email = "a@a.a",
                 EmailConfirmed = true,
-                UserName = "Admin"
+                UserName = "Admin",
+                address = " ",
+                ImageUrl = " ",
+                Gender = " ",
+                BioInformation = " "
             };
             var result = await userManager.CreateAsync(admin, "123+Aa");
             if (result.Succeeded)
@@ -247,47 +264,80 @@ namespace Final_project.Controllers
             }
             await userManager.AddToRoleAsync(user, "Admin");
         }
-        public async Task addCookie(string username, string userid, string rolename, bool remmberme)
+        public async Task CreateRoleuser()
         {
-            var claim = new List<Claim>()
+            var x = await roleManager.FindByNameAsync("user");
+            if (x == null)
             {
-                new Claim(ClaimTypes.Name,username),
-                new Claim(ClaimTypes.NameIdentifier,userid),
-                new Claim(ClaimTypes.Role,rolename)
-
-            };
-            var claimidentity = new ClaimsIdentity(claim, CookieAuthenticationDefaults.AuthenticationScheme);
-
-            if (remmberme)
-            {
-                var authproperties = new AuthenticationProperties
-                {
-                    AllowRefresh = true,
-                    IsPersistent = true,
-                    ExpiresUtc = DateTime.UtcNow.AddDays(10)
-                };
-                await HttpContext.SignInAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(claimidentity),
-                authproperties
-               );
+                IdentityRole r = new IdentityRole("user");
+                var result = await roleManager.CreateAsync(r);
             }
-            else
+        }
+        public async Task CreateRolevendor()
+        {
+            var x = await roleManager.FindByNameAsync("vendor");
+            if (x == null)
             {
-                var authproperties = new AuthenticationProperties
-                {
-                    AllowRefresh = true,
-                    IsPersistent = true,
-                    ExpiresUtc = DateTime.UtcNow.AddMinutes(30)
-                };
-                await HttpContext.SignInAsync(
-            CookieAuthenticationDefaults.AuthenticationScheme,
-            new ClaimsPrincipal(claimidentity),
-            authproperties
-           );
+                IdentityRole r = new IdentityRole("vendor");
+                await roleManager.CreateAsync(r);
             }
 
         }
+        [HttpGet]
+        [Route("logout")]
+        public async Task<IActionResult> logoutAsync()
+        {
+            await signInManager.SignOutAsync();
+            return Ok();
+        }
+
+
+
+
+
+
+        /***********************************************/
+        /*   public async Task addCookie(string username, string userid, string rolename, bool remmberme)
+           {
+               var claim = new List<Claim>()
+               {
+                   new Claim(ClaimTypes.Name,username),
+                   new Claim(ClaimTypes.NameIdentifier,userid),
+                   new Claim(ClaimTypes.Role,rolename)
+
+               };
+               var claimidentity = new ClaimsIdentity(claim, CookieAuthenticationDefaults.AuthenticationScheme);
+
+               if (remmberme)
+               {
+                   var authproperties = new AuthenticationProperties
+                   {
+                       AllowRefresh = true,
+                       IsPersistent = true,
+                       ExpiresUtc = DateTime.UtcNow.AddDays(10)
+                   };
+                   await HttpContext.SignInAsync(
+                   CookieAuthenticationDefaults.AuthenticationScheme,
+                   new ClaimsPrincipal(claimidentity),
+                   authproperties
+                  );
+               }
+               else
+               {
+                   var authproperties = new AuthenticationProperties
+                   {
+                       AllowRefresh = true,
+                       IsPersistent = true,
+                       ExpiresUtc = DateTime.UtcNow.AddMinutes(30)
+                   };
+                   await HttpContext.SignInAsync(
+               CookieAuthenticationDefaults.AuthenticationScheme,
+               new ClaimsPrincipal(claimidentity),
+               authproperties
+              );
+               }
+
+           }*/
 
     }
 }
