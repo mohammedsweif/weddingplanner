@@ -17,7 +17,7 @@ export class ArticalsService {
     return this.http.get("http://localhost:50414/Articals/GetAllArticals");
   }
   GetArticalDetails(id:number){
-    return this.http.get(`http://localhost:50414/Articals/GetArticalsDetails/${id}`)
+    return this.http.get(`http://localhost:50414/Articals/GetArticalDetails/${id}`)
   }
   EditArtical(artical:AddArticals){
     return this.http.post("http://localhost:50414/Articals/EditArticals",artical,this.header);
