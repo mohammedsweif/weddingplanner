@@ -4,14 +4,16 @@ using Final_project.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Final_project.Migrations
 {
     [DbContext(typeof(ProjectDbcontext))]
-    partial class ProjectDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20200610132520_x1")]
+    partial class x1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -46,6 +46,16 @@ namespace Final_project.Controllers
         }
 
 
+        [HttpPost]
+        [Route("addReplay")]
+        public IActionResult addReplay( Review_replays n)
+        {
+            _context.review_Replays.Add(n);
+            _context.SaveChanges();
+            return Ok(n);
+        }
+
+
         [HttpGet("getVenClients/{id}")]
         public ActionResult GetVendorClients(string id)
         {

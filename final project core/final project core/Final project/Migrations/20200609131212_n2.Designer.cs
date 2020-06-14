@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Final_project.Migrations
 {
     [DbContext(typeof(ProjectDbcontext))]
-    [Migration("20200607162008_z1")]
-    partial class z1
+    [Migration("20200609131212_n2")]
+    partial class n2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -288,6 +288,9 @@ namespace Final_project.Migrations
                     b.Property<int>("catagory_id")
                         .HasColumnType("int");
 
+                    b.Property<bool>("liked")
+                        .HasColumnType("bit");
+
                     b.HasKey("ID");
 
                     b.HasIndex("User_Id");
@@ -537,6 +540,9 @@ namespace Final_project.Migrations
 
                     b.Property<string>("Vendor_Id")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("liked")
+                        .HasColumnType("bit");
 
                     b.HasKey("ID");
 
