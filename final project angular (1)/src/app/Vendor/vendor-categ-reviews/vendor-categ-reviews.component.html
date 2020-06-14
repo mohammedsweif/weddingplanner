@@ -9,19 +9,17 @@
 	<div class="row">
 		<div class="col-lg-3 col-md-6">
 		  <div class="dataTables_length" id="bootstrap-data-table_length">
-			  <label class="text-info">Filter By Category 
+			  <label class="text-info text-small" style="font-size: small;">Filter By Category  </label>
 				  <select #refCategory="ngModel" [(ngModel)]="this.catnum" class="form-control form-control-sm">
-					<!-- // <option value="0">ALL</option>  -->
-					  <option *ngFor="let item of cats" value={{item.cat_Id}}>{{item.cat_Name}}</option>  
+
+					  <option *ngFor="let item of cats" value={{item.cat_Id}}> {{item.cat_Name}} </option>  
 				  </select>
-			  </label>
+			  
 			</div>
 		</div>
 			  <div class="col-lg-6 col-md-6"></div>
 			  <div class="col-lg-3 col-md-6">
-			   <!-- <span class="star">
-				   <ngb-rating [rate]="venrate" [readonly]="true" max="5"></ngb-rating></span> 
-				 -->
+			   
 			</div>
 		  </div>
 		
@@ -29,76 +27,125 @@
 	
 	<h2 class="text-center">Clients Reviews</h2>
   <br>
+  <ng-container *ngFor="let item of reviews |paginate: this.config">
 	<div class="card">
 
-		<ng-container *ngFor="let item of reviews |paginate: this.config">         
-
+		
       <div class="card-body" *ngIf="(item.catagory_id==catnum || catnum==0)">
 	        <div class="row">
         	    <div class="col-md-2">
-        	        <img src="https://scontent-hbe1-1.xx.fbcdn.net/v/t1.0-9/p960x960/61702175_10156651902758305_8264457993169403904_o.jpg?_nc_cat=105&_nc_sid=dd7718&_nc_ohc=d0n86FCAwFUAX-401OY&_nc_ht=scontent-hbe1-1.xx&_nc_tp=6&oh=209612766c28c90d925565bbbb5cc889&oe=5ED55370" class="img img-rounded img-fluid"/>
-        	        <p class="text-secondary text-center">{{item.postDate  | timeago }}</p>
+        	        <img src="https://scontent-hbe1-1.xx.fbcdn.net/v/t1.0-9/48210581_937877296403226_4308940697219629056_n.jpg?_nc_cat=108&_nc_sid=7aed08&_nc_ohc=NEgFtSPy0ScAX9TPHEr&_nc_ht=scontent-hbe1-1.xx&oh=bff4ae418b490740c381b19f620ffce4&oe=5F06C1B1" class="img img-rounded img-fluid"/>
+        	       
         	    </div>
         	    <div class="col-md-10">
-        	        <p>
-                        <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>{{item.username}}</strong></a>
-						<!-- **Nevine :Loop 3la 7asab elrate y span a star -->
-						
-                        
-        	       </p>
+					<div class="row">
+						<div class="col-8">
+                            <p>
+								<a style="color: hotpink; font-size: medium;" class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>{{item.username}}</strong></a> 
+								
+						   </p>
+						</div>
+						<div class="col-4">
+							<a *ngIf="item.liked" (click)="toggleLikeR(item)" class="float-right "> <i style="color: red;" class="fa fa-heart"></i> </a>
+						    <a *ngIf="!item.liked" (click)="toggleLikeR(item)" class="float-right "> <i style="color:gray;" class="fa fa-heart"></i> </a>
+							<p style="font-size:x-small;" class="text-secondary text-center">{{item.postDate  |date| timeago }}</p>
+						</div>
+					</div>
+        	        
         	       <div class="clearfix"></div>
-					<p>{{item.comment}}</p>
-        	        <p>
-        	            <a class="float-right btn btn-outline-primary ml-2" data-toggle="modal" data-target="#exampleModal"  (click)="qqq(item.id)"> <i class="fa fa-reply"></i> Reply</a>
-        	            <!-- <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a> -->
+					<p style="color: grey; font-size: small;">{{item.comment}}</p>
+        	        <p >
+						<a style="font-size: small;" href="."  (click)="display(item.id)" data-toggle="collapse"  data-target="#myReplyDiv">View Replies</a>
+						<a class="float-right btn btn-outline-primary ml-2 btn-sm" data-toggle="modal" data-target="#exampleModal"  (click)="changeNumber(item.id,item.User_Id)"> <i class="fa fa-reply"></i> Reply</a>
+						
+						<ng-container style="height: 100px;"  *ngFor="let p of item.replies"> 
+							<div [ngClass]="show && p.reviewid == revid ? 'see' : 'hide'" style="padding-top: 50px;"  >
+							   <div style="height: 150px;" class="card-body">
+								   <div class="row">
+									   <div class="col-md-2">
+										   <img style="height: 100px;width: 110px;" class="img-rounded" src="https://scontent-hbe1-1.xx.fbcdn.net/v/t1.0-9/61702175_10156651902758305_8264457993169403904_o.jpg?_nc_cat=105&_nc_sid=84a396&_nc_ohc=lVnXDK1zIUYAX8xve2Q&_nc_ht=scontent-hbe1-1.xx&oh=8959d0498efd05c430dbd79520ba855a&oe=5F052017"/>
+									   </div>
+									   <div class="col-md-10">
+										  <div class="row"> 
+											  <div class="col-8">
+												<p style="color: hotpink; font-size: medium;"><strong> {{p.uname}} </strong></p>
+											  </div>
+											  <div class="col-4">
+												<a (click)="toggleLike(p)" *ngIf="p.liked"  class="float-right "> <i style="color: red;" class="fa fa-heart"></i> </a>
+												<a (click)="toggleLike(p)" *ngIf="!p.liked" class="float-right "> <i style="color:gray;" class="fa fa-heart"></i> </a>
+												<p style="font-size:x-small;" class="text-secondary text-center">{{p.postDate |date |timeago}}</p>
+											</div>
+										  </div>
+										   
+										   <p style="color: grey; font-size: small;"> {{p.comment}} </p>
+										   <!-- <input type="text" ng-value="item." [(ngModel)]="newreplay.Review_Id"> -->
+										   <p>
+											   <!-- <a class="float-right btn btn-outline-primary ml-2" data-toggle="modal" data-target="#exampleModal"  (click)="changeNumber(p.review_Id)">  <i class="fa fa-reply"></i> Reply</a> -->
+											   
+										  </p>
+									   </div>
+								   </div>
+							   </div> 
+							   
+						   </div>
+						   
+						</ng-container>	
+						
         	       </p>
         	    </div>
-            </div>
+			</div>
 			
-			
-			 <ng-container *ngFor="let p of r.replays"> 
-	        	 <div class="card card-inner" *ngIf="(item.id==p.review_Id)">
-            	    <div class="card-body">
-            	        <div class="row">
-                    	    <div class="col-md-2">
-                    	        <img src="https://scontent-hbe1-1.xx.fbcdn.net/v/t1.0-9/p960x960/67795201_2502799856449370_7301526797852606464_o.jpg?_nc_cat=105&_nc_sid=85a577&_nc_ohc=pWz2lHOIL04AX8JWFBB&_nc_ht=scontent-hbe1-1.xx&_nc_tp=6&oh=50a5e76ee23e76da84c177ebcbe6b16f&oe=5ED6847A" class="img img-rounded img-fluid"/>
-                    	        <p class="text-secondary text-center">{{p.postDate |timeago}}</p>
-                    	    </div>
-                    	    <div class="col-md-10">
-                               <!-- **Nevine:  add ruter link to User profile sawa2 vendor aw user adi -->
-                    	        <p><a href="#"><strong>{{item.vendorname}}</strong></a></p>
-								<p> {{p.comment}}</p>
-								<!-- <input type="text" ng-value="item."  [(ngModel)]="newreplay.Review_Id"> -->
-                    	        <p>
-                    	            <a class="float-right btn btn-outline-primary ml-2" data-toggle="modal" data-target="#exampleModal"  (click)="qqq(item.id)">  <i class="fa fa-reply"></i> Reply</a>
-                    	            <!-- <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a> -->
-                    	       </p>
-                    	    </div>
-            	        </div>
-					</div> 
-					
-				</div>
-			 </ng-container>
-					
-		</div>
-		</ng-container>
-		<pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+	  <div id="myModal" class="modal fade" role="dialog">
+     <div class="modal-dialog">
 
-	</div>
+    <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+	  </div>
+	  
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
 
+  </div>
+  
+</div>
+	
+</div>
+
+
+<!-- <div style="display: none;overflow-y: scroll; height: 400px;  " id="myReplyDiv" data-backdrop="false"> -->
+	
+
+
+
+<br>
+
+
+</div>
+<br>
+  </ng-container>
+
+  <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
 	
 <!-- ////model replay/// -->
 <div class="modal" tabindex="-1" id="exampleModal" role="dialog">
 	<div class="modal-dialog" role="document">
 	  <div class="modal-content">
 		<div class="modal-header">
-		  <h5 class="modal-title">add replay</h5>
+		  <h5 class="modal-title">add Reply</h5>
 		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		  </button>
 		</div>
 		<div class="modal-body">
-			<input type="text" class="form-control"  placeholder="Replay...."  name="fieldName" ngDefaultControl  [(ngModel)]="newreplay.Comment">
+			<input type="text" class="form-control"  placeholder="Replay...."  name="fieldName" ngDefaultControl  [(ngModel)]="newreplay.comment">
 		</div>
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-primary"data-dismiss="modal" (click)="add()">Send</button>

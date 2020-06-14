@@ -16,3 +16,36 @@
         background-color: gainsboro
       
       }
+
+      .img-rounded{
+        border-radius: 50%;
+      }
+
+
+      .example-viewport {
+        height: 500px;
+        width: 900px;
+        border: 1px solid black;
+      }
+      
+      .example-alternate {
+        background: rgba(127, 127, 127, 0.3);
+      }
+
+
+      ::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 7px;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: rgba(0, 0, 0, .5);
+        box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+      }
+      .see{
+        display:block
+      }
+      .hide{
+        display:none
+      }

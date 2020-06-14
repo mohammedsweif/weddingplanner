@@ -64,7 +64,6 @@
                                         totalItems:TotalNumber}">
                                           <tr *ngIf="(catnumC==0 || item.cat_id == this.catnumC) && (clientname == '' || this.item.name.startsWith(this.clientname))">
                                             <td><div class="container">
-                                              <!-- Trigger the modal with a button -->
                                               <button (click)="sendUserName(item.name,item.id)" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal1" data-backdrop="false">
                                                 {{item.name}}
                                               </button>

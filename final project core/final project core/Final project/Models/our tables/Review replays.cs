@@ -17,12 +17,9 @@ namespace Final_project.Models.our_tables
         [ForeignKey("review")]
         public int Review_Id { get; set; }
 
-       
-       
         public string PostDate { get; set; }
 
-        [MaxLength(250)]
-        [MinLength(20)]
+        
         [Required(ErrorMessage = "Comment Is Required")]
         public string Comment { get; set; }
 
@@ -31,7 +28,9 @@ namespace Final_project.Models.our_tables
 
         [ForeignKey("Vendor")]
         public string Vendor_Id { get; set; }
-      
+
+        public bool liked { get; set; }
+
         public Review review { set; get; }
         public ApplicationUser ApplicationUser { set; get; }
         public ApplicationUser Vendor { set; get; }

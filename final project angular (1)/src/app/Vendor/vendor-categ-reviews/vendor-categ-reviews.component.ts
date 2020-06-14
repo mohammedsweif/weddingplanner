@@ -7,6 +7,8 @@ import { Reviewreplay } from 'src/app/model/reviewreplay';
 import { Category } from 'src/app/model/category';
 import { MyserviceService } from 'src/app/_service/myservice.service';
 import { Rate } from 'src/app/model/rate';
+import { Reviews } from 'src/app/_models/review';
+import { reply } from 'src/app/model/reply';
 
 @Component({
   selector: 'app-vendor-categ-reviews',
@@ -16,28 +18,31 @@ import { Rate } from 'src/app/model/rate';
 
 
 export class VendorCategReviewsComponent implements OnInit {
-reviews:Review[];
-newreplay:Reviewreplay=new Reviewreplay();
+
+  UserN:string=""
+reviews:Review[]=[];
+replies:Reviewreplay[]=[]
+newreplay:reply=new reply();
 revnum:number;
 cats:Category[];
 catnum:number=0;
 config:any;
-//sabt rate
 venrate:Rate;
-//vendor to get his booking
-VendorNo:string ="323db842-2cda-49e3-9092-a8d2bad55e38" 
 
+VendorNo:string ="13e3cc3c-ad92-40e1-8909-a0a776cacd15" 
+divReviewId:number=0
+rev:Review=new Review()
   constructor(public r:ReviewService,private ser:MyserviceService) { 
     this.config = {
       itemsPerPage: 2,
       currentPage: 1
     }
-    
   }
  
   ngOnInit(): void {
     this.r.getallreviews(this.VendorNo).subscribe(a=>{this.reviews=a;console.log(a)});
-    this.r.getallreplays();
+    this.r.getallreplays()
+
     this.ser.GetVenCategories(this.VendorNo).subscribe(
       a=>{this.cats=a;
         console.log(a)
@@ -47,30 +52,58 @@ VendorNo:string ="323db842-2cda-49e3-9092-a8d2bad55e38"
   // console.log(this.venrate)})
           
   }
-  
-  qqq(q:number){
+  revid:number;
+  show:boolean=false;
+  display(id:number){
+    this.show= !this.show;
+    this.revid=id; 
+  }
+  changeNumber(q:number,userid:string){
     console.log(q);
     this.revnum=q;
+    this.UserN=userid;
     console.log(this.revnum);
+    console.log("user No",this.UserN);
   }
-add(){
-this.newreplay.Review_Id=this.revnum;
-this.newreplay.PostDate=new Date().toString();
-this.newreplay.User_Id="1251612f-0aff-414c-a1fc-8fa489472b64";
-this.newreplay.Vendor_Id="1251612f-0aff-414c-a1fc-8fa489472b65";
-console.log(this.revnum);
-console.log(this.newreplay);
 
-     this.r.postreplay(this.newreplay).subscribe(res=>{
-     this.r.getallreplays();
-   },
-     err=>{
-      console.log(err);
-   })
+  showDiv(id:number) {
+    document.getElementById('myReplyDiv').style.display ="block"
+    this.divReviewId=id;
+    
+ }
+
+add(){
+ this.newreplay.Review_Id=this.revnum;
+ this.newreplay.PostDate=Date.now().toString()
+ this.newreplay.liked=false
+ this.newreplay.User_Id="46747598-f609-4aef-8438-43473ea3c23c"
+ this.newreplay.Vendor_Id=this.VendorNo;
+// console.log(this.revnum);
+ console.log(this.newreplay);
+
+      this.r.postreplay(this.newreplay).subscribe(res=>{
+        this.r.getallreviews(this.VendorNo).subscribe(a=>{this.reviews=a;console.log(a)});
+    },
+      err=>{
+        console.log(err);
+    })
+
+
 
 }
 
 pageChanged(event){
   this.config.currentPage = event;
  }
+
+ toggleLike(item:Reviewreplay){
+    item.liked=!item.liked
+    this.r.toggleReply(item).subscribe(a=>console.log(a))
+ }
+
+ toggleLikeR(item:Review){
+  item.liked=!item.liked
+  this.r.toggleReview(item).subscribe(a=>console.log(a))
+ }
+
 }
