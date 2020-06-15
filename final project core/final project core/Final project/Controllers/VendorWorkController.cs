@@ -169,6 +169,8 @@ namespace Final_project.Controllers
             }
         }
 
+
+
         [HttpGet("AllCategories")]
         public ActionResult GetAllCategories()
         {

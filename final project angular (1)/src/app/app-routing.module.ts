@@ -64,7 +64,9 @@ import { VendorguardGuard } from './gaurd/vendorguard.guard';
 import { AdminguardGuard } from './gaurd/adminguard.guard';
  
 
-
+import{CartComponent} from './shop/cart/cart.component'
+import { ShowProductComponent } from './shop/show-product/show-product.component';
+import { ArticalDetailsComponent } from './Articals/artical-details/artical-details.component';
 const routes: Routes = [
   {path:"chat",component:ChatComponent},
   {path:"Home",component: HomeComponent}, 
@@ -140,7 +142,11 @@ const routes: Routes = [
 
 
 ]},
+{path:"ShopHome",component:ShopHomeComponent},
+{path:"ProductDetails/:id",component:ShowProductComponent},
+{path:"Cart",component:CartComponent},
 {path:"Articals",component:UserArticleComponent},
+{path:"articalDetails/:id",component:ArticalDetailsComponent},
 {path:"VendorPackages/:id",component:UserPackageComponent},
 {path:"BookPackage/:id",component:BookPackageComponent},
 {path:"Gallery",component:GalleryComponent}, 

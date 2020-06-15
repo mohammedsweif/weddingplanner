@@ -16,8 +16,7 @@
             <tr>
               <th>Name</th>
               <th>date</th>
-              <th>Description</th>
-              <th>image</th>
+              
               <th>Category</th>
               <th class="text-center">Action</th>
             </tr>
@@ -26,13 +25,8 @@
 
             <tr *ngFor="let art of articals;let i=index;">
               <td>{{art.applicationUser.userName}}</td>
-              <td>{{art.postDate}}|data</td>
-              <td>
-                <!--{{art.article_Description}}-->
-              </td>
-              <td>
-                <!-- <img [src]="art.imageUrl" alt="image">-->
-              </td>
+              <td>{{art.postDate|date}}</td>
+              
               <td>{{art.catagory.cat_Name}}</td>
               <td>
                 <p data-placement="top" data-toggle="tooltip" title="Edit"><button (click)="selectEditArtical(i)" class="btn btn-primary btn-xs"

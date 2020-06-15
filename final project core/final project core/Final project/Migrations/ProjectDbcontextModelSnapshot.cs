@@ -286,6 +286,9 @@ namespace Final_project.Migrations
                     b.Property<int>("catagory_id")
                         .HasColumnType("int");
 
+                    b.Property<bool>("liked")
+                        .HasColumnType("bit");
+
                     b.HasKey("ID");
 
                     b.HasIndex("User_Id");
@@ -521,8 +524,7 @@ namespace Final_project.Migrations
 
                     b.Property<string>("Comment")
                         .IsRequired()
-                        .HasColumnType("nvarchar(250)")
-                        .HasMaxLength(250);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PostDate")
                         .HasColumnType("nvarchar(max)");
@@ -535,6 +537,9 @@ namespace Final_project.Migrations
 
                     b.Property<string>("Vendor_Id")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("liked")
+                        .HasColumnType("bit");
 
                     b.HasKey("ID");
 

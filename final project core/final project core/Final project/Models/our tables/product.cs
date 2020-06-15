@@ -25,5 +25,6 @@ namespace Final_project.Models.our_tables
         public DateTime Prod_date { get; set; }
 
         public productType productType { get; set; }
+        public ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }
