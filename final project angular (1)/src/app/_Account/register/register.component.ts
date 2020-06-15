@@ -20,7 +20,7 @@ changestyle(){
   }
 }
 registertype:number=1;
-type(e){
+type(e:any){
 console.log(e.target.value);
   this.registertype = e.target.value ;
 }
