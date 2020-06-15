@@ -101,6 +101,7 @@ import { RegisterComponent } from './_Account/register/register.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ShowProductComponent } from './shop/show-product/show-product.component';
 import { ArticalDetailsComponent } from './Articals/artical-details/artical-details.component';
+import { UserInfoComponent } from './Shared/user-info/user-info.component';
 const google_outh_client_id:string = "707593203866-msqo17ipi5tt4gg72af4hfb4ta4dpge0.apps.googleusercontent.com";
 let config= new AuthServiceConfig([{
   id:GoogleLoginProvider.PROVIDER_ID,
@@ -186,6 +187,8 @@ let config= new AuthServiceConfig([{
     ChatComponent,
  
     ArticalDetailsComponent,
+ 
+    UserInfoComponent,
  
   ],
   imports: [
