@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Final_project.Models;
 using Final_project.Models.OurIdentity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -20,13 +21,15 @@ namespace Final_project.Controllers
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
+        private readonly IHttpContextAccessor contextAccessor;
 
         private readonly ILogger<WeatherForecastController> _logger;
         ProjectDbcontext db;
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, ProjectDbcontext _db)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, ProjectDbcontext _db, IHttpContextAccessor contextAccessor)
         {
             _logger = logger;
             db = _db;
+            this.contextAccessor = contextAccessor;
         }
 
         [HttpGet]
@@ -48,14 +51,16 @@ namespace Final_project.Controllers
             List<Vendor_CategorViewModel> x = db.vendors.Select(e => new Vendor_CategorViewModel
             {
                 id = e.vendor_id,
-                image = e.PersonalImage,
-                name = e.ApplicationUser.UserName
-                     ,
+                image =   e.ApplicationUser.ImageUrl,
+                name = e.ApplicationUser.UserName,
                 catagor = e.category.cat_Name,
                 cat_id = e.catt_id,
                 rate = 0
             }).ToList();
-
+            for(int i=0; i < x.Count(); i++)
+            {
+                x[i].image = Process(x[i].image);
+            }
             foreach (var y in x)
             {
                 int numer = 0;
@@ -78,6 +83,14 @@ namespace Final_project.Controllers
         {
             return Ok(db.catagories.ToList());
         }
+        private string Process(string Image)
+        {
+            //get domain name;
+            var request = this.contextAccessor.HttpContext.Request;
+            //make path for Image   
+            string path = $"{request.Scheme}://{request.Host.Value}/images/{Image}";
+            return path;
+        }
     }
     public class Vendor_CategorViewModel
     {
@@ -88,7 +101,6 @@ namespace Final_project.Controllers
         public string catagor { get; set; }
         public int cat_id { get; set; }
         public int rate { get; set; }
-
 
     }
 }

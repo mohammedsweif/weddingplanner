@@ -13,7 +13,7 @@ namespace Final_project.Models.OurIdentity
         [Required]
         public string PhoneNumber { get; set; }
         [Required]
-        public DateTime birth_date { get; set; }
+        public DateTime? birth_date { get; set; }
         [Required]
         public  string addr{ get; set; }
         public string ImageUrl { get; set; }
