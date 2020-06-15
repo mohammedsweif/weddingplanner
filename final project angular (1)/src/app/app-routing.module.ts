@@ -33,7 +33,6 @@ import {UserPersonalSettingsComponent} from './User/user-personal-settings/user-
 import {UserPackageComponent} from './User/user-package/user-package.component';
 import {BookPackageComponent} from './User/book-package/book-package.component';
 import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
- 
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { CatagoriesSessionComponent } from './admin/catagories-session/catagories-session.component';
 import { MessagesComponent } from './admin/messages/messages.component';
@@ -49,8 +48,7 @@ import { ProductsComponent } from './shop/products/products.component';
 import {UserArticleComponent} from './Articals/article/user-article.component';
 import {ArticlesComponent} from './Articals/crudarticles/articles.component';
 import { AdminProductsComponent } from './admin/productView/admin-products/admin-products.component';
-import { ShowVendorComponent } from './User/show-vendor/show-vendor.component';
- 
+import { ShowVendorComponent } from './User/show-vendor/show-vendor.component'; 
 import { ShopHomeComponent } from './shop/shop-home/shop-home.component';
 //////admin
  
@@ -61,18 +59,22 @@ import { UserstablesComponent } from './admin/userstables/userstables.component'
 import { ChatComponent } from './chat/chat.component';
 import { LoginComponent } from './_Account/login/login.component';
 import { RegisterComponent } from './_Account/register/register.component';
+import { UserguardGuard } from './gaurd/userguard.guard';
+import { VendorguardGuard } from './gaurd/vendorguard.guard';
+import { AdminguardGuard } from './gaurd/adminguard.guard';
+ 
 
 
 const routes: Routes = [
   {path:"chat",component:ChatComponent},
-  {path:"Home",component: HomeComponent},
+  {path:"Home",component: HomeComponent}, 
   {path:"Login",component:LoginComponent},
   {path:"Register",component:RegisterComponent},
                             // Login  --Nevine
    
   {path:"Maps",component:GoogleMapComponent} ,
  
-  {path:"Vendor",component: VendorProfileComponent,
+  {path:"Vendor",component: VendorProfileComponent,canActivate:[VendorguardGuard],
   
   children:[
   {path:"Messages",component: ClientMessagesComponent,children:[
@@ -99,7 +101,7 @@ const routes: Routes = [
 
 ]}, 
   
-{path:"User",component:UserProfileComponent,children:[
+ {path:"User",component:UserProfileComponent,canActivate:[UserguardGuard],children:[
   {path:"Message/:id",component:VendorMessagesComponent ,children:[
     {path:"Chat/:id",component:VendorChatComponent},
     
@@ -119,7 +121,7 @@ const routes: Routes = [
 {path:"Shop",component:ShopHomeComponent},
  
  
-{path:"Admin",component:AdminhomeComponent,children:[
+{path:"Admin",component:AdminhomeComponent,canActivate:[AdminguardGuard],children:[
 {path:"product",component:AdminProductsComponent},
 {path:"usertables",component:UserstablesComponent},////http://localhost:4200/Admin/usertables
 {path:"dashboard",component:DashboardComponent},////http://localhost:4200/Admin/:3/dashboard***********
