@@ -9,7 +9,7 @@ import {UserInfoService} from '../../_service/user-info.service';
 export class VendorProfileComponent implements OnInit {
 
   constructor(private UserInfo:UserInfoService) { }
-  id:string="9ac14584-d5c9-4921-b2cd-006db299adbc";
+  id:string="98909ee6-aa65-400d-8587-ab06e92b4717";
   user:any;
   ngOnInit(): void {
     this.UserInfo.getUserInfo(this.id).subscribe(a=>{
