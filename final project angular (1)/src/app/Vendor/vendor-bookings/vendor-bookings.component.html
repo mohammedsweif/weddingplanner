@@ -30,8 +30,7 @@
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"  style="text-align: center;">
                 <thead class="thead-light">
                 <tr>
-                    
-                    
+                   
                     <th>Client Name</th>
                     <th>Categorie</th>
                     <th>Book Date</th>
@@ -56,9 +55,6 @@
                         
                           <!-- //modeldetails -->
   
-  
-                                        
- 
                         
         <!-- --end modeldetails--                 -->
                     
@@ -73,7 +69,8 @@
                     </div></td>
                       <ng-template #elseBlock><td>Done<div class="progress">
                         <div class="progress-bar bg-danger" style="width:100%"></div>
-                      </div></td></ng-template>
+                      </div></td>
+                      </ng-template>
                 </tr>
               </ng-container>
             </tbody>
@@ -122,7 +119,7 @@
                                                   <a href="#"> <i class="fa fa-tasks"></i> Recent Review <span class="badge badge-danger pull-right">15</span></a>
                                               </li>
                                               <li class="list-group-item">
-                                                  <a routerLink="/Vendor/3/BookingDetails/{{modalBookId}}"> <i class="fa fa-bell-o"></i> Bookings <span class="badge badge-success pull-right">11</span></a>
+                                                  <a routerLink="/Vendor/BookingDetails/{{modalBookId}}"> <i class="fa fa-bell-o"></i> Bookings <span class="badge badge-success pull-right">11</span></a>
                                               </li>
                                               <li class="list-group-item">
                                                   <a routerLink="/Vendor/3/Messages/3/Chat/1"> <i class="fa fa-comments-o"></i> Message <span class="badge badge-warning pull-right r-activity">03</span></a>

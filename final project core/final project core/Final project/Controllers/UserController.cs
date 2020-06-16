@@ -134,7 +134,12 @@ namespace Final_project.Controllers
         public async Task<ActionResult> getallusers(string id)
         {
             var user = await _context.Users.FindAsync(id);
-            user.ImageUrl = Process(user.ImageUrl);
+      
+            if (!string.IsNullOrEmpty(user.ImageUrl))
+            {
+                user.ImageUrl = Process(user.ImageUrl);
+            }
+            
             return Ok(user);
         }
         [HttpPost]
