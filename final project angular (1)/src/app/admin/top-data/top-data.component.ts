@@ -18,7 +18,5 @@ export class TopDataComponent implements OnInit {
     this.ser.gettopuser().subscribe(e=>{this.topuser=e;console.log(this.topuser);});
     this.ser.gettopvendor().subscribe(e=>{this.topvendor=e;console.log(this.topvendor);});
     this.ser.gettopcatagory().subscribe(e=>{this.topcatagory=e;console.log(this.topcatagory);});
-
   }
-
 }
