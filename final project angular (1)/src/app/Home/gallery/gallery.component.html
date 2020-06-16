@@ -29,6 +29,7 @@
             <div class="product-grid">
                 <div>
                     <a href="#">
+ 
                         <img class="pic-1" [src]="x.image" style="width:250px;height:250px;">
                         
                     </a>
@@ -37,6 +38,7 @@
                        <li><a [routerLink]="['/User/Showvendor',x.id]" data-tip="Show Page"><i class="fa fa-eye" ></i></a></li>
                         <li><a [routerLink]="" (click)="AddToFavorit(x.id)" data-tip="Add To Favorit"><i class="fa fa-heart"></i></a></li>
                         <li><a [routerLink]="['/User/VendorPackages',x.id]" data-tip="Show Packages"><i class="fa fa-shopping-cart"></i></a></li>
+ 
                     </ul>
            
                 </div>

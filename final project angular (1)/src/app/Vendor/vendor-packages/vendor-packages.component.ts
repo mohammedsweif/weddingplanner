@@ -37,7 +37,9 @@ export class VendorPackagesComponent implements OnInit {
   packageCount:number
   config:any;
 
-  VendorNo:string ="e75335e1-23f7-44c7-bac0-e6c35f5bd732"                    //get from localstrorage
+ 
+  VendorNo:string ="98909ee6-aa65-400d-8587-ab06e92b4717"                    //get from localstrorage
+ 
 
   constructor(private ser:PackageServiceService,private WorkService:MyserviceService) { 
     this.config = {

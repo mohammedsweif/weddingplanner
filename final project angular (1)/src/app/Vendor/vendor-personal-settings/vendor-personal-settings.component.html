@@ -1,140 +1,95 @@
-<div class="container-fluid">
+<div class="container">
+	<h3 class="title">More Personal info</h3>
+	<br>
+	<div class="row">
+		<div class="col-6">
+			
+		
+			<br>
+			<h4 class="title">Choose your image.</h4>
+			<br>
+	<input type="file" class="text-info" id="image-upload" #Image accept="image/*" (change)="fileChangeEvent($event)" />
+	
+	<image-cropper
+		[imageChangedEvent]="imageChangedEvent"
+		[maintainAspectRatio]="true"
+		[aspectRatio]="3 / 3"
+		format="png"
+		(imageCropped)="imageCropped($event)"
+	></image-cropper>
+	<button (click)="SaveImage()" class="btn btn-info">Save Image</button>
+	</div>
+	<hr/>
+
+	<div class="col-6">
+		
             
                     
                 
             
-    <div class="row">
-        <!-- <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12">
-            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Profile</a>
-                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Password Change</a>
-                </div>
-        </div> -->
-        <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
-            <div class="tab-content" id="v-pills-tabContent">
-                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                    <div class="card">
-                        <div class="card-header">Profile</div>
-                        <div class="card-body">
-                            <form>
-                                <!-- Form Name -->
-                                <div class="profile-upload-img">
-                                    <div class="row">
-                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                                            <div id="image-preview">
-                                                <img class="user-avatar rounded-circle" src="https://scontent-hbe1-1.xx.fbcdn.net/v/t1.0-9/48210581_937877296403226_4308940697219629056_n.jpg?_nc_cat=108&_nc_sid=7aed08&_nc_ohc=g_KWnUUVI_oAX9SQXzE&_nc_ht=scontent-hbe1-1.xx&oh=fed6278f2a0397e323250a23b7507e43&oe=5ED35731" alt="User Avatar">
-
-                                            </div>
-                                            <input type="file" name="image" id="image-upload" class="upload-profile-input">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="personal-form-info">
-                                    <div class="row">
-                                        <!-- Text input-->
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <div class="form-group">
-                                                <label class="control-label" for="vendorname">Vendor Name</label>
-                                                <input id="vendorname" name="vendorname" type="text" placeholder="" class="form-control" value ="asmaa" disabled>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <div class="form-group">
-                                                <label class="control-label" for="email">Email</label>
-                                                <input id="email" name="email" type="email" placeholder="" class="form-control" value ="asmaay44@gmail.com"disabled >
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <div class="form-group">
-                                                <label class="control-label" for="phone">Phone</label>
-                                                <input id="phone" name="phone" type="text" placeholder="" class="form-control" value="01118923218">
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <div class="form-group">
-                                                <label class="control-label" for="summernote">Descriptions </label>
-                                                <textarea class="form-control" id="summernote" name="editordata" rows="6" placeholder="Write Descriptions for your venue"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="social-form-info mb-0">
-                                    <div class="row">
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <h3>Social Media </h3>
-                                            <div class="dashboard-section-line">
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <div class="form-group">
-                                                <label class="control-label" for="facebook">Facebook</label>
-                                                <input id="facebook" name="facebook" type="url" placeholder="https://www.facebook.com" class="form-control ">
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <div class="form-group">
-                                                <label class="control-label" for="twitter">Twitter</label>
-                                                <input id="twitter" name="twitter" type="url" placeholder="https://www.twitter.com" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <div class="form-group">
-                                                <label class="control-label" for="instagram">Instagram</label>
-                                                <input id="instagram" name="instagram" type="url" placeholder="https://www.instagram.com" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                            <div class="form-group">
-                                                <label class="control-label" for="youtube">Youtube</label>
-                                                <input id="youtube" name="youtube" type="url" placeholder="https://www.youtube.com" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <button class="btn btn-default" type="submit">Update profile</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <div class="card">
-                        <div class="card-header">Password Change</div>
-                        <div class="card-body">
-                            <form class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group">
-                                        <label class="control-label" for="currentpassword">Current Password</label>
-                                        <input id="currentpassword" name="currentpassword" type="password" placeholder="" class="form-control ">
-                                    </div>
-                                </div>
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group">
-                                        <label class="control-label" for="newpassword">New Password</label>
-                                        <input id="newpassword" name="newpassword" type="password" placeholder="" class="form-control ">
-                                    </div>
-                                </div>
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group">
-                                        <label class="control-label" for="retypepassword">Retype Password</label>
-                                        <input id="retypepassword" name="retypepassword" type="password" placeholder="" class="form-control ">
-                                    </div>
-                                </div>
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <button class="btn btn-default" type="submit">Save Changes</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-        
-            
-            </div>
-        </div>
-    </div>
-
-
-
-</div>
-<!-- -------------------------------------------------------------------------------------------- -->
+		
+				<!-- <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12">
+					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+						<a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Profile</a>
+						<a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Password Change</a>
+						</div>
+				</div> -->
+					<div class="tab-content" id="v-pills-tabContent">
+						<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+							<div class="card">
+								<div class="card-header"><h4>More Info</h4></div>
+								<div class="card-body">
+									<form [formGroup]="form">
+										<!-- Form Name -->
+								
+										<div class="personal-form-info">
+											
+												
+													<div class="form-group">
+														
+														<label class="control-label" for="vendorname">Your Address</label>
+														
+														<input id="vendorname" name="vendorname" type="text" placeholder="" formControlName="addr" class="form-control">
+													</div>
+													
+												
+												
+												
+													<div class="form-group">
+														<label class="control-label" for="email">Your Birth day</label>
+														<input id="date" name="date" type="date" placeholder="" formControlName="birth_date" class="form-control">
+													</div>
+												
+												
+													<div class="form-group">
+														<label class="control-label" for="phone">Phone</label>
+														<input id="phone" name="phone" type="text" placeholder="" formControlName="PhoneNumber" class="form-control">
+													</div>
+											
+												
+													<div class="form-group">
+														<label class="control-label text-info" for="summernote">Bio </label>
+														<textarea class="form-control" id="summernote" name="editordata" rows="6" placeholder="Write Your bio info."formControlName="Bio" data-min-length="10"></textarea>
+													</div>
+												
+												<button type="button" (click)="Save()" [disabled]="!form.valid" class="btn btn-info submit-form">Submit</button>
+	
+											
+										</div>
+									
+									</form>
+								</div>
+							</div>
+						</div>
+						
+				
+					
+					</div>
+			
+			
+		
+		
+		
+		
+	</div>
+	

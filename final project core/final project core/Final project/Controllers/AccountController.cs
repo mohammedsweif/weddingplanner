@@ -86,8 +86,8 @@ namespace Final_project.Controllers
                         Id = user.Id,
                         Token = HttpUtility.UrlEncode(token)
                     }, Request.Scheme);
-                    string Subject = "Wedding Plane Confirmation";
-                    string Body = "hi " + user.UserName + "please press here to confirm" + "<a href=" + confirmation + ">Confirm</a>";
+                    string Subject = "Wedding Planner Confirmation";
+                    string Body = "Hello " + user.UserName +" "+",this is a confirmation email from RAWNAK ,Please press here to proceed" +" " +"<a href=" + confirmation + ">Confirm</a>";
                     if (SendEmail.Excute(user.Email, Subject, Body))
                     {
                         return Ok();

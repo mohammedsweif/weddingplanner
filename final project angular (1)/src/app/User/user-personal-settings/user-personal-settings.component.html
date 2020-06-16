@@ -8,7 +8,7 @@
 			<br>
 			<h4 class="title">Choose your image.</h4>
 			<br>
-	<input type="file" class="text-info"  (change)="fileChangeEvent($event)" />
+	<input type="file" class="text-info" id="image-upload" #Image accept="image/*" (change)="fileChangeEvent($event)" />
 	
 	<image-cropper
 		[imageChangedEvent]="imageChangedEvent"

@@ -21,6 +21,7 @@ namespace Final_project.Controllers
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
+        private readonly IHttpContextAccessor contextAccessor;
 
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IHttpContextAccessor contextAccessor;
@@ -31,7 +32,7 @@ namespace Final_project.Controllers
             _logger = logger;
             db = _db;
             this.contextAccessor = contextAccessor;
-
+ 
         }
 
         [HttpGet]
@@ -53,19 +54,20 @@ namespace Final_project.Controllers
             List<Vendor_CategorViewModel> x = db.vendors.Select(e => new Vendor_CategorViewModel
             {
                 id = e.vendor_id,
-                image = e.PersonalImage,
-                name = e.ApplicationUser.UserName
-                     ,
+                image =   e.ApplicationUser.ImageUrl,
+                name = e.ApplicationUser.UserName,
                 catagor = e.category.cat_Name,
                 cat_id = e.catt_id,
                 rate = 0
             }).ToList();
+ 
             for (int i = 0; i < x.Count; i++)
             {
                 x[i].image = Process(x[i].image);
 
             }
 
+ 
             foreach (var y in x)
             {
                 int numer = 0;
@@ -106,7 +108,6 @@ namespace Final_project.Controllers
         public string catagor { get; set; }
         public int cat_id { get; set; }
         public int rate { get; set; }
-
 
     }
 }

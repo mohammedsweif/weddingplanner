@@ -98,41 +98,48 @@ namespace Final_project.Controllers
 
         }
 
+        //[HttpGet]
+        //[Route("GetUser/{id}")]
+        //public async Task<ActionResult<UserViewModel>> GetUser(string id)
+        //{
+        //    var user = await _context.Users.FindAsync(id);
+        //    // if (user != null)
+        //    //  {
+        //    //      return Ok(user);
+        //    //  }
+        //    //  else
+        //    //  {
+        //    //      return NotFound();
+        //    //  }
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    else
+        //    {
+        //        UserViewModel userSelected = new UserViewModel();
+        //        userSelected.Id = user.Id;
+        //        userSelected.addr = user.address;
+        //        userSelected.birth_date = user.birth_date;
+        //        userSelected.PhoneNumber = user.PhoneNumber;
+        //        userSelected.ImageUrl = Process(user.ImageUrl);
+        //        userSelected.Bio = user.BioInformation;
+
+        //        return userSelected;
+        //    }
+
+        //}
         [HttpGet]
         [Route("GetUser/{id}")]
-        public async Task<ActionResult<UserViewModel>> GetUser(string id)
-        {
-            var user = await _context.Users.FindAsync(id);
-            if (user != null)
-            {
-                return Ok(user);
-            }
-            else
-            {
-                return NotFound();
-            }
-            //if(user == null)
-            //{
-            //    return NotFound();
-            //}
-            //else
-            //{
-            //    UserViewModel userSelected = new UserViewModel();
-            //    userSelected.Id = user.Id;
-            //    userSelected.addr = user.address;
-            //    userSelected.birth_date =  (DateTime)user.birth_date;
-            //    userSelected.PhoneNumber = user.PhoneNumber;
-
-            //    return userSelected;
-            //}
-
-        }
-        [HttpGet]
-        [Route("Getuse/{id}")]
         public async Task<ActionResult> getallusers(string id)
         {
             var user = await _context.Users.FindAsync(id);
-            user.ImageUrl = Process(user.ImageUrl);
+      
+            if (!string.IsNullOrEmpty(user.ImageUrl))
+            {
+                user.ImageUrl = Process(user.ImageUrl);
+            }
+            
             return Ok(user);
         }
         [HttpPost]
