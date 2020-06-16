@@ -7,7 +7,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani | Template</title>
+    <title>Shop</title>
 
     <!-- Google Font -->
 
@@ -36,50 +36,41 @@
                     </div>
                 </div>
                 <div class="col-lg-9">
-                    <div class="hero__search">
-                        <div class="hero__search__phone">
-                            <div class="hero__search__phone__icon">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
-                                <span>support 24/7 time</span>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                           <div class="carousel-item active">
-                            <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg" style="background-image: url(&quot;./../../../assets/img/Pro/5.jpg&quot;);">
+                            <div class="hero__item set-bg" data-setbg="./../../../assets/images/sh1.jpg" style="background-image: url(&quot;./../../../assets/images/sh3jpg&quot;);">
                                 <div class="hero__text">
                                     <span>MAKEUP</span>
                                     <h2>MAKEUP <br>BRAND</h2>
                                     <p>Free Pickup and Delivery Available</p>
-                                    <a class="primary-btn">SHOP NOW</a>
+                                    <a class="btn bbtn">SHOP NOW</a>
                                 </div>
                             </div> 
                             <!-- <img class="d-block w-100" src="./../../../assets/img/Pro/beauty.jpg" alt="First slide"> -->
                           </div>
                           <div class="carousel-item">
-                            <div class="hero__item set-bg" data-setbg="i./../../../assets/img/Pro/beauty.jpg" style="background-image: url(&quot;./../../../assets/img/Pro/beauty.jpg&quot;);">
+                            <div class="hero__item set-bg" data-setbg="./../../../assets/images/sh2.jpg" style="background-image: url(&quot;./../../../assets/images/sh2.jpg&quot;);">
                                 <div class="hero__text">
                                     <span>WEDDING DRESSES</span>
                                     <h2>LATEST <br>FASHION</h2>
                                     <p>Free Pickup and Delivery Available</p>
-                                    <a  class="primary-btn">SHOP NOW</a>
+                                    <a  class="btn bbtn">SHOP NOW</a>
                                 </div>
                             </div> 
                           </div>
                           <div class="carousel-item">
-                            <div class="hero__item set-bg" data-setbg="./../../../assets/img/Pro/1.jpg" style="background-image: url(&quot;./../../../assets/img/Pro/1.jpg&quot;);">
+                            <div class="hero__item set-bg" data-setbg="./../../../assets/images/sh1.jpg" style="background-image: url(&quot;./../../../assets/images/sh1.jpg&quot;);">
                                 <div class="hero__text">
                                     <span>photography accessories</span>
                                     <h2>creative  <br>photography accessories</h2>
                                     <p>Free Pickup and Delivery Available</p>
-                                    <a href="#" class="primary-btn">SHOP NOW</a>
+                                    <a href="#" class="btn bbtn">SHOP NOW</a>
                                 </div>
                             </div> 
                           </div>
+                          
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -110,7 +101,7 @@
                     <div class="featured__controls">
                         <ul>
                             <li (click)="FilterProduct(0)">All</li>
-                            <li *ngFor="let cat of ProductType;" (click)="FilterProduct(cat.type_id)"><a >{{cat.type_name}}</a></li>
+                            <li *ngFor="let cat of ProductType;" (click)="FilterProduct(cat.type_id)"><a class="all" >{{cat.type_name}}</a></li>
 
                         </ul>
                     </div>
@@ -130,8 +121,8 @@
                             <h6><a href="#">
                                 {{product.product_name}}</a></h6>
                             <h5>{{product.price}}</h5>
-                            <button class="btn btn-success" (click)="onClickCart(product)">Add To Cart</button>
-                            <a [routerLink]="['/ProductDetails',product.product_id]" class="btn btn-danger">Show Product</a>
+                            <button class="btn btn-p m-2" (click)="onClickCart(product)">Add To Cart</button>
+                            <a [routerLink]="['/ProductDetails',product.product_id]" class="btn btn-d m-2">Show Product</a>
                         </div>
                     </div>
                 </div>

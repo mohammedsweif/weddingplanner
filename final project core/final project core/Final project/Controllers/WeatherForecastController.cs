@@ -24,12 +24,15 @@ namespace Final_project.Controllers
         private readonly IHttpContextAccessor contextAccessor;
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IHttpContextAccessor contextAccessor;
+
         ProjectDbcontext db;
         public WeatherForecastController(ILogger<WeatherForecastController> logger, ProjectDbcontext _db, IHttpContextAccessor contextAccessor)
         {
             _logger = logger;
             db = _db;
             this.contextAccessor = contextAccessor;
+ 
         }
 
         [HttpGet]
@@ -57,10 +60,14 @@ namespace Final_project.Controllers
                 cat_id = e.catt_id,
                 rate = 0
             }).ToList();
-            for(int i=0; i < x.Count(); i++)
+ 
+            for (int i = 0; i < x.Count; i++)
             {
                 x[i].image = Process(x[i].image);
+
             }
+
+ 
             foreach (var y in x)
             {
                 int numer = 0;

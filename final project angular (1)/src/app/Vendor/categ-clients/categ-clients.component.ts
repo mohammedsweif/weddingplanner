@@ -17,7 +17,9 @@ export class CategClientsComponent implements OnInit {
   subs:Subscription
   TotalNumber:number
   page:number=1
+ 
   VendorNo:string ="98909ee6-aa65-400d-8587-ab06e92b4717" 
+ 
   modalUserName:string=""
   modalUserId:string=""
 

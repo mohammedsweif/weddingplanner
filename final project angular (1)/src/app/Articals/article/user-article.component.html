@@ -13,8 +13,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-3 col-md-6">
                     <div class="dataTables_length" id="bootstrap-data-table_length">
-                        <label>Filter by Category
-                            <select name="bootstrap-data-table_length" aria-controls="bootstrap-data-table" class="form-control form-control-sm" [(ngModel)]="Cat.cat_Id" (ngModelChange)="makeFilter($event)">
+                        <label class="filt m-3">Filter by Category
+                            <select name="bootstrap-data-table_length" aria-controls="bootstrap-data-table" class="form-control btn btn-pr m-3" [(ngModel)]="Cat.cat_Id" (ngModelChange)="makeFilter($event)">
+                                All
                                 <option value="0">All</option>
                                 <option *ngFor="let cat of categories;" [value]="cat.cat_Id" >{{cat.cat_Name}}</option>
                                 
@@ -25,8 +26,9 @@
             </div>
 
        </div>
+       
    
-        <div class="row m-5">
+        <!-- <div class="row m-5">
             <div class="col-lg-6 col-sm-12 " *ngFor="let art of articals; let i= index; ">
                 <img [src]="art.imageUrl" alt=""  style="width: 100%; height: 200px;">
                 <h5 class="text-secondary text-center m-3">{{art.catagory.cat_Name}}</h5>
@@ -36,7 +38,20 @@
                        <a  class="btn btn-success" [routerLink]="['/articalDetails',art.id]">Details</a> 
             </div>
 
-        </div>   
+        </div>    -->
+        <div class="row m-5">
+            <div class="col-lg-6 col-sm-12 "  *ngFor="let art of articals; let i= index; ">
+                <img [src]="art.imageUrl"  alt=""  style="width: 100%;">
+                <h5 class="text-secondary text-center m-3">{{art.catagory.cat_Name}}</h5>
+                <h3 class="m-2">{{art.article_Title}}</h3>
+                <p class="text-secondary">Here’s a crash course in how to shop for a wedding dress you truly love,
+                     from finding inspiration to saying "yes" to your dream dress</p>
+                     
+                     <span class="text-secondary m-1">By {{art.applicationUser.userName}},{{art.postDate|date}}</span>
+                     <br>
+                     <a  class="btn btn-success text-center m-5" [routerLink]="['/articalDetails',art.id]">Details</a> 
+            </div>
+           </div>
        
 
 

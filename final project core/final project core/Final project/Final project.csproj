@@ -26,9 +26,5 @@
     <PackageReference Include="System.Windows.Extensions" Version="4.7.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\images\" />
-  </ItemGroup>
-
 
 </Project>

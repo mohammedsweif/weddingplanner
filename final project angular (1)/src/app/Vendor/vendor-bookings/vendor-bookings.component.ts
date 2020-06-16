@@ -24,7 +24,9 @@ export class VendorBookingsComponent implements OnInit {
   modalBookId:number=0
 
   //vendor to get his booking
+ 
   VendorNo:string ="98909ee6-aa65-400d-8587-ab06e92b4717" 
+ 
   
   constructor(private s:BookingService,private ser:MyserviceService) {
     //topagination

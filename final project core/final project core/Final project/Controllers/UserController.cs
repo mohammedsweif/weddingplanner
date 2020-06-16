@@ -328,6 +328,30 @@ namespace Final_project.Controllers
             }
             return Ok(reviewVMs);
         }
+        [HttpGet]
+        [Route("AllReviewsv/{id}")]
+        public async Task<ActionResult> GetAllReviewsv(string id)
+
+        {
+
+           // ApplicationUser user = _context.Users.Find(id);
+            List<ReviewVM> reviewVMs = await _context.reviews.Where(a => a.Vendor_Id == id).Include(a => a.ApplicationUser).Include(a => a.catagory).Select(a => new ReviewVM
+            {
+                Id = a.ID,
+                comment = a.Comment,
+                catid = a.catagory_id,
+                category = a.catagory.cat_Name,
+                Date = a.PostDate.ToString("yyyy-MM-dd"),
+                Vendor = a.ApplicationUser.UserName,
+                image = a.ApplicationUser.ImageUrl
+            }).ToListAsync();
+            for (int i = 0; i < reviewVMs.Count; i++)
+            {
+                reviewVMs[i].image = Process(reviewVMs[i].image);
+
+            }
+            return Ok(reviewVMs);
+        }
 
         [HttpDelete]
         [Route("DeleteReview/{id}")]
@@ -444,6 +468,26 @@ namespace Final_project.Controllers
             }
 
         }
+        [HttpPost]
+        [Route("AddToFavorit")]
+        public async Task<ActionResult> AddToFavorit(FavAdd fav)
+        {
+            Favorit favorit = new Favorit();
+            favorit.Id = 0;
+
+            favorit.user_id = fav.userId;
+            favorit.vendor_id = fav.vendorId;
+            favorit.date = DateTime.Now;
+            favorit.vendor_Name = "aa";
+            favorit.image = "";
+            favorit.about ="aa";
+            favorit.cat_id = 1;
+
+            await _context.favorits.AddAsync(favorit);
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
         [HttpGet]
         [Route("GetallFavorit/{id}")]
         public async Task<ActionResult> GetAllFavorit(string id)
@@ -498,6 +542,31 @@ namespace Final_project.Controllers
             }
 
         }
+        [HttpPost]
+        [Route("AddReview")]
+        public async Task<ActionResult> AddReview(RevPost revPost)
+        {
+
+            if (ModelState.IsValid)
+            {
+                Review review = new Review();
+                review.ID = 0;
+                review.PostDate = DateTime.Now;
+                review.User_Id = revPost.userId;
+                review.Vendor_Id = revPost.vedorId;
+                review.Comment = revPost.Comment;
+                review.catagory_id = 1;
+                review.liked = false;
+                await _context.reviews.AddAsync(review);
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
         public static string ConvertImage(string ImageUrl)
         {
 
@@ -551,7 +620,25 @@ namespace Final_project.Controllers
         }
 
 
+        [HttpGet]
+        [Route("AllWorks/{id}")]
+        public async Task<ActionResult> Allworks(string id)
 
+        {
+
+            // ApplicationUser user = _context.Users.Find(id);
+            List<work> works = await _context.vendorWorks.Where(a => a.vendor_id == id).Select(a => new work
+            {
+               
+                image = a.Image
+            }).ToListAsync();
+            for (int i = 0; i < works.Count; i++)
+            {
+                works[i].image = Process(works[i].image);
+
+            }
+            return Ok(works);
+        }
 
     }
 }

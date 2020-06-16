@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { gelleryclass } from '../service_classes/gelleryClass';
 import { GelleryserService } from '../service_classes/gelleryser.service';
 import { catagor } from '../service_classes/catigor';
+import { FavAdd } from 'src/app/_models/getFavorit';
+import { VendorFavoritService } from 'src/app/_service/vendor-favorit.service';
 
 @Component({
   selector: 'app-gallery',
@@ -11,7 +13,8 @@ import { catagor } from '../service_classes/catigor';
 export class GalleryComponent implements OnInit {
   gellery:gelleryclass[]=[];
   catigr:catagor[]=[];
-  constructor(private ser:GelleryserService) { }
+  FavAdd:FavAdd=new FavAdd();
+  constructor(private ser:GelleryserService ,private FavServ:VendorFavoritService) { }
   numderdisapper:number;
  
 counter(i:number){
@@ -44,5 +47,9 @@ search(n){
       console.log(err)
     })
   }
-
+AddToFavorit(id:string){
+  this.FavAdd.vendorId=id;
+  this.FavAdd.userId="937be65d-b7dc-4dd8-8939-2fe6798aedc5";
+  this.FavServ.AddToFavorit(this.FavAdd).subscribe(a=>{console.log("Added")},error=>{console.log("error")})
+}
 }

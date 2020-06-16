@@ -6,3 +6,9 @@ export class Reviews{
     image:string;
     vendor:string;   
 }
+export class RevPost{
+    constructor(){}
+    userId:string;
+    vedorId:string;
+    Comment:string;
+}

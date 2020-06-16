@@ -8,12 +8,19 @@ import {FavoritVendors} from '../../_models/getFavorit';
 })
 export class UserFavouriteComponent implements OnInit {
 
-  id:string="497a2b25-b878-42ed-9554-678ace76fdaa";
+  id:string="937be65d-b7dc-4dd8-8939-2fe6798aedc4";
   Favorit:FavoritVendors[]=[];
   AllFavorit:FavoritVendors[]=[];
   Cat:string[]=[];
-  Category:string;
-  constructor(private FavServ:VendorFavoritService) { }
+  config:any
+  catt:string;
+ 
+  constructor(private FavServ:VendorFavoritService) {
+    this.config = {
+      itemsPerPage: 2,
+      currentPage: 1
+    }
+   }
 
   ngOnInit(): void {
     this.FavServ.GetFavoritVendor(this.id).subscribe(response=>{
@@ -30,11 +37,21 @@ export class UserFavouriteComponent implements OnInit {
     
     this.FavServ.RemoveFromFavorit(id).subscribe(a=>{this.Favorit.splice(index,1)});
   }
-  makeFilter(cat:any){
-    if(cat=="All"){
+  makeFilter(tt:string){
+    if(tt=="All"){
       this.Favorit=this.AllFavorit;
     }else{
-      this.Favorit=this.AllFavorit.filter(a=>a.category== cat);
+      this.Favorit=this.AllFavorit.filter(a=>a.category== tt);
+      console.log( this.Favorit);
     }
   }
+  clientname:string="";
+    search(f){
+      this.clientname = f.value;
+      console.log(f.value);
+      console.log(this.clientname);
+    }
+    pageChanged(event){
+    this.config.currentPage = event;
+   }
 }

@@ -8,3 +8,8 @@ export class FavoritVendors{
     image:string;
     id:number;
 }
+export class FavAdd{
+    constructor(){}
+    userId:string;
+    vendorId:string;
+}

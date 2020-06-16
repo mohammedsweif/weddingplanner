@@ -35,10 +35,17 @@ export class VendorPackagesComponent implements OnInit {
   TotalNumber:number
   page:number=1
   packageCount:number
+  config:any;
 
+ 
   VendorNo:string ="98909ee6-aa65-400d-8587-ab06e92b4717"                    //get from localstrorage
+ 
 
-  constructor(private ser:PackageServiceService,private WorkService:MyserviceService) { }
+  constructor(private ser:PackageServiceService,private WorkService:MyserviceService) { 
+    this.config = {
+      itemsPerPage: 3,
+      currentPage: 1}
+  }
 
   ngOnInit(): void {
 
@@ -164,6 +171,8 @@ delete(id:number){
   })
 
 }
-
+pageChanged(event){
+  this.config.currentPage = event;
+ }
 
 }

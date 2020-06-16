@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { MyserviceService } from 'src/app/_service/myservice.service';
 import{ NgInitDirective} from '../ng-init-directive'
 import { Rating } from 'src/app/RatingModel/Rating';
+import { UserReviewService } from 'src/app/_service/user-review.service';
+import { RevPost } from 'src/app/_models/review';
 
 
 @Component({
@@ -27,8 +29,9 @@ export class FavoritVendorComponent implements OnInit {
   TotalNumber:number
   page:number=1
   config:any;
+  review:RevPost=new RevPost();
 
-  constructor(private ser:MyserviceService) {
+  constructor(private ser:MyserviceService,private s:UserReviewService) {
     this.config = {
       itemsPerPage: 2,
       currentPage: 1
@@ -36,7 +39,7 @@ export class FavoritVendorComponent implements OnInit {
    }
 
   ngOnInit(): void {
- 
+    
     
     this.subs=this.ser.getClientVen(this.UserNo).subscribe(
       a=>{
@@ -76,6 +79,17 @@ export class FavoritVendorComponent implements OnInit {
       
         return new Array(stars)
         
+    }
+    addreview(id:string){
+this.review.vedorId=id;
+this.review.userId="937be65d-b7dc-4dd8-8939-2fe6798aedc5"
+console.log(this.review);
+if(this.review.Comment.length>2){
+this.s.AddReview(this.review).subscribe(a=>{console.log("Added")
+this.review.Comment=""
+},error=>{console.log("error")
+
+})}
     }
     pageChanged(event){
       this.config.currentPage = event;

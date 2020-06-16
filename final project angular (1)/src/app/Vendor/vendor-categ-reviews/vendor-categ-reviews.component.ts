@@ -29,7 +29,9 @@ catnum:number=0;
 config:any;
 venrate:Rate;
 
+ 
 VendorNo:string ="98909ee6-aa65-400d-8587-ab06e92b4717" 
+ 
 divReviewId:number=0
 rev:Review=new Review()
   constructor(public r:ReviewService,private ser:MyserviceService) { 

@@ -1,363 +1,352 @@
 <div class="dashboard-content">
-
-  <div class="container-fluid">
    
-      <div class="row">
-          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12">
-          </div>
-          
-          <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12 col-12 ">
-              <div class="card">
-                  <button  type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal11" data-whatever="@mdo">
-                      New Package
-                    </button>
-              <div class="modal fade" id="exampleModal11" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true" data-backdrop="false">
-              <div class="modal-dialog" role="document">
-              <div class="modal-content Nivo">
-              <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel1">New Package</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-              </div>
-              <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label for="recipient-name" class="col-form-label text-info">Categorie:</label>
-                  <div class="dataTables_length" id="bootstrap-data-table_length">
-                    <label>
-                      <select (change)="changeCat($event.target.value)" [(ngModel)]="addPackage.catagory_id"  name="Category" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
-                        <option *ngFor="let cat of categories" value="{{cat.cat_Id}}">{{cat.cat_Name}}</option>
-                      </select>
-                    </label>
-                  </div>
-
-
-                  <label for="recipient-name" class="col-form-label text-info">Season:</label>
-                  <div class="dataTables_length" id="bootstrap-data-table_length">
-                    <label>
-                      <select (change)="changeSes($event.target.value)" [(ngModel)]="addPackage.season_id"  name="Category" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
-                        <option *ngFor="let s of Seasons" value="{{s.season_id}}">{{s.season_name}}</option>
-                      </select>
-                    </label>
-                  </div>
-
-                  <!-- <label for="recipient-name" class="col-form-label">Feature:</label> -->
-                  <div class="dataTables_length" id="bootstrap-data-table_length">
-                    <div >
-                      <label class="text-info">Feature Name</label>
-                      <br>
-                      <input  type="text" [(ngModel)]="addPackage.feature_name" name="fNameAdd">
-                      <br>
-                      <label class="text-info">Feature description</label>
-                      <br>
-                      <input  type="text" [(ngModel)]="addPackage.description" name="fDescriptionAdd">
-                       </div>
-                  </div>
-
-                  <label for="recipient-name" class="col-form-label text-info">Event:</label>
-                  <div class="dataTables_length" id="bootstrap-data-table_length">
-                    <label>
-                      <select (change)="changeEv($event.target.value)" [(ngModel)]="addPackage.event_id"  name="Event1" >
-                        <option *ngFor="let e of Eventss" value="{{e.id}}">{{e.event_name}}</option>
-                      </select>
-                    </label>
-                  </div>
-
-                </div>
-
-               
-              
-                <div class="form-group">
-                  <label for="message-text" class="col-form-label text-info">Package Cost:</label>
-                  <input [(ngModel)]="addPackage.packageCost" type="number" class="form-control" id="Cost-text" name="cost">
-                </div>
-              </form>
-              
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="buttonadd" (click)="Add()" [disabled]="!addPackage.catagory_id ||!addPackage.event_id  || !addPackage.packageCost|| !addPackage.season_id || !addPackage.feature_name ||!addPackage.description "  type="button" class="btn btn-primary"  data-dismiss="modal">Add </button> 
-                    </div>
-                    </div>
-                    </div>
-                    </div> 
-                  <div class="card-body">
-                      <h3 class="mb0">My Packages </h3>
-                      <hr>
-                      <div class="row">
-                        <div class="col-2">
-                          <input style="width: 40px;text-align: center;" disabled [(ngModel)]="this.packageCount" value="{{this.packageCount}}" class="text-danger" >
-                        </div>
-                        <div class="col-10">
-                          <h4>  Packages untile now</h4>
-                        </div>
-                      </div>
-                       
-                      
-                         
-                  </div>
-              </div>
-          </div>
-             
-      </div>
-      <div class="dashboard-pricing">
-         <!-- hereeeeeeee Filter  -->
-<div class="row">
-<div class="col-7">
-
-  <div class="col-md-6">
-    <div class="row"><div class="col-sm-12 col-md-6">
-      <div class="dataTables_length" id="bootstrap-data-table_length">
-        <label class="text-info">Category </label>
-          <select (change)="changeCat1($event.target.value)"  class="form-control form-control-sm">
-          <option value="0">All</option>
-          <option *ngFor="let cat of categories" value="{{cat.cat_Id}}">{{cat.cat_Name}}</option>
-        </select>
-      </div>
-    </div>
-       
-      </div>
-   </div>
-
-   <!-- Filter by event -->
-   <div class="col-md-6">
-    <div class="row"><div class="col-sm-12 col-md-6">
-      <div class="dataTables_length" id="bootstrap-data-table_length">
-        <label class="text-info">Event </label>
-          <select (change)="changeEv1($event.target.value)"  class="form-control form-control-sm">
-          <option value="0">All</option>
-          <option *ngFor="let e of Eventss" value="{{e.id}}">{{e.event_name}}</option>
-        </select>
-      </div>
-    </div>
-       
-      </div>
-    </div>
-
-    <!-- Filter by Season -->
-    <div class="col-md-6">
+     
         <div class="row">
-          <div class="col-sm-12 col-md-6">
-          <div class="dataTables_length" id="bootstrap-data-table_length">
-            <label class="text-info">Season </label>
-              <select (change)="changeSes1($event.target.value)"  class="form-control form-control-sm">
-              <option value="0">All</option>
-              <option *ngFor="let s of Seasons" value="{{s.season_id}}">{{s.season_name}}</option>
-            </select>
-          </div>
-        </div>
-        
-     </div>
-     </div>
-</div>
-<div class="col-5">
-  <pagination-controls  id="listing_pagination"
-                    (pageChange)="page = $event"
-                    
-                    maxSize="7"
-                    directionLinks="true"
-                    autoHide="true"
-                    responsive="true"
-                    previousLabel="Previous"
-                    nextLabel="Next"
-                    screenReaderPaginationLabel="Pagination"
-                    screenReaderPageLabel="page"
-                    screenReaderCurrentLabel="You're on page">
-</pagination-controls>
-</div>
-</div>
-
-         <!-- Filter by Category -->
-         
-
-        
-
-
-          <div >
-               <ng-container *ngFor="let item of Packages | paginate: {id:'listing_pagination',
-               itemsPerPage:2,
-                currentPage:page,
-               totalItems:TotalNumber}">
-                  <div  style="width: 600px; padding-top: 50px;" class="col"  *ngIf="this.catnumC1 == 0 || item.catagory_id == this.catnumC1 && this.catnumS1==0 || item.season_id == this.catnumS1 && this.catnumE1==0 || item.event_id ==this.catnumE1" >
-                      <div class="pricingTable">
-                          <div class="pricingTable-header">
-                              <div class="price-value">
-                                  <span class="currency">{{item.packageCost}}</span>
-                                  <span class="amount">L.E</span>
-                                  <!-- <span class="duration">per month</span> -->
-                              </div>
-                              <div class="icon"><i class="fa fa-diamond"></i></div>
-
-                              <div class="row">
-                                  <div class="col">
-                                      <label class="text-info">Event</label>
-                                  </div>
-
-                                  <div class="col">
-                                      <ng-container *ngFor="let y of Eventss">
-                                          <span *ngIf="y.id===item.event_id">{{y.event_name}}</span>
-                                      </ng-container>
-                                  </div>
-                              </div>
-                                  
-                              <br>
-
-                              <div class="row">
-                                <div class="col">
-                                    <label class="text-info">Category</label>
-                                </div>
-
-                                <div class="col">
-                                    <ng-container *ngFor="let c of categories">
-                                        <span *ngIf="c.cat_Id==item.catagory_id">{{c.cat_Name}}</span>
-                                    </ng-container>
-                                </div>
-                            </div>
-                              
-             
-                              <br>
-                              <div class="row">
-                                  <div class="col-sm-6">
-                                      <label class="text-info">Season </label>
-                                  </div>
-
-                                  <div class="col-sm-6">
-                                      <ng-container *ngFor="let y of Seasons">
-                                          <span *ngIf="y.season_id===item.season_id">{{y.season_name}}</span>
-                                      </ng-container>
-                                  </div>
-                              </div>
-                              
-                              
-
-                          </div>
-                          <ul  class="pricing-content">
-
-                              <!-- <ng-container *ngFor="let y of Features"> -->
-                                <label class="text-info">Feature Name</label>
-                                  <li >{{item.feature_name}}   </li>
-                                  <br>
-                                  <label class="text-info">Feature Description</label>
-                                  <li> {{item.description}}    </li>
-                              <!-- </ng-container> -->
-                                
-                          </ul>
-                          <ul >
-                            <div *ngIf="item.status==true">
-                              <button class="btn btn-success "  (click)="delete(item.packageId)"> Disactivate </button>
-                            </div>
-                              
-                            
-                            
-                            <div *ngIf="item.status==false">
-                              <button class="btn btn-secondary" (click)="delete(item.packageId)" > Activate </button>
-                            </div>
-                              
-                            
-                          </ul>
-                          <!-- <ul *ngIf="item.status==true">
-                            Status: Active
-                          </ul>
-
-                          <ul *ngIf="item.status==false">
-                            Status: InActive
-                          </ul> -->
-
-
-                          <div class="pricingTable-signup">
-
-
-                         <!-- hereeeee edit      -->
-
-                         <button (click)="edit(item.packageId)" type="button" class="btn btn-warning " data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">
-                          Edit
-                        </button>
-                  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true" data-backdrop="false">
-                  <div class="modal-dialog " role="document">
-                  <div class="modal-content Nivo">
-                  <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel1">Edit Package</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12">
+            </div>
+            
+            <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12 col-12 ">
+                <div class="card" style="text-align: center;">
+                    <button  type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal11" data-whatever="@mdo">
+                        New Package
+                      </button>
+                <div class="modal fade" id="exampleModal11" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true" data-backdrop="false">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">New Package</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-4">
+                    <label for="recipient-name" class="col-form-label">Categorie:</label>
+                    <div class="dataTables_length" id="bootstrap-data-table_length">
+                      <label>
+                        <select (change)="changeCat($event.target.value)" [(ngModel)]="addPackage.catagory_id"  name="Category" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
+                          <option *ngFor="let cat of categories" value="{{cat.cat_Id}}">{{cat.cat_Name}}</option>
+                        </select>
+                      </label>
+                    </div>
                   </div>
-                  <div class="modal-body">
-                  <form>
-                    <div class="form-group">
-                      <label  for="recipient-name" class="col-form-label text-info">Categorie:</label>
+                  <div class="col-sm-4">
+                    <label for="recipient-name" class="col-form-label">Season:</label>
+                    <div class="dataTables_length" id="bootstrap-data-table_length">
+                      <label>
+                        <select (change)="changeSes($event.target.value)" [(ngModel)]="addPackage.season_id"  name="Category" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
+                          <option *ngFor="let s of Seasons" value="{{s.season_id}}">{{s.season_name}}</option>
+                        </select>
+                      </label>
+                    </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="recipient-name" class="col-form-label">Event:</label>
                       <div class="dataTables_length" id="bootstrap-data-table_length">
                         <label>
-                          <select (change)="changeCat($event.target.value)" [(ngModel)]="editPackage.catagory_id"  name="Category" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
-                            <option *ngFor="let cat of categories" value="{{cat.cat_Id}}">{{cat.cat_Name}}</option>
-                          </select>
-                        </label>
-                      </div>
-  
-  
-                      <label  for="recipient-name" class="col-form-label text-info">Season:</label>
-                      <div class="dataTables_length" id="bootstrap-data-table_length">
-                        <label>
-                          <select (change)="changeSes($event.target.value)" [(ngModel)]="editPackage.season_id"  name="Category" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
-                            <option *ngFor="let s of Seasons" value="{{s.season_id}}">{{s.season_name}}</option>
-                          </select>
-                        </label>
-                      </div>
-  
-                      <!-- <label for="recipient-name" class="col-form-label">Feature:</label> -->
-                      <div class="dataTables_length" id="bootstrap-data-table_length">
-                        
-                          <!-- <select (change)="changeFet($event.target.value)" [(ngModel)]="editPackage.feature_id"  name="Feature" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
-                            <option *ngFor="let f of Features" value="{{f.feature_id}}">{{f.feature_name}}</option>
-                          </select> -->
-                          <div>
-                          <label class="text-info">Feature Name</label>
-                          <br>
-                          <input style="text-align: center;" type="text" [(ngModel)]="editPackage.feature_name" name="fName">
-                          <br>
-                          <label class="text-info">Feature description</label>
-                          <br>
-                          <input  style="width: 300px;text-align: center;" type="text" [(ngModel)]="editPackage.description" name="fDescription">
-                           </div>
-                      </div>
-  
-                      <label for="recipient-name" class="col-form-label text-info">Event:</label>
-                      <div class="dataTables_length" id="bootstrap-data-table_length">
-                        <label>
-                          <select (change)="changeEv($event.target.value)" [(ngModel)]="editPackage.event_id"  name="Event" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
+                          <select (change)="changeEv($event.target.value)" [(ngModel)]="addPackage.event_id"  name="Event1"aria-controls="bootstrap-data-table" class="form-control form-control-sm" >
                             <option *ngFor="let e of Eventss" value="{{e.id}}">{{e.event_name}}</option>
                           </select>
                         </label>
                       </div>
-  
+                      </div>
                     </div>
-  
-                    
-                  
-                    <div class="form-group">
-                      <label  for="message-text" class="col-form-label text-info">Package Cost:</label>
-                      <input [(ngModel)]="editPackage.packageCost" type="number" class="form-control" id="Cost-text" name="cost">
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-4"></div>
+                      <div class="dataTables_length" id="bootstrap-data-table_length">
+                        <label>Feature Name</label>
+                        <input type="text" [(ngModel)]="addPackage.feature_name" name="fNameAdd"aria-controls="bootstrap-data-table" class="form-control form-control-sm">
+                      </div>
+                      <div class="col-sm-4"></div>
                     </div>
-                  </form>
-                  
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button id="buttonEdit" (click)="EditPackage()" [disabled]=" !editPackage.event_id  || !editPackage.packageCost|| !editPackage.season_id || !editPackage.feature_name || !editPackage.description "  type="button" class="btn btn-primary"  data-dismiss="modal"> Update </button> 
-                        </div>
-                        </div>
-                        </div>
-                        </div> 
-                        <br>
-                        <br>
-                             <!-- <button (click)="Update(item)" type="button" data-toggle="modal" data-target="#myModaladd"><a>Update</a> </button>  -->
-                          
-                          </div>
-                      </div>  
+                    <br>
+                      <div class="row">
+                        <label>Feature description</label>
+                        <input type="text" [(ngModel)]="addPackage.description" name="fDescriptionAdd" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
+                      </div>
                   </div>
-               </ng-container>
-          </div>   
+
+                  
+
+                 
+                
+                  <div class="form-group">
+                    <label for="message-text" class="col-form-label">Package Cost:</label>
+                    <div class="row"><div class="col-sm-4"></div><div class="col-sm-4">
+                    <input [(ngModel)]="addPackage.packageCost" type="number" class="form-control" id="Cost-text" name="cost">
+                  </div><div class="col-sm-4"></div>
+                </div>
+                  </div>
+                </form>
+                
+                      </div>
+                      <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button id="buttonadd" (click)="Add()" [disabled]="!addPackage.catagory_id ||!addPackage.event_id  || !addPackage.packageCost|| !addPackage.season_id || !addPackage.feature_name ||!addPackage.description "  type="button" class="btn btn-info"  data-dismiss="modal">Add </button> 
+                      </div>
+                      </div>
+                      </div>
+                      </div> 
+                    <div class="card-body">
+                        <h3 class="mb0">My Packages </h3>
+                         <span  [(ngModel)]="this.packageCount"  class="text-danger" name="n">{{this.packageCount}} Packages untile now  </span>
+                        
+                           
+                    </div>
+                </div>
+            </div>
+               
+        </div>
+           <!-- hereeeeeeee Filter  -->
+<div class="row" style="text-align: center;">
+      <div class="col-sm-4">
+        <div class="dataTables_length" id="bootstrap-data-table_length">
+          <label class="text-info">Filter By Category 
+            <select (change)="changeCat1($event.target.value)"  class="form-control form-control-sm">
+            <option value="0">All</option>
+            <option *ngFor="let cat of categories" value="{{cat.cat_Id}}">{{cat.cat_Name}}</option>
+          </select>
+        </label>
+        </div>
       </div>
+
+     <!-- Filter by event -->
+     <div class="col-sm-4">
+        <div class="dataTables_length" id="bootstrap-data-table_length">
+          <label class="text-info">Filter By Event
+            <select (change)="changeEv1($event.target.value)"  class="form-control form-control-sm">
+            <option value="0">All</option>
+            <option *ngFor="let e of Eventss" value="{{e.id}}">{{e.event_name}}</option>
+          </select> </label>
+        </div>
+      </div>
+
+      <!-- Filter by Season -->
+      <div class="col-sm-4">
+            <div class="dataTables_length" id="bootstrap-data-table_length">
+              <label class="text-info">Filter By Season
+                <select (change)="changeSes1($event.target.value)"  class="form-control form-control-sm">
+                <option value="0">All</option>
+                <option *ngFor="let s of Seasons" value="{{s.season_id}}">{{s.season_name}}</option>
+              </select> </label>
+            </div>
+          </div>
+        </div>
+       
+  
+ 
+           <!-- Filter by Category -->
+           
+
+          
+
+
+            <div class="row">
+                 <ng-container *ngFor="let item of Packages |paginate: this.config">
+                    <div  class="col-md-4 col-sm-6"  *ngIf="this.catnumC1 == 0 || item.catagory_id == this.catnumC1 && this.catnumS1==0 || item.season_id == this.catnumS1 && this.catnumE1==0 || item.event_id ==this.catnumE1" >
+                        <div class="pricingTable">
+                            <div class="pricingTable-header">
+                                <div class="price-value">
+                                    <span class="currency">{{item.packageCost}}</span>
+                                    <span class="amount">L.E</span>
+                                    <!-- <span class="duration">per month</span> -->
+                                </div>
+                                <div class="icon"><i class="fa fa-diamond"></i></div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="text-info">Event</label>
+                                    </div>
+
+                                    <div class="col">
+                                        <ng-container *ngFor="let y of Eventss">
+                                            <span *ngIf="y.id===item.event_id">{{y.event_name}}</span>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                                    
+                                <br>
+
+                                <div class="row">
+                                  <div class="col">
+                                      <label class="text-info">Category</label>
+                                  </div>
+
+                                  <div class="col">
+                                      <ng-container *ngFor="let c of categories">
+                                          <span *ngIf="c.cat_Id==item.catagory_id">{{c.cat_Name}}</span>
+                                      </ng-container>
+                                  </div>
+                              </div>
+                                
+               
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label class="text-info">Season </label>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <ng-container *ngFor="let y of Seasons">
+                                            <span *ngIf="y.season_id===item.season_id">{{y.season_name}}</span>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                                
+                                
+
+                            </div>
+                            <ul  class="pricing-content">
+
+                                <!-- <ng-container *ngFor="let y of Features"> -->
+                                  <label class="text-info">Feature name</label>
+                                    <li>{{item.feature_name}}   </li>
+                                    <br>
+                                    <label class="text-info">Feature description</label>
+                                    <li> {{item.description}}    </li>
+                                <!-- </ng-container> -->
+                                  
+                            </ul>
+                            <ul >
+                              <div *ngIf="item.status==true">
+                                <button class="btn-secondary "  (click)="delete(item.packageId)"> Disactivate </button>
+                              </div>
+                                
+                              
+                              
+                              <div *ngIf="item.status==false">
+                                <button class="btn-light" (click)="delete(item.packageId)" > Activate </button>
+                              </div>
+                                
+                              
+                            </ul>
+                            <!-- <ul *ngIf="item.status==true">
+                              Status: Active
+                            </ul>
+
+                            <ul *ngIf="item.status==false">
+                              Status: InActive
+                            </ul> -->
+
+
+                            <div class="pricingTable-signup">
+
+
+                           <!-- hereeeee edit      -->
+
+                           <button (click)="edit(item.packageId)" type="button" class="btn btn-info " data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">
+                            Edit
+                          </button>
+                    
+                          <br>
+                          <br>
+                               <!-- <button (click)="Update(item)" type="button" data-toggle="modal" data-target="#myModaladd"><a>Update</a> </button>  -->
+                            
+                            </div>
+                        </div>  
+                    </div>
+                 </ng-container>
+            </div>   
+        
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
   </div>
-</div>
+
+
+
+
+<!-- ///editmodel -->
+
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog " role="document">
+    <div class="modal-content" style="text-align: center;">
+    <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel1">Edit Package</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-4">
+        <label for="recipient-name" class="col-form-label">Categorie:</label>
+        <div class="dataTables_length" id="bootstrap-data-table_length">
+          <label>
+            <select (change)="changeCat($event.target.value)" [(ngModel)]="editPackage.catagory_id"  name="Category" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
+              <option *ngFor="let cat of categories" value="{{cat.cat_Id}}">{{cat.cat_Name}}</option>
+            </select>
+          </label>
+        </div>
+          </div>
+          <div class="col-sm-4">
+        <label for="recipient-name" class="col-form-label">Season:</label>
+        <div class="dataTables_length" id="bootstrap-data-table_length">
+          <label>
+            <select (change)="changeSes($event.target.value)" [(ngModel)]="editPackage.season_id"  name="Category" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
+              <option *ngFor="let s of Seasons" value="{{s.season_id}}">{{s.season_name}}</option>
+            </select>
+          </label>
+        </div>
+          </div>
+          <div class="col-sm-4">
+            <label for="recipient-name" class="col-form-label">Event:</label>
+        <div class="dataTables_length" id="bootstrap-data-table_length">
+          <label>
+            <select (change)="changeEv($event.target.value)" [(ngModel)]="editPackage.event_id"  name="Event" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
+              <option *ngFor="let e of Eventss" value="{{e.id}}">{{e.event_name}}</option>
+            </select>
+          </label>
+        </div>
+          </div>
+        </div>
+        <div class="dataTables_length" id="bootstrap-data-table_length">
+          
+            <!-- <select (change)="changeFet($event.target.value)" [(ngModel)]="editPackage.feature_id"  name="Feature" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
+              <option *ngFor="let f of Features" value="{{f.feature_id}}">{{f.feature_name}}</option>
+            </select> -->
+            <br>
+            <div class="row"style="text-align: center;">
+            <label>Feature Name</label>
+            <input type="text" [(ngModel)]="editPackage.feature_name" name="fName" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
+            </div>
+           
+         
+          <br>
+            <div class="row" style="text-align: center;">
+            <label>Feature description</label>
+            <input type="text" [(ngModel)]="editPackage.description" name="fDescription" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
+             </div>
+        
+        </div>
+
+        
+
+      </div>
+
+      
+    
+      <div class="form-group" >
+        <label for="message-text" class="col-form-label">Package Cost:</label>
+        <div class="row"><div class="col-sm-4"></div><div class="col-sm-4">
+        <input [(ngModel)]="editPackage.packageCost" type="number" class="form-control" id="Cost-text" name="cost">
+      </div>
+        </div>
+
+      </div>
+    </form>
+    
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="buttonEdit" (click)="EditPackage()" [disabled]=" !editPackage.event_id  || !editPackage.packageCost|| !editPackage.season_id || !editPackage.feature_name || !editPackage.description "  type="button" class="btn btn-info"  data-dismiss="modal"> Update </button> 
+          </div>
+          </div>
+          </div>
+          </div> 
+
 

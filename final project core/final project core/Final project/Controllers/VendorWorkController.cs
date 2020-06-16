@@ -16,9 +16,14 @@ namespace Final_project.Controllers
     public class VendorWorkController : ControllerBase
     {
         VendorWorksRepsitory _WorksRepo;
-        public VendorWorkController(VendorWorksRepsitory worksRepsitory)
+        private readonly IHttpContextAccessor contextAccessor;
+        public VendorWorkController(VendorWorksRepsitory worksRepsitory, IHttpContextAccessor contextAccessor)
         {
             _WorksRepo = worksRepsitory;
+            this.contextAccessor = contextAccessor;
+
+
+
         }
 
         [HttpGet("Index")]
@@ -27,7 +32,13 @@ namespace Final_project.Controllers
             var Works = _WorksRepo.GetAll();
             if (Works != null)
             {
+                for (int i = 0; i < Works.Count(); i++)
+                {
+                    Works[i].Image = Process(Works[i].Image);
+                }
+
                 return Ok(Works);
+
             }
 
             else
@@ -47,6 +58,8 @@ namespace Final_project.Controllers
             }
             else
             {
+                Work.Image = Process(Work.Image);
+
                 return Ok(Work);
             }
 
@@ -240,6 +253,16 @@ namespace Final_project.Controllers
             int t = _WorksRepo.GetTotalBudgetPending(id, id1);
             return Ok(t);
         }
+        private string Process(string Image)
+        {
+            //get domain name;
+            var request = this.contextAccessor.HttpContext.Request;
+            //make path for Image   
+            string path = $"{request.Scheme}://{request.Host.Value}/images/{Image}";
+            return path;
+        }
+
+
 
     }
 }

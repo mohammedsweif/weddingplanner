@@ -12,5 +12,6 @@ export class Review {
       public  ID?:Number;
       public liked?:boolean;
       public  replies:Reviewreplay[];
-      public user:string  
+      public user:string ; 
+      public image :string;
 }

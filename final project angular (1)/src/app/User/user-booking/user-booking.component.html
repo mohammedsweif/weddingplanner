@@ -61,7 +61,7 @@
      </div>
     </td>
     <td>
-        <input type="button" class="btn btn-danger"  value="Cancel" (click)="CancelBook(i)"/>
+        <input type="button" class="btn btn-danger"  value="Cancel" (click)="CancelBook(Book.id)"/>
         
         <!-- <a class="delete" (click)="CancelBook(i)"><i class="fa fa-remove"></i></a> -->
         <a [routerLink]="['/User/EditBooks',Book.id]">Edit Book</a>

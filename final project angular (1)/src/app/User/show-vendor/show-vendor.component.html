@@ -58,7 +58,7 @@
                 <div class="frontside">
                     <div class="card">
                         <div class="card-body text-center">
-                            <p><img class=" img-fluid" src="assets/images/1.jpg" alt="card image"></p>
+                            <p><img class=" img-fluid" [src]="vendetails.image" alt="card image"></p>
                             <h4 class="card-title">{{vendetails.vendorname}}<br><span class="star">
                                  <!-- <ngb-rating [rate]="vendorrate" [readonly]="true" max="5"></ngb-rating>  -->
                                 <br></span>
@@ -108,22 +108,22 @@
 </div>
 <div class="container">
 <div class="be-comment-block">
-<h1 class="comments-title">Client Reviews ({{ r.reviews.length}})</h1>
-<ng-container  *ngFor="let item of r.reviews">
+<h1 class="comments-title">Client Reviews ({{reviews.length}})</h1>
+<ng-container  *ngFor="let item of reviews">
 <div class="be-comment">
 <div class="be-img-comment">	
     <a href="blog-detail-2.html">
-        <img src="assets/images/d6.jpg" alt="" class="be-ava-comment">
+        <img [src]="item.image" alt="" class="be-ava-comment">
     </a>
 </div>
 <div class="be-comment-content">
     
         <span class="be-comment-name">
-            <a href="blog-detail-2.html">{{item.username}}</a>
+            <a href="blog-detail-2.html">{{item.vendor}}</a>
             </span>
         <span class="be-comment-time">
             <i class="fa fa-clock-o"></i>
-            {{item.postDate |timeago}}
+            {{item.date |timeago}}
         </span>
 
     <p class="be-comment-text">

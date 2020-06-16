@@ -165,14 +165,14 @@
 <ng-container *ngFor="let item of ClientVendors|paginate: this.config" >
  <div class="card" style="margin-bottom: 10px;" *ngIf="(catnum==0 || item.cat_id == this.catnum) && (vendorName == '' || this.item.name.toLowerCase().startsWith(this.vendorName.toLowerCase()))">
      <div class="card-header">
-         <img class="rounded-circle img-fluid" src="https://scontent-hbe1-1.xx.fbcdn.net/v/t1.0-9/48210581_937877296403226_4308940697219629056_n.jpg?_nc_cat=108&_nc_sid=7aed08&_nc_ohc=AXJtl1A4ZaEAX_LPDww&_nc_ht=scontent-hbe1-1.xx&oh=2aa26763cebd2b8391011f54b4130a99&oe=5EE71DB1" alt="card image"> <a  [routerLink]="['/User/Showvendor']">{{item.name}} </a>({{item.cat_name}})
+         <img class="rounded-circle img-fluid" [src]="item.image" alt="card image"> <a [routerLink]="['/User/Showvendor',item.vendor_id]">{{item.name}} </a>({{item.cat_name}})
      </div>
      <div class="card-body">
        <blockquote class="blockquote mb-0">
          <h5 class="text-info">Last ordered : </h5><p>{{item.book_date|date}}.</p>
          <h5 class="text-info">For Event held on : </h5><p>{{item.real_date}}.</p>
         
-         <h5 class="text-info">Send your Review : </h5> <div class="row"><div class="col-lg-6"><input type="text"aria-controls="bootstrap-data-table" class="form-control form-control-sm"></div><div class="col-md-4"><button class="btn-info form-control form-control-sm" >Send</button></div>
+         <h5 class="text-info">Send your Review : </h5> <div class="row"><div class="col-lg-6"><input type="text"aria-controls="bootstrap-data-table" class="form-control form-control-sm"[(ngModel)]="review.Comment"></div><div class="col-md-4"><button class="btn-info form-control form-control-sm"(click)="addreview(item.vendor_id)" >Send</button></div>
        </div> <!-- <footer class="blockquote-footer">{{item.real_date}}</footer> -->
        </blockquote>
      </div>
