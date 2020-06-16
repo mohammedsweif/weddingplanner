@@ -18,10 +18,12 @@ namespace Final_project.Controllers
     public class VendorsController : ControllerBase
     {
         private readonly ProjectDbcontext _context;
+        private readonly IHttpContextAccessor contextAccessor;
 
-        public VendorsController(ProjectDbcontext context)
+        public VendorsController(ProjectDbcontext context, IHttpContextAccessor contextAccessor)
         {
             _context = context;
+            this.contextAccessor = contextAccessor;
         }
 
         // GET: api/Vendors
@@ -58,17 +60,31 @@ namespace Final_project.Controllers
         [HttpGet("Getvendor/{id}")]
         public ActionResult Getvendor(string id)
         {
-            var x = _context.vendors.Where(a => a.vendor_id == id).Select(e => new
-            {
-                vendorname = e.ApplicationUser.UserName,
-                instgram = e.Instgram,
-                facebook = e.FacebookLink,
-                twitter = e.Twitterr,
-                image = e.PersonalImage,
-                cat = e.category.cat_Name,
-            }).FirstOrDefault();
+            VendorVM vendorVM =  _context.vendors.Where(a => a.vendor_id == id).Include(a => a.ApplicationUser).Include(a => a.category).Select(a => new VendorVM
 
-            return Ok(x);
+            
+            //var x = _context.vendors.Where(a => a.vendor_id == id).Select(e => new
+            {
+                vendorname = a.ApplicationUser.UserName,
+                instgram = a.Instgram,
+               facebook = a.FacebookLink,
+               twitter = a.Twitterr,
+               image = a.ApplicationUser.ImageUrl,
+               cat = a.category.cat_Name,
+            }).FirstOrDefault();
+            if (!string.IsNullOrEmpty(vendorVM.image))
+            {
+                vendorVM.image = Process(vendorVM.image);
+            }
+            return Ok(vendorVM);
+        }
+        private string Process(string Image)
+        {
+            //get domain name;
+            var request = this.contextAccessor.HttpContext.Request;
+            //make path for Image   
+            string path = $"{request.Scheme}://{request.Host.Value}/images/{Image}";
+            return path;
         }
     }
 

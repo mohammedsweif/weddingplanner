@@ -43,5 +43,6 @@ onClickCart(product:Getproduct){
    this.ShopServ.AddItemToLocalStorage(item);
  }
 
+ 
 }
 

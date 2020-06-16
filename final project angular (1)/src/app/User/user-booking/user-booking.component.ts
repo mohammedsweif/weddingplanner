@@ -49,11 +49,10 @@ categories:category[]=[]
 
   }
 CancelBook(i:number){
-  let deleted:GetBooking=this.BookList[i];
-  let id:number=deleted.id;
-  this.BookServ.CancelBook(id).subscribe(r=>{this.toast.success("Ok","Your Bookings is canceled");
-  this.BookList.splice(i,1);
-},error=> {console.log(error); this.toast.error("no",error.error)});
+   let index=this.BookList.findIndex(a=>a.id==i);
+  this.BookServ.CancelBook(i).subscribe(r=>{this.toast.success("Ok","Your Bookings is canceled");
+   this.BookList.splice(index,1);
+ },error=> {console.log(error); this.toast.error("no",error.error)});
 }
 pageChanged(event){
   this.config.currentPage = event;

@@ -1,12 +1,12 @@
-<div class="container">
-    <div class="row">
-        <div class="col-4">
-            <img src={{artical.imageUrl}} alt="artical image" style=" width:100%; height:200px;">
+<div class="container cent">
+    <div class="row  m-5">
+        <div class="col-6">
+            <img src={{artical.imageUrl}} alt="artical image" >
         </div>
-        <div class="col-8">
-            <h3 class="m-2">{{artical.article_Title}}</h3>
-            <div class="">{{artical.article_Description}}</div>
-            <span class="text-secondary">{{artical.postDate}}</span>
+        <div class="col-6">
+            <h3 class="m-3 title">{{artical.article_Title}}</h3>
+            <div class=" m-3">{{artical.article_Description}}</div>
+            <span class="text-secondary m-3">{{artical.postDate|date}}</span>
         </div>
     </div>
 </div>

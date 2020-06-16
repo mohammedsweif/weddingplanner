@@ -1,16 +1,23 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Wedding Planner</a>
+<nav class="navbar navbar-expand-lg navbar-light ss">
+  
+   <a title="Weddings" href="#">
+    <img  class="aa" alt="Weddings" src="assets/images/log.PNG">
+    </a> 
+   <!-- <a class="navbar-brand aa" href="#"><h2>Raw</h2><h2 class="ww">nak</h2></a> -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+       <li class="nav-item active">
         <a class="nav-link" routerLink="/Home">Home <span class="sr-only">(current)</span></a>
-      </li>
+      </li> 
       <li class="nav-item">
         <a class="nav-link"  [routerLink]="['/ShopHome']">Shop</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"  [routerLink]="['/Gallery']">Gallery</a>
       </li>
       <li class="nav-item">
         <a class="nav-link"  [routerLink]="['/Articals']">Articals</a>
@@ -20,18 +27,19 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+          
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" routerLink="/Login" *ngIf="!check()">Login</a>
           <a class="dropdown-item" routerLink="/Register"  *ngIf="!check()">Register</a>
           <div  *ngIf="check() ">
-            <a class="dropdown-item" routerLink=" "  *ngIf="this.admin">control Panal</a>
-            <a class="dropdown-item" routerLink=" "  *ngIf="this.admin">My Account</a>  
-              <a class="dropdown-item" routerLink=" "  *ngIf="this.vendor">control Panal</a>
-            <a class="dropdown-item" routerLink=" "  *ngIf="this.vendor">My Account</a>
-            <a class="dropdown-item" routerLink=" "  *ngIf="this.user">My Account</a>
+            <a class="dropdown-item"  [routerLink]="['/Admin']"  *ngIf="this.admin">control Panal</a>
+            <a class="dropdown-item"  [routerLink]="['/Admin']"  *ngIf="this.admin">My Account</a>  
+              <a class="dropdown-item" [routerLink]="['/Vendor']"  *ngIf="this.vendor">control Panal</a>
+            <a class="dropdown-item" [routerLink]="['/Vendor']"  *ngIf="this.vendor">My Account</a>
+            <a class="dropdown-item" [routerLink]="['/User']" *ngIf="this.user">My Account</a>
         </div>
+
           <a class="dropdown-item" routerLink="/Home" *ngIf="check()" (click)="logout()">logout</a>
 
         </div>

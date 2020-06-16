@@ -515,6 +515,57 @@ namespace Final_project.Migrations
                     b.ToTable("favorits");
                 });
 
+            modelBuilder.Entity("Final_project.Models.our_tables.Order", b =>
+                {
+                    b.Property<int>("OrderID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CustomerID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("OrderDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("OrderID");
+
+                    b.HasIndex("CustomerID");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Final_project.Models.our_tables.OrderDetails", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("OrderID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Qtu")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("OrderID");
+
+                    b.HasIndex("ProductID");
+
+                    b.ToTable("orderDetails");
+                });
+
             modelBuilder.Entity("Final_project.Models.our_tables.Review_replays", b =>
                 {
                     b.Property<int>("ID")
@@ -1077,6 +1128,28 @@ namespace Final_project.Migrations
                     b.HasOne("Final_project.Models.ApplicationUser", "vendor")
                         .WithMany()
                         .HasForeignKey("vendor_id");
+                });
+
+            modelBuilder.Entity("Final_project.Models.our_tables.Order", b =>
+                {
+                    b.HasOne("Final_project.Models.ApplicationUser", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerID");
+                });
+
+            modelBuilder.Entity("Final_project.Models.our_tables.OrderDetails", b =>
+                {
+                    b.HasOne("Final_project.Models.our_tables.Order", "Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Final_project.Models.our_tables.product", "Product")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Final_project.Models.our_tables.Review_replays", b =>

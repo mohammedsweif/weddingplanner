@@ -75,7 +75,8 @@ export class EditBookComponent implements OnInit {
     });
   }
   EditBook(){
-    if(this.Bookings.RealDate){
+    console.log(this.Bookings.RealDate);
+    if(this.Bookings.RealDate!=null){
       
     
     this.show= this.DateBusy.some(item=> item.busyDate===this.Bookings.RealDate);
@@ -84,7 +85,7 @@ export class EditBookComponent implements OnInit {
           this.DateBusy.push(a);
           this.toast.success("Your Book Edited","WOW")
         },error=>{this.toast.error("Filed To Edit you select Invalid Date","Sorry")});
-    
+        this.route.navigate(['User/Booking']);
     }
   }else{
       this.toast.error("You must Seelect Valid Date","No")

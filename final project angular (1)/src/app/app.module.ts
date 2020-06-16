@@ -85,8 +85,7 @@ import { ShowVendorComponent } from './User/show-vendor/show-vendor.component';
 import { ShopHomeComponent } from './shop/shop-home/shop-home.component';
 import { EditBookComponent } from './User/edit-book/edit-book.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
-
- 
+import { UserFavouriteComponent } from './User/user-favourite/user-favourite.component';
 import {UserArticleComponent} from './Articals/article/user-article.component';
 import {ArticlesComponent} from './Articals/crudarticles/articles.component';
  
@@ -138,6 +137,7 @@ let config= new AuthServiceConfig([{
     EditComponent,
     UserProfileComponent,
     UserPersonalSettingsComponent,
+    UserFavouriteComponent,
     VendorMessagesComponent,
     VendorChatComponent,
     EditBookingComponent,
@@ -186,6 +186,7 @@ let config= new AuthServiceConfig([{
     ChatComponent,
  
     ArticalDetailsComponent,
+    
  
   ],
   imports: [

@@ -32,7 +32,7 @@ body {
 }
 
 .carousel-indicators>li.active {
-    background-color:#19b5bc;
+    background-color:#7fb3b6;
 }
 
 #intro {
@@ -67,7 +67,7 @@ form>input[type="text"] {
 }
 
 form>input[type="button"] {
-    background: #19b5bc;
+    background: #73bec2;
     font-weight: 600;
     height: 1em;
     padding: 16px 17px 40px;
@@ -111,38 +111,38 @@ i svg {
 
 .homeTools__item>a:hover {
     text-decoration: none;
-    color: #19b5bc;
+    color: #73bec2;
 
 }
 
 .btnFlat,
 .btnFlat:hover {
-    background-color: #19b5bc;
+    background-color: #73bec2;
     width: 210px;
     height: 40px;
     border-radius: 5px;
     font-weight: bold;
-    border: 0 solid #19b5bc;
+    border: 0 solid #73bec2;
 }
 
 .linkprimary,
 .linkprimary:hover {
     text-decoration: none;
     font-weight: bold;
-    color: #19b5bc;
+    color: #73bec2;
     ;
 }
 
 .subIdea:hover {
 
-    color: #19b5bc;
+    color: #73bec2;
 }
 
 .ideas img {
     border-radius: 50%;
     width: 100px;
     box-shadow: 5px 10px 8px #888888;
-    color: #19b5bc;
+    color: #73bec2;
 }
 
 .app-general-item {
@@ -161,7 +161,7 @@ i svg {
 
 .app-general-item a:hover {
     text-decoration: none;
-    color: #19b5bc;
+    color: #73bec2;
 }
 
 .homeCatalog__categories a {
@@ -202,16 +202,16 @@ ul.homeCategories__list-first li a,ul.homeCategories__list-second li a{
     color: gray;
 }
 .homeSection__title,.homeSection__title:hover{
-    color: #19b5bc;
+    color: #73bec2;
     text-decoration: none;
 }
 .homeLinks__link{
     text-decoration: none;
-    color: #19b5bc;
+    color: #73bec2;
 }
 .homeLinks__link:hover{
     text-decoration: none;
-    color: #19b5bc;
+    color: #73bec2;
 }
 .pref{
     background-color: #d4ebec;

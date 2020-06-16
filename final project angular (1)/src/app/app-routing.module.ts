@@ -40,7 +40,7 @@ import { MessagesComponent } from './admin/messages/messages.component';
 import { BookingdetailsComponent } from './admin/bookingdetails/bookingdetails.component';
 import { TopDataComponent } from './admin/top-data/top-data.component';
 import { VendordetailsComponent } from './admin/vendordetails/vendordetails.component';
-import {UserFavouriteComponent} from './User/user-favourite/user-favourite.component';
+import { UserFavouriteComponent } from './User/user-favourite/user-favourite.component';
 import{EditBookComponent} from './User/edit-book/edit-book.component';
 import { VendorRolesComponent } from './admin/Roles/vendor-roles/vendor-roles.component';
 import { UserroleComponent } from './admin/Roles/userrole/userrole.component';
@@ -114,7 +114,10 @@ const routes: Routes = [
   {path:"FavouriteVendor" ,component:FavoritVendorComponent},
   {path:"ClientBook", component:ClientBookCatComponent},
   {path:"MySetting",component:UserPersonalSettingsComponent},
-  {path:"Showvendor",component:ShowVendorComponent},
+  {path:"Showvendor/:id",component:ShowVendorComponent},
+  {path:"VendorPackages/:id",component:UserPackageComponent},
+  {path:"BookPackage/:id",component:BookPackageComponent},
+  {path:"EditBooks/:id",component:EditBookComponent}, 
 ]}, 
 
  

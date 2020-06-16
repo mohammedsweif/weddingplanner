@@ -16,9 +16,12 @@ namespace Final_project.Controllers
     public class VendorClientController : ControllerBase
     {
         ProjectDbcontext _context;
-        public VendorClientController(ProjectDbcontext context)
+        private readonly IHttpContextAccessor contextAccessor;
+
+        public VendorClientController(ProjectDbcontext context, IHttpContextAccessor contextAccessor)
         {
             _context = context;
+            this.contextAccessor = contextAccessor;
         }
 
         [HttpGet("bookingbyId/{id}")]
@@ -91,11 +94,11 @@ namespace Final_project.Controllers
         {
             List<Booking> distinctList = new List<Booking>();
             List<Booking> list = new List<Booking>();
-            var lists = _context.booking.Where(a => a.UserId == id).Select(e => new
+            List<ClientVM> ClientVMs = _context.booking.Where(a => a.UserId == id).Include(a => a.vendor).Include(a => a.category).Select(e => new ClientVM
+
+
+            //var lists = _context.booking.Where(a => a.UserId == id).Select(e => new
             {
-
-
-
                 vendor_id = e.VendorId,
                 name = e.vendor.UserName,
                 email = e.vendor.Email,
@@ -105,18 +108,24 @@ namespace Final_project.Controllers
                 cat_id = e.CategoryId,
                 book_date = e.BookDate.ToString("dddd, dd MMMM yyyy"),
                 real_date = e.RealDate.ToString("dddd, dd MMMM yyyy"),
-                status = e.Status,
+                status=e.Status,
                 bookingid = e.BookingId,
-                user_id=e.UserId
+                user_id = e.UserId,
+                image = e.vendor.ImageUrl
 
-            }).ToList().OrderBy(a=>a.book_date).GroupBy(a=>a.vendor_id).Select(a=>a.FirstOrDefault());
-           
-
-
-
-            if (lists != null)
+            }).ToList();
+            //.OrderBy(a=>a.book_date).GroupBy(a=>a.vendor_id).Select(a=>a.FirstOrDefault());
+            for (int i = 0; i < ClientVMs.Count; i++)
             {
-                return Ok(lists);
+                ClientVMs[i].image = Process(ClientVMs[i].image);
+
+            }
+
+
+
+            if (ClientVMs != null)
+            {
+                return Ok(ClientVMs);
             }
 
             else
@@ -170,8 +179,16 @@ namespace Final_project.Controllers
                 return NotFound();
             }
         }
+        private string Process(string Image)
+        {
+            //get domain name;
+            var request = this.contextAccessor.HttpContext.Request;
+            //make path for Image   
+            string path = $"{request.Scheme}://{request.Host.Value}/images/{Image}";
+            return path;
+        }
 
     }
 
-    
+   
 }

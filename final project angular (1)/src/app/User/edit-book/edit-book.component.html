@@ -22,7 +22,7 @@
         <div class="col-md-5">
                 <p class="border border-danger" *ngIf="show">This Date is resrved Please Select another Date</p>
                 <div class="DateContainer">
-                    <input
+                    <input  [(ngModel)]="Bookings.RealDate"
             type="text"
             placeholder="Choose date"
             class="form-control"

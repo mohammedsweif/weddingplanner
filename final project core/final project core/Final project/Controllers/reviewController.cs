@@ -20,7 +20,8 @@ namespace Final_project.Controllers
     {
 
         private readonly ProjectDbcontext _context;
-        public reviewController(ProjectDbcontext context)
+        private readonly IHttpContextAccessor contextAccessor;
+        public reviewController(ProjectDbcontext context, IHttpContextAccessor contextAccessor)
         {
             _context = context;
         }
@@ -42,6 +43,7 @@ namespace Final_project.Controllers
                 catagory_id = e.catagory_id,
                 ID = e.ID,
                 liked = e.liked,
+                image=Process(e.ApplicationUser.ImageUrl),
                 replies = _context.review_Replays.Include(a=>a.ApplicationUser).Where(a=>a.Review_Id==e.ID).Select(q=>new {id=q.ID,reviewid=e.ID,userid=q.User_Id,uname =q.ApplicationUser.UserName,comment=q.Comment,liked=q.liked,postDate=q.PostDate, vendorid =e.Vendor_Id}).OrderByDescending(a => a.postDate).ToList()
                 //.Where(a => a.Review_Id == e.ID).ToList() ToList()
                 //   user =_context.review_Replays.FirstOrDefault(a => a.Review_Id == e.ID).ApplicationUser.UserName
@@ -51,6 +53,7 @@ namespace Final_project.Controllers
         }
 
         
+
 
         [HttpPost]
         [Route("Postreviews")]
@@ -62,7 +65,14 @@ namespace Final_project.Controllers
             return Ok(n);
         }
 
-
+        private string Process(string Image)
+        {
+            //get domain name;
+            var request = this.contextAccessor.HttpContext.Request;
+            //make path for Image   
+            string path = $"{request.Scheme}://{request.Host.Value}/images/{Image}";
+            return path;
+        }
 
     }
 }

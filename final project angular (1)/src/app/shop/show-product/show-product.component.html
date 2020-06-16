@@ -34,9 +34,9 @@
     <section class="product-details spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-4 col-md-4 m-5">
                     
-                            <img src={{product.product_image}} alt="">
+                            <img [src]="product.product_image" alt="">
                        
                     
                 </div>
@@ -48,9 +48,9 @@
                             <li><b>Description </b> <span>{{product.description}}</span></li>
                         </ul>
                         
-                        <button class="primary-btn" (click)="onClickCart()">ADD TO CARD</button>
+                        <button class="btn-b m-5" (click)="onClickCart()">ADD TO CARD</button>
                         
-                        <ul>
+                        <!-- <ul>
                             <li><b>Availability</b> <span>In Stock</span></li>
                             <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
                             <li><b>Weight</b> <span>0.5 kg</span></li>
@@ -61,11 +61,11 @@
                                     <a href="#"><i class="fa fa-instagram"></i></a>
                                     <a href="#"><i class="fa fa-pinterest"></i></a>
                                 </div>
-                            </li>
-                        </ul>
+                            </li> -->
+                        <!-- </ul> -->
                     </div>
                 </div>
-                <div class="col-lg-12">
+                <!-- <div class="col-lg-12">
                     <div class="product__details__tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
@@ -79,13 +79,14 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <h6>Products Description</h6>
-                                    <ul>
-                                        <li><b>Product Name</b> <span>{{product.product_name}}</span></li>
-                                        <li><b>Description </b> <span>{{product.description}}</span></li>
-                                    </ul>
-                                </div>
+                                <div class="card">
+                                    <h5 class="card-header">Products Description</h5>
+                                    <div class="card-body">
+                                      <h5 class="card-title"><b class="m-2"> Name</b> <span>{{product.product_name}}</span></h5>
+                                      <p ><b class="m-2"> Description </b> <span class="card-text">{{product.description}}</span></p>
+                                      
+                                    </div>
+                                  </div>
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <div class="product__details__tab__desc">
@@ -107,7 +108,7 @@
                             
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>

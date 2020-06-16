@@ -17,8 +17,8 @@
       
             <h2 class="text-center">Register</h2>
             <form class="text-center" [formGroup]="userForm" *ngIf="checkclass == 1" (ngSubmit)="register()">
-<span> Register as </span>
-              <select style="height: 32px; width: 237px;" #r (change)="type($event)">
+<span style="margin-bottom: 5px;"> Register as </span>
+              <select style="height: 32px; width: 120px; background-color:rgb(184, 93, 138);font-family: Arial;color: white; font-weight:600;margin-bottom: 5px;" #r (change)="type($event)">
                <option value="1">Vendor</option>
                 <option value="2">User</option>
                 </select>
@@ -54,7 +54,7 @@
               </small>
             </div>
      
-              <input type="password"  formControlName="ConfirmPassword" class="form-control" placeholder="ConfirmPassword"
+              <input type="password"  formControlName="ConfirmPassword" class="form-control  mt-4" placeholder="ConfirmPassword"
              >
              <div *ngIf="!this.userForm.get('ConfirmPassword').valid && this.userForm.get('ConfirmPassword').touched">      
               <small  class="form-text text-danger mb-4" *ngIf="this.userForm.get('ConfirmPassword').errors.required == true" >

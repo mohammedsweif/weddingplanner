@@ -9,3 +9,6 @@ export class VWorks{
         public last_updated?:string;
     
 }
+export class Works{  
+        public image?:string;   
+}

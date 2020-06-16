@@ -21,7 +21,7 @@
                  <ng-container *ngFor="let item of reviews;let i = index;">
                  <div class="card" style="margin-bottom: 10px;" >
                      <div class="card-header">
-                         <img class="rounded-circle img-fluid" src="assets/images/1.jpg" alt="card image"> <a  [routerLink]="['/User/Showvendor']">{{item.vendor}} </a>({{item.category}})
+                         <img class="rounded-circle img-fluid" [src]="item.image" alt="card image"> <a  [routerLink]="['/User/Showvendor']">{{item.vendor}} </a>({{item.category}})<i class="fa fa-remove" (click)="delete(i)"></i>
                      </div>
                      <div class="card-body">
                        <blockquote class="blockquote mb-0">

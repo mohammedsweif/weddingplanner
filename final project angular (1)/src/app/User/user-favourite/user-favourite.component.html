@@ -1,36 +1,49 @@
 <div class="container">
-    <div class="row justify-content-center">
-    
-        <div class="btn btn-success m-5" id="bootstrap-data-table_length">
-           <!-- <label class="filtter">Filter</label>
-            <select name="bootstrap-data-table_length" aria-controls="bootstrap-data-table" class="form-control form-control-sm"  [(ngModel)]="Category" (ngModelChange)="makeFilter($event)">
-                <option value="All">All</option>
-                <option *ngFor="let item of Cat;" value={{item}}>{{item}}</option>
-            </select>
-        -->
-        </div>
-       
-    </div>
-    
-    
+    <h3 class="title">My Favourites</h3>
+    <br>
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="dataTables_length" id="bootstrap-data-table_length">
+             <label class="text-info" >Filter By Catagory</label>
+                <select name="bootstrap-data-table_length"  #mySelect (change)="makeFilter(mySelect.value)" aria-controls="bootstrap-data-table" class="form-control form-control-sm" >
+                    <option value="All">All</option>
+                    <option *ngFor="let item of Cat;"  value={{item}}>{{item}}</option>
+                    
+                </select>
+            </div>
+            
+        </div>  
+        <div class="col-lg-3"></div>
         
+          <div class="col-lg-6 col-md-6">
+            <label class="text-info">Search by Name </label>
+          <div id="bootstrap-data-table_filter" class="dataTables_filter">
+               
+  <input type="search" #f (keyup)="search(f)" class="form-control form-control-sm" placeholder="search..."  aria-controls="bootstrap-data-table" class="form-control form-control-sm"> </div></div></div>
+  <br>
     
-    <div class="row m-5" *ngFor="let item of Favorit; let i= index;">
+    <ng-container *ngFor="let item of Favorit|paginate: this.config ; let i= index;">
+    <div class="card" style="margin-bottom: 10px;" *ngIf="(clientname == '' || item.vendorName.startsWith(this.clientname))">    
+    
+    <div class="row m-5" >
         <div class="col-lg-4 ">
-            <img src={{item.image}} >
+            <img [src]="item.image">
         </div>
-        <div class="col-lg-6 px-5">
-            <div  class="text-secondary">Name: {{item.vendorName}}</div>
-           <div  class="text-secondary">Category : {{item.category}}</div> 
-           <div  class="text-secondary">Address : {{item.address}}</div> 
-           <div  class="text-secondary">Phone : {{item.phone}}</div> 
+        <div class="col-lg-6 px-5" style="padding: 30px;">
+            <div  class="text-info">Name : {{item.vendorName}}</div>
+           <div  class="text-info">Category : {{item.category}}</div> 
+           <div  class="text-info">Address : {{item.address}}</div> 
+           <div  class="text-info">Phone : {{item.phone}}</div> 
             
 
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-2" style="padding: 30px;">
             <a  (click)="RemoveFromFavorit(i)"><i class="fa fa-heart text-danger  fa-2x m-4" id="change" aria-hidden="true" ></i></a>
 
         </div>
     </div>
-   
+</div>
+</ng-container>
+<pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+
 </div>
